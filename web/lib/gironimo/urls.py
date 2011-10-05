@@ -9,6 +9,6 @@ urlpatterns = patterns('',
     url(r'^js/i18n\.js$', 'django.views.i18n.javascript_catalog', name='js_i18n'),
     url(r'^admin/', include('gironimo.admin_urls')),
     #url(r'^accounts/', include('registration.backends.default.urls')),
-    #url(r'^$', 'gironimo.views.index', name='index'),
+    url(r'^$', 'gironimo.views.index', name='index'),
 )
 

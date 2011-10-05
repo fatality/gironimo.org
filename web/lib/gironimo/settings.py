@@ -123,7 +123,7 @@ AJAX_CONFIG_PROCESSORS = (
 	#'django_ajax.ajax_processors.session',
 )
 
-#ASSETS_DEBUG = False
+ASSETS_DEBUG = False
 
 AUTH_PROFILE_MODULE = 'gironimo.accounts.UserProfile'
 ACCOUNT_ACTIVATION_DAYS = 3

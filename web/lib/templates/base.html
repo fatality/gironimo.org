@@ -1,0 +1,71 @@
+{% load django_ajax_tags assets %}
+
+<!DOCTYPE html>
+
+<html class="no-js" dir="ltr" lang="de-DE">
+    <head>
+        <meta charset="UTF-8" />
+        
+        <title>{% block title %}gironimo.org{% endblock %}</title>
+        
+        <link rel="profile" href="http://gmpg.org/xfn/11" />
+        <link rel="index" title="gironimo.org" href="http://www.gironimo.org/" />
+        
+        <meta name="robots" content="{% block robots %}index,follow{% endblock %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        
+        <link rel="icon" href="{{ STATIC_URL|default:'/static/' }}lib/images/favicon.ico" type="image/x-icon" />
+        
+        {% assets "css_base" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}" type="text/css" media="screen" />
+        {% endassets %}
+        
+        <script type="text/javascript" src="{% url js_i18n %}"></script>
+        <script type="text/javascript">
+            if (typeof gironimo == 'undefined') var gironimo = {};
+            gironimo.config = {% json ajax_config %};
+        </script>
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        
+        {% assets "js_base" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+        
+        {% block extrahead %}{% endblock %}
+        {% block analytics %}{% endblock %}
+    </head>
+    
+    <body class="{% block body-class %}{% if user.is_authenticated %}authenticated{% else %}guest{% endif %} lang-{{ LANGUAGE_CODE }}{% endblock %}">
+    {% comment %}
+        <header id="branding">
+            {% include "gironimo/header.html" %}
+        </header>
+        <div id="main" class="wrapper clearfix">
+            <div id="content">
+                <div class="wrap">
+                    <header class="page-header">
+                        <h1>{% block breadcrumbs %}{% endblock %}</h1>
+                    </header>
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <div id="sidebar" role="complementary">
+                <div class="sidebar-wrap clearfix">
+                    {% include "sidebar/search.html" %}
+                    <div id="sidebar-left">
+                        {% block sidebar-left %}{% endblock %}
+                    </div>
+                    <div id="sidebar-right">
+                        {% block sidebar-right %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer id="colophon">
+            {% include "gironimo/footer.html" %}
+        </footer>
+    {% endcomment %}
+    </body>
+</html>
