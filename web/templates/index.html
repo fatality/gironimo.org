@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ block.super }} - Linux, das Web und Ich
+{% endblock %}
+
+{% block content %}
+    <article class="post" id="post-1">
+        <header class="entry-header">
+            <h2>
+                <a href="#" rel="bookmark" title="">Howto: Veetle unter Ubuntu 64-bit installieren</a>
+            </h2>
+            <ul class="entry-meta clearfix">
+                <li class="autor"><a href="#" title="Alle Artikel von Marc Rochow" rel="autor">Marc Rochow</a></li>
+                <li><time datetime="2011-07-05">05. Juli 2011</time></li>
+                <li><a href="#" title="" rel="">GNU/Linux</a></li>
+                <li><a href="#" title="" rel="">6 Kommentare</a></li>
+            </ul>
+        </header>
+        <a class="post-format standard" href="#">Permalink</a>
+        <div class="entry-content">
+            <p>
+                Wer von euch auch Probleme hat Veetle unter einem <strong>64-Bit Linux</strong> 
+                zu installieren, dem kann ich hier helfen. Leider war es bei mir 
+                so das weder die selbstinstallierende Datei noch das *.tgz 
+                Archiv bei mir funktionierten.
+            </p>
+            <p class="entry-image">
+                <a href="#" rel="" title="">
+                    <img src="{{ STATIC_URL|default:'/static/' }}lib/images/demo/veetle.png" alt="" width="500" height="244" />
+                </a>
+            </p>
+            <p>
+                Bei näherem Untersuchen des Problems stellt sich heraus, das 
+                diese Dateien auch nicht für 64-Bit Systeme gedacht sind sondern 
+                für "normale" 32-Bit Systeme. Also erstmal versucht auf der 
+                Webseite von Veetle bzw. deren FTP-Servern eine andere Version 
+                zu finden, doch leider alles ohne Erfolg. Ich hab dennoch nicht 
+                aufgegeben. Stundenlanges Suchen sowie tausende Foren und 
+                Blogeinträge später hatte ich mein Ergebnis. Irgendwer hatte 
+                noch eine sogenannte <strong>Plus Version von Veetle</strong>, die auf 64-Bit 
+                Rechnern funktionieren soll.
+            </p>
+            <p>
+                <a href="#" title="" rel="">weiterlesen ...</a>
+            </p>
+        </div>
+    </article>
+    <article class="post" id="post-1">
+        <header class="entry-header">
+            <h2>
+                <a href="#" rel="bookmark" title="">SWFUpload in Django integrieren</a>
+            </h2>
+            <ul class="entry-meta clearfix">
+                <li class="autor">von <a href="#" title="Alle Artikel von Marc Rochow" rel="autor">Marc Rochow</a></li>
+                <li>am <time datetime="2011-07-05">03. Juli 2011</time></li>
+                <li>in <a href="#" title="" rel="">Webentwicklung</a></li>
+                <li><a href="#" title="" rel="">0 Kommentare</a></li>
+            </ul>
+        </header>
+        <a class="post-format standard" href="#">Permalink</a>
+        <div class="entry-content">
+            <p class="entry-image">
+                <a href="#" rel="" title="">
+                    <img src="{{ STATIC_URL|default:'/static/' }}lib/images/demo/django-logo-negative.png" alt="" width="500" height="228" />
+                </a>
+            </p>
+            <p>
+                Mit dem SWFUpload Cookies Plugin und einer Django Middleware, 
+                lässt sich der Flash-basierte SWFUpload einfach und komfortabel 
+                in Django integrieren. Der Vorteil der ganze Prozedur ist für 
+                die Benutzer der Seite ein wesentlich einfacher Upload 
+                Mechanismus, welcher es erlaubt mehrere Dateien gleichzeitig 
+                hochzuladen. Mit diesem kleinen Tutorial möchte ich euch zeigen 
+                wie das ganze funktioniert.
+            </p>
+            <p>
+                <a href="#" title="" rel="">weiterlesen ...</a>
+            </p>
+        </div>
+    </article>
+    <article class="post" id="post-1">
+        <header class="entry-header">
+            <h2>
+                <a href="#" rel="bookmark" title="">Artikel auf webmasterpro.de</a>
+            </h2>
+            <ul class="entry-meta clearfix">
+                <li class="autor">von <a href="#" title="Alle Artikel von Marc Rochow" rel="autor">Marc Rochow</a></li>
+                <li>am <time datetime="2011-07-05">12. April 2011</time></li>
+                <li>in <a href="#" title="" rel="">Netzwelt</a></li>
+                <li><a href="#" title="" rel="">0 Kommentare</a></li>
+            </ul>
+        </header>
+        <a class="post-format standard" href="#">Permalink</a>
+        <div class="entry-content">
+            <p class="entry-image">
+                <a href="#" rel="" title="">
+                    <img src="{{ STATIC_URL|default:'/static/' }}lib/images/demo/artikel-webmasterpro.jpg" alt="" width="500" height="236" />
+                </a>
+            </p>
+            <p>
+                Auf webmasterpro.de – Das Portal für Webentwickler, Webdesigner 
+                und Webmaster – veröffentliche ich hin und wieder einige 
+                Fachartikel zu Themen wie JavaScript, Web-Sicherheit oder 
+                Webentwicklung mit Django. Auch einige Buchrezensionen finden 
+                sich dort. Diese Seite soll einen Überblick meiner bisherigen 
+                Publikationen darstellen und wird fortlaufend aktualisiert.
+            </p>
+            <p>
+                <a href="#" title="" rel="">weiterlesen ...</a>
+            </p>
+        </div>
+    </article>
+    <article class="post" id="post-1">
+        <header class="entry-header">
+            <h2>
+                <a href="#" rel="bookmark" title="">CSS3 und Box Shadows</a>
+            </h2>
+            <ul class="entry-meta clearfix">
+                <li class="autor">von <a href="#" title="Alle Artikel von Marc Rochow" rel="autor">Marc Rochow</a></li>
+                <li>am <time datetime="2011-07-05">04. Januar 2011</time></li>
+                <li>in <a href="#" title="" rel="">Webentwicklung</a></li>
+                <li><a href="#" title="" rel="">0 Kommentare</a></li>
+            </ul>
+        </header>
+        <a class="post-format standard" href="#">Permalink</a>
+        <div class="entry-content">
+            <p>
+                Wer ist es nicht langsam leid, immer wieder die tollen Photoshop 
+                Designvorlagen zu slicen nur um damit viele einzelne Bilder 
+                (oder ein etwas größeres, mit Sprites) zu erstellen die 
+                schlussendlich auf der Webseite verwendet werden sollen. Dabei 
+                geht es auch soviel einfacher seitdem es HTML5 und CSS3 endlich 
+                gibt.
+            </p>
+            <p class="entry-image">
+                <a href="#" rel="" title="">
+                    <img src="{{ STATIC_URL|default:'/static/' }}lib/images/demo/css3-effects.jpg" alt="" width="500" height="263" />
+                </a>
+            </p>
+            <p>
+                Mithilfe von CSS3 kann beispielsweise ein Text einen Schatten 
+                bekommen oder eine ganze Box. Verläufe im Hintergrund sind auch 
+                möglich ohne Bilder zu verwenden. Eigene Schriftarten können auf 
+                die Webseite eingebettet, usw usf. Für jeden 
+                Webdesigner/Webentwickler ist es ein Muss, sich mit HTML5 und 
+                CSS3 zu beschäftigen. Doch wo liegt der Vorteil? Ganz klar, die 
+                Performance ist deutlich besser, außerdem müssen sich 
+                Webentwickler ohne große Photoshop Kenntnisse nicht mehr 
+                abmühen, bis sie endlich an die richtige Arbeit können.
+            </p>
+            <p>
+                <a href="#" title="" rel="">weiterlesen ...</a>
+            </p>
+        </div>
+    </article>
+    <article class="post" id="post-1">
+        <header class="entry-header">
+            <h2>
+                <a href="#" rel="bookmark" title="">Das Jahr 2010 in der Statistik</a>
+            </h2>
+            <ul class="entry-meta clearfix">
+                <li class="autor">von <a href="#" title="Alle Artikel von Marc Rochow" rel="autor">Marc Rochow</a></li>
+                <li>am <time datetime="2011-07-05">31. Dezember 2010</time></li>
+                <li>in <a href="#" title="" rel="">Allgemein</a></li>
+                <li><a href="#" title="" rel="">0 Kommentare</a></li>
+            </ul>
+        </header>
+        <a class="post-format standard" href="#">Permalink</a>
+        <div class="entry-content">
+            <p>
+                Der letzte Tag im Jahr, überall wurden wir schon mit Rückblicken 
+                und Statistiken über das Jahr 2010 genervt. Für mich, als 
+                Betreiber der Webseite, ist es sehr interessant zu sehen 
+                inwieweit die Besucherzahlen im Vergleich zum Vorjahr aussehen. 
+                Wer möchte kann die Statistik vom letzten Jahr hier ansehen.
+            </p>
+            <p class="entry-image">
+                <a href="#" rel="" title="">
+                    <img src="{{ STATIC_URL|default:'/static/' }}lib/images/demo/statistiken.jpg" alt="" width="500" height="214" />
+                </a>
+            </p>
+            <p>
+                Alle Statistiken wurden mithilfe von Google Analytics erstellt. 
+                Das heißt zum einen auch, das eventuell nicht alle Besucher 
+                erfasst sind, da es nun ja auch Plugins gibt um Google Analytics 
+                auszuschalten und Personen die ohne JavaScript surfen, werden 
+                ebenfalls nicht erfasst.
+            </p>
+            <p>
+                <a href="#" title="" rel="">weiterlesen ...</a>
+            </p>
+        </div>
+    </article>
+    <article class="post" id="post-1">
+        <header class="entry-header">
+            <h2>
+                <a href="#" rel="bookmark" title="">Warum semantischer Code wichtig ist</a>
+            </h2>
+            <ul class="entry-meta clearfix">
+                <li class="autor">von <a href="#" title="Alle Artikel von Marc Rochow" rel="autor">Marc Rochow</a></li>
+                <li>am <time datetime="2011-07-05">05. Dezember 2010</time></li>
+                <li>in <a href="#" title="" rel="">Webentwicklung</a></li>
+                <li><a href="#" title="" rel="">3 Kommentare</a></li>
+            </ul>
+        </header>
+        <a class="post-format standard" href="#">Permalink</a>
+        <div class="entry-content">
+            <p class="entry-image">
+                <a href="#" rel="" title="">
+                    <img src="{{ STATIC_URL|default:'/static/' }}lib/images/demo/barrierefreies-webdesign.jpg" alt="" width="500" height="240" />
+                </a>
+            </p>
+            <p>
+                Auf vielen Webseiten sieht man immer wieder "valides (X)HTML" 
+                und viele Diskussionen bringen immer wieder das Argument das 
+                valider (X)HTML-Code auch guter Code sei. Dies ist aber nicht 
+                richtig! Auf Tabellenlayouts basierende Webseiten können ebenso 
+                fehlerfrei und damit valide sein. Bei der Validierung bezieht 
+                sich die Überprüfung einzig und allein darauf ob bei der 
+                Umsetzung des Codes Fehler erzeugt wurden oder nicht. Es wird 
+                aber nicht geprüft ob beispielsweise der Content auch seiner 
+                Bedeutung entsprechend ausgezeichnet ist. Damit kann man gleich 
+                das nächste Argument aushebeln, valider Code ist nicht 
+                barrierefrei! Valider Code kann viele Barrieren für 
+                Internetnutzer besitzen. Welche Art von validem Code als der 
+                "richtige Weg" ist, möchte ich euch näher bringen.
+            </p>
+            <p>
+                <a href="#" title="" rel="">weiterlesen ...</a>
+            </p>
+        </div>
+    </article>
+    <article class="post" id="post-1">
+        <header class="entry-header">
+            <h2>
+                <a href="#" rel="bookmark" title="">WordPress Permalink Struktur ändern ohne Google zu ärgern</a>
+            </h2>
+            <ul class="entry-meta clearfix">
+                <li class="autor">von <a href="#" title="Alle Artikel von Marc Rochow" rel="autor">Marc Rochow</a></li>
+                <li>am <time datetime="2011-07-05">22. Oktober 2010</time></li>
+                <li>in <a href="#" title="" rel="">SEO</a></li>
+                <li><a href="#" title="" rel="">3 Kommentare</a></li>
+            </ul>
+        </header>
+        <a class="post-format standard" href="#">Permalink</a>
+        <div class="entry-content">
+            <p>
+                Besucherfreundliche und vor allem Suchmaschinenfreundliche URLs 
+                sind wichtig, zum einen um den Besucher nicht mit komischen 
+                Zeichenketten wieder zu verjagen und andererseits um seinen 
+                PageRank bei Suchmaschinen wie Google, Bing, Yahoo und Co zu 
+                verbessern.
+            </p>
+            <p class="entry-image">
+                <a href="#" rel="" title="">
+                    <img src="{{ STATIC_URL|default:'/static/' }}lib/images/demo/wordpress-permalink.jpg" alt="" width="500" height="280" />
+                </a>
+            </p>
+            <p>
+                Was aber tun, wenn schon viele Einträge vorhanden sind und diese 
+                bereits im Index der Suchmaschinen gelandet sind? Vielleicht hat 
+                man bereits einen guten PageRank oder will seinen derzeitigen 
+                nicht verlieren. Das Problem ist, das nicht sofort alle Seiten 
+                neu von den Suchmaschinen durchsucht werden, und somit veraltete 
+                Links in den Suchergebnissen stehen. Das wird von allen 
+                Suchmaschinen sofort bestraft und der Besuchertraffic geht 
+                flöten.
+            </p>
+            <p>
+                <a href="#" title="" rel="">weiterlesen ...</a>
+            </p>
+        </div>
+    </article>
+{% endblock %}

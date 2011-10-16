@@ -40,7 +40,7 @@ USE_L10N = True
 USE_THOUSAND_SEPARATOR = False
 
 LOCALE_PATHS = (
-    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))), 'locale'),
+    os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'locale'),
 )
 
 MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'htdocs', 'media')

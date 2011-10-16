@@ -33,39 +33,32 @@
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
         
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('ul.sf-menu').superfish({
+                    autoArrows:  false
+                });
+            });
+        </script>
+        
         {% block extrahead %}{% endblock %}
         {% block analytics %}{% endblock %}
     </head>
     
     <body class="{% block body-class %}{% if user.is_authenticated %}authenticated{% else %}guest{% endif %} lang-{{ LANGUAGE_CODE }}{% endblock %}">
-    {% comment %}
-        <header id="branding">
-            {% include "gironimo/header.html" %}
+        <header id="header">
+            {% include "common/page/header.html" %}
         </header>
-        <div id="main" class="wrapper clearfix">
+        <div id="main">
             <div id="content">
-                <div class="wrap">
-                    <header class="page-header">
-                        <h1>{% block breadcrumbs %}{% endblock %}</h1>
-                    </header>
-                    {% block content %}{% endblock %}
-                </div>
+                {% block content %}{% endblock %}
             </div>
             <div id="sidebar" role="complementary">
-                <div class="sidebar-wrap clearfix">
-                    {% include "sidebar/search.html" %}
-                    <div id="sidebar-left">
-                        {% block sidebar-left %}{% endblock %}
-                    </div>
-                    <div id="sidebar-right">
-                        {% block sidebar-right %}{% endblock %}
-                    </div>
-                </div>
+                {% include "common/page/base_sidebar.html" %}
             </div>
         </div>
-        <footer id="colophon">
-            {% include "gironimo/footer.html" %}
+        <footer id="footer">
+            {% include "common/page/footer.html" %}
         </footer>
-    {% endcomment %}
     </body>
 </html>

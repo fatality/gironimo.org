@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -9,18 +10,21 @@ class UserProfile(StatMixin, models.Model):
     user = models.OneToOneField(
         User, 
         related_name='account', 
-        verbose_name=_('Benutzer')
+        verbose_name=_('Benutzer'), 
+        help_text=_(u'Benutzer für wen das Profil erstellt wird.')
     )
     about = models.TextField(
         blank=True, 
         null=True, 
-        verbose_name=_('Beschreibung')
+        verbose_name=_('Beschreibung'), 
+        help_text=_(u'Optional. Kurze Beschreibung über sich selbst.')
     )
     avatar = models.ImageField(
         blank=True, 
         null=True, 
         upload_to='accounts/avatar', 
-        verbose_name=_('Avatar')
+        verbose_name=_('Avatar'), 
+        help_text=_(u'Optional. Wenn angegeben wird dies bei Kommentaren und auf der Profilseite verwendet, wenn nicht wird E-mail Adresse mit Gravatar verglichen.')
     )
     
     def __unicode__(self):
