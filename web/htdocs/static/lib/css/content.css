@@ -1,28 +1,41 @@
-#main #content {
-    width: 66.34%;
+#main .site-wrapper {
+    background-color: #fff;
+    background-image: url(../images/background.jpg);
+    background-repeat: repeat-y;
+    background-position: 62.59% 0;
+    padding: 35px 25px 25px;
+    max-width: 1102px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -ms-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#content {
+    width: 62.59%;
     float: left;
 }
 
-#main #content .post {
+#content .post {
     margin-bottom: 35px;
     border-bottom: 1px solid #a8a7a7;
 }
 
-#main #content .post:last-child {
+#content .post:last-child {
     border-bottom: none;
 }
 
-#main #content .post .entry-header {
+#content .post .entry-header {
     margin-bottom: 12px;
-    border-bottom: 1px solid #eee;
 }
 
-#main #content .post .entry-header h2 {
+#content .post .entry-header h2 {
     font-size: 1.85em;
     margin: 0;
 }
 
-#main #content .post .entry-header h2 a {
+#content .post .entry-header h2 a {
     color: #272727;
     text-decoration: none;
     outline: none;
@@ -33,25 +46,25 @@
     -ms-transition: all 0.3s ease 0s;
 }
 
-#main #content .post .entry-header h2 a:hover,
-#main #content .post .entry-header h2 a:focus,
-#main #content .post .entry-header h2 a:active {
+#content .post .entry-header h2 a:hover,
+#content .post .entry-header h2 a:focus,
+#content .post .entry-header h2 a:active {
     background-color: #f1f8fe;
     border-bottom: 1px solid #e3f1fd;
 }
 
-#main #content .post .entry-meta,
-#main #content .post .entry-footer-meta {
+#content .post .entry-meta,
+#content .post .entry-footer-meta {
     margin: 4px 0 0;
     padding: 0;
 }
 
-#main #content .post .entry-footer-meta {
+#content .post .entry-footer-meta {
     margin: 0;
 }
 
-#main #content .post .entry-meta li,
-#main #content .post .entry-footer-meta li {
+#content .post .entry-meta li,
+#content .post .entry-footer-meta li {
     list-style: none;
     float: left;
     border-right: 1px solid #e6e6e6;
@@ -60,19 +73,18 @@
     color: #a8a7a7;
 }
 
-#main #content .post .entry-meta li:first-child,
-#main #content .post .entry-footer-meta li:first-child {
+#content .post .entry-meta li:first-child,
+#content .post .entry-footer-meta li:first-child {
     padding-left: 0;
 }
 
-#main #content .post .entry-meta li:last-child,
-#main #content .post .entry-footer-meta li:last-child {
+#content .post .entry-meta li:last-child,
+#content .post .entry-footer-meta li:last-child {
     border: none;
 }
 
-#main #content .post .entry-meta li a,
-#main #content .post .entry-footer-meta li a {
-    color: #9f2b2b;
+#content .post .entry-meta li a,
+#content .post .entry-footer-meta li a {
     outline: none;
     transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
@@ -81,53 +93,52 @@
     -ms-transition: all 0.3s ease 0s;
 }
 
-#main #content .post .entry-footer-meta li a {
+#content .post .entry-footer-meta li a {
     color: #757575;
     text-decoration: none;
 }
 
-#main #content .post .entry-meta li a:hover,
-#main #content .post .entry-meta li a:focus,
-#main #content .post .entry-meta li a:active {
+#content .post .entry-meta li a:hover,
+#content .post .entry-meta li a:focus,
+#content .post .entry-meta li a:active {
     color: #cc0000;
     background-color: #fff0f0;
 }
 
-#main #content .post .entry-footer-meta li a:hover,
-#main #content .post .entry-footer-meta li a:focus,
-#main #content .post .entry-footer-meta li a:active {
+#content .post .entry-footer-meta li a:hover,
+#content .post .entry-footer-meta li a:focus,
+#content .post .entry-footer-meta li a:active {
     color: #272727;
     text-decoration: underline;
 }
 
-#main #content .post .entry-content p,
-#main #content .post .entry-content ul,
-#main #content .post .entry-content ol {
+#content .post .entry-content p,
+#content .post .entry-content ul,
+#content .post .entry-content ol {
     font-size: 0.83em;
     margin: 1em 0 0;
 }
 
-#main #content .post .entry-content a {
-    color: #9f2b2b;
+#content .post .entry-content a {
     outline: none;
 }
 
-#main #content .post .entry-content a:hover,
-#main #content .post .entry-content a:focus,
-#main #content .post .entry-content a:active {
+#content .post .entry-content a:hover,
+#content .post .entry-content a:focus,
+#content .post .entry-content a:active {
     color: #cc0000;
     background-color: #fff0f0;
 }
 
-#main #content .post .entry-content a.more-link {
+#content .post .entry-content a.more-link {
     text-decoration: none;
 }
 
-#main #content .post .entry-content .entry-image a {
+#content .post .entry-content .entry-image a {
     outline: none;
 }
 
-#main #content .post .entry-content .entry-image img {
+#content .post .entry-content .entry-image img {
     border: 5px solid #eee;
     max-width: 100%;
     height: auto;
@@ -138,15 +149,15 @@
     -ms-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
 }
 
-#main #content .post .entry-content .entry-image a:hover,
-#main #content .post .entry-content .entry-image a:focus,
-#main #content .post .entry-content .entry-image a:active {
+#content .post .entry-content .entry-image a:hover,
+#content .post .entry-content .entry-image a:focus,
+#content .post .entry-content .entry-image a:active {
     background-color: transparent;
 }
 
-#main #content .post .entry-content .entry-image a:hover img,
-#main #content .post .entry-content .entry-image a:active img,
-#main #content .post .entry-content .entry-image a:focus img {
+#content .post .entry-content .entry-image a:hover img,
+#content .post .entry-content .entry-image a:active img,
+#content .post .entry-content .entry-image a:focus img {
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.7);
     -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.7);
@@ -154,6 +165,13 @@
     -ms-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.7);
 }
 
-#main #content .post .entry-footer {
+#content .post .entry-footer {
     margin: 1em 0;
+}
+
+#content h1.content-title {
+    margin: 0 0 0.8em;
+    color: #e2804f;
+    font-size: 0.9em;
+    text-transform: uppercase;
 }

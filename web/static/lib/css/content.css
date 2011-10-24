@@ -168,3 +168,10 @@
 #content .post .entry-footer {
     margin: 1em 0;
 }
+
+#content h1.content-title {
+    margin: 0 0 0.8em;
+    color: #e2804f;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
