@@ -94,6 +94,7 @@ INSTALLED_APPS = (
     
     #Gironimo,
     'gironimo.accounts',
+    'gironimo.page',
     
     #Third-Party,
     'django_assets',
@@ -104,6 +105,7 @@ INSTALLED_APPS = (
     'south',
     'django_hits',
     'registration',
+    'tinymce',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -127,6 +129,22 @@ ASSETS_DEBUG = False
 
 AUTH_PROFILE_MODULE = 'gironimo.accounts.UserProfile'
 ACCOUNT_ACTIVATION_DAYS = 3
+
+TINYMCE_JS_URL = STATIC_URL + 'lib/js/tiny_mce/tiny_mce.js'
+TINYMCE_JS_ROOT = STATIC_URL + 'lib/js/tiny_mce'
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "advanced",
+    'plugins': "table,paste,searchreplace",
+    
+    'theme_advanced_buttons1': "formatselect,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,sub,sup",
+    'theme_advanced_buttons2': "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,code",
+    'theme_advanced_buttons3': False,
+    'theme_advanced_buttons4': False,
+    'theme_advanced_toolbar_location': "top",
+    'theme_advanced_toolbar_align': "left",
+    'theme_advanced_statusbar_location': "bottom",
+    'theme_advanced_resizing': True
+}
 
 try:
     from local_settings import *
