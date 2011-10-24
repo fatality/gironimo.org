@@ -1,0 +1,48 @@
+input[type=text] {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #888;
+    font-size: 0.9em;
+    font-style: italic;
+    margin: 0 5px 0 0;
+    padding: 5px 8px;
+    width: 62%;
+}
+
+input[type=text]:hover,
+input[type=text]:focus,
+input[type=text]:active {
+    border: 1px solid #4787ed;
+}
+
+input[type=submit] {
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    background: #4787ed;
+    background: -moz-linear-gradient(center top , #4d90fe, #4787ed);
+    background: -webkit-linear-gradient(center top , #4d90fe, #4787ed);
+    background: -o-linear-gradient(center top , #4d90fe, #4787ed);
+    background: -ms-linear-gradient(center top , #4d90fe, #4787ed);
+    border: 1px solid #3079ed;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    -ms-border-radius: 2px;
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: bold;
+    outline: none;
+    padding: 4px 7px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+input[type=submit]:hover,
+input[type=submit]:focus,
+input[type=submit]:active {
+    background: linear-gradient(top, #4d90fe, #357ae8);
+    background: -moz-linear-gradient(top, #4d90fe, #357ae8);
+}

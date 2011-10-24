@@ -1,0 +1,123 @@
+#sidebar {
+    width: 27.2345%;
+    float: right;
+}
+
+.widget {
+    font-size: 0.8em;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    text-align: justify;
+}
+
+.widget:not(.search) {
+    border-bottom: 1px dashed #cbcbcb;
+}
+
+.widget .widget-title {
+    color: #9f2b2b;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    word-spacing: 0.1em;
+}
+
+.widget .widget-content {
+    color: #666;
+}
+
+.widget .widget-content a {
+    color: #999;
+    text-decoration: none;
+    outline: none;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+}
+
+.widget .widget-content a:hover,
+.widget .widget-content a:focus,
+.widget .widget-content a:active {
+    text-decoration: underline;
+    color: #666;
+}
+
+.widget .widget-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: square;
+}
+
+.widget .widget-content ul li {
+    margin: 0 0 8px 15px
+}
+
+.follow .widget-content ul {
+    list-style: none;
+}
+
+.follow .widget-content ul li {
+    float: left;
+    margin: 0;
+}
+
+.follow .widget-content ul li a {
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    display: block;
+    height: 24px;
+    margin: 0 8px 8px 0;
+    opacity: 1;
+    text-indent: -9999em;
+    width: 24px;
+    background-image: url(../images/socialicons.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+.follow .widget-content ul li.facebook a {
+    background-position: -96px 0;
+}
+
+.follow .widget-content ul li.twitter a {
+    background-position: -240px 0;
+}
+
+.follow .widget-content ul li.youtube a {
+    background-position: -72px 0;
+}
+
+.follow .widget-content ul li.gplus a {
+    background-position: -288px 0;
+}
+
+.follow .widget-content ul li.lastfm a {
+    background-position: -168px 0;
+}
+
+.follow .widget-content ul li.deviantart a {
+    background-position: -24px 0;
+}
+
+.follow .widget-content ul li.xing a {
+    background-position: -264px 0;
+}
+
+.follow .widget-content ul li a:hover,
+.follow .widget-content ul li a:focus,
+.follow .widget-content ul li a:active {
+    opacity: 0.65;
+}
+
+.search {
+    background-color: #F1F1F1;
+    padding: 20px;
+}
+
+.search .widget-title {
+    display: none;
+}

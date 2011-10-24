@@ -4,10 +4,108 @@ body {
     font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
     color: #272727;
     line-height: 1.4;
+    font-size: 100%;
 }
 
 .site-wrapper {
     margin: 0 auto;
     max-width: 1102px;
     padding: 10px 25px;
+}
+
+#main {
+    background-color: #f1f1f1;
+}
+
+a,
+a:visited {
+    color: #3151A2;
+}
+
+img {
+    max-width: 100%;
+}
+
+#footer {
+    margin: 35px -25px -25px;
+    background: #f1f1f1;
+    background: linear-gradient(top , #f5f5f5, #f1f1f1);
+    background: -moz-linear-gradient(top , #f5f5f5, #f1f1f1);
+    background: -webkit-linear-gradient(top , #f5f5f5, #f1f1f1);
+    background: -o-linear-gradient(top , #f5f5f5, #f1f1f1);
+    background: -ms-linear-gradient(top , #f5f5f5, #f1f1f1);
+    border-top: 1px solid #d2d2d2;
+    padding: 25px;
+    position: relative;
+    font-size: 0.8em;
+}
+
+#footer .footer-left {
+    float: left;
+    width: 68%;
+}
+
+#footer .footer-right {
+    float: right;
+    width: 28%;
+    text-align: right;
+    padding-top: 2em;
+}
+
+#footer ul,
+#footer p {
+    color: #666;
+}
+
+#footer p {
+    margin: 0 0 0.8em;
+}
+
+#footer a.go-top {
+    display: block;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+}
+
+#footer a.go-top:hover {
+    color: #cc0000;
+    background-color: #fff0f0;
+}
+
+#footer ul {
+    margin: 0 0 0.8em;
+    padding: 0;
+    list-style: none;
+}
+
+#footer ul li {
+    border-right: 1px solid #666;
+    float: left;
+    margin-right: 8px;
+    padding-right: 8px;
+}
+
+#footer ul li:last-child {
+    border-right: none;
+}
+
+#footer ul li a {
+    color: #666;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+}
+
+#footer ul li a:hover {
+    color: #cc0000;
+    background-color: #fff0f0;
 }

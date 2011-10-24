@@ -8,7 +8,7 @@
     background: -webkit-linear-gradient(top, #555555, #2d2d2d);
     background: -o-linear-gradient(top, #555555, #2d2d2d);
     background: -ms-linear-gradient(top, #555555, #2d2d2d);
-    border-bottom: 5px solid #9f2b2b;
+    border-bottom: 5px solid #e2804f;
 }
 
 #header .site-wrapper {
@@ -136,7 +136,7 @@
 #main-navigation ul li a:hover,
 #main-navigation ul li a:active,
 #main-navigation ul li a:focus {
-    color: #9f2b2b;
+    color: #e2804f;
 }
 
 #main-navigation ul.submenu {
@@ -177,7 +177,7 @@
 #main-navigation ul.submenu li a:hover,
 #main-navigation ul.submenu li a:active,
 #main-navigation ul.submenu li a:focus {
-    color: #9f2b2b;
+    color: #e2804f;
 }
 
 #main-navigation ul li:hover > ul.submenu,

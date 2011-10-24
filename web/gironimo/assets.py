@@ -16,6 +16,10 @@ css = Bundle(
     'lib/css/general.css',
     'lib/css/clearfix.css',
     'lib/css/header.css',
+    'lib/css/sidebar.css',
+    'lib/css/paginator.css',
+    'lib/css/content.css',
+    'lib/css/forms.css',
     output='lib/css/_packed.css',
 )
 register('css_base', css)

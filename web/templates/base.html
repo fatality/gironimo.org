@@ -50,15 +50,18 @@
             {% include "common/page/header.html" %}
         </header>
         <div id="main">
-            <div id="content">
-                {% block content %}{% endblock %}
-            </div>
-            <div id="sidebar" role="complementary">
-                {% include "common/page/base_sidebar.html" %}
+            <div class="site-wrapper">
+                <div id="content">
+                    {% block content %}{% endblock %}
+                </div>
+                <div id="sidebar" class="clearfix" role="complementary">
+                    {% include "common/page/base_sidebar.html" %}
+                </div>
+                <div class="clear"></div>
+                <footer id="footer">
+                    {% include "common/page/footer.html" %}
+                </footer>
             </div>
         </div>
-        <footer id="footer">
-            {% include "common/page/footer.html" %}
-        </footer>
     </body>
 </html>

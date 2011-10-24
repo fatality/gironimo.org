@@ -11,3 +11,7 @@ body {
     max-width: 1102px;
     padding: 10px 25px;
 }
+
+#main {
+    padding: 25px;
+}

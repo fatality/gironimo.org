@@ -1,0 +1,170 @@
+#main .site-wrapper {
+    background-color: #fff;
+    background-image: url(../images/background.jpg);
+    background-repeat: repeat-y;
+    background-position: 62.59% 0;
+    padding: 35px 25px 25px;
+    max-width: 1102px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -ms-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#content {
+    width: 62.59%;
+    float: left;
+}
+
+#content .post {
+    margin-bottom: 35px;
+    border-bottom: 1px solid #a8a7a7;
+}
+
+#content .post:last-child {
+    border-bottom: none;
+}
+
+#content .post .entry-header {
+    margin-bottom: 12px;
+}
+
+#content .post .entry-header h2 {
+    font-size: 1.85em;
+    margin: 0;
+}
+
+#content .post .entry-header h2 a {
+    color: #272727;
+    text-decoration: none;
+    outline: none;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+}
+
+#content .post .entry-header h2 a:hover,
+#content .post .entry-header h2 a:focus,
+#content .post .entry-header h2 a:active {
+    background-color: #f1f8fe;
+    border-bottom: 1px solid #e3f1fd;
+}
+
+#content .post .entry-meta,
+#content .post .entry-footer-meta {
+    margin: 4px 0 0;
+    padding: 0;
+}
+
+#content .post .entry-footer-meta {
+    margin: 0;
+}
+
+#content .post .entry-meta li,
+#content .post .entry-footer-meta li {
+    list-style: none;
+    float: left;
+    border-right: 1px solid #e6e6e6;
+    padding: 0 8px;
+    font-size: 0.7em;
+    color: #a8a7a7;
+}
+
+#content .post .entry-meta li:first-child,
+#content .post .entry-footer-meta li:first-child {
+    padding-left: 0;
+}
+
+#content .post .entry-meta li:last-child,
+#content .post .entry-footer-meta li:last-child {
+    border: none;
+}
+
+#content .post .entry-meta li a,
+#content .post .entry-footer-meta li a {
+    outline: none;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+}
+
+#content .post .entry-footer-meta li a {
+    color: #757575;
+    text-decoration: none;
+}
+
+#content .post .entry-meta li a:hover,
+#content .post .entry-meta li a:focus,
+#content .post .entry-meta li a:active {
+    color: #cc0000;
+    background-color: #fff0f0;
+}
+
+#content .post .entry-footer-meta li a:hover,
+#content .post .entry-footer-meta li a:focus,
+#content .post .entry-footer-meta li a:active {
+    color: #272727;
+    text-decoration: underline;
+}
+
+#content .post .entry-content p,
+#content .post .entry-content ul,
+#content .post .entry-content ol {
+    font-size: 0.83em;
+    margin: 1em 0 0;
+}
+
+#content .post .entry-content a {
+    outline: none;
+}
+
+#content .post .entry-content a:hover,
+#content .post .entry-content a:focus,
+#content .post .entry-content a:active {
+    color: #cc0000;
+    background-color: #fff0f0;
+}
+
+#content .post .entry-content a.more-link {
+    text-decoration: none;
+}
+
+#content .post .entry-content .entry-image a {
+    outline: none;
+}
+
+#content .post .entry-content .entry-image img {
+    border: 5px solid #eee;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
+    -ms-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
+}
+
+#content .post .entry-content .entry-image a:hover,
+#content .post .entry-content .entry-image a:focus,
+#content .post .entry-content .entry-image a:active {
+    background-color: transparent;
+}
+
+#content .post .entry-content .entry-image a:hover img,
+#content .post .entry-content .entry-image a:active img,
+#content .post .entry-content .entry-image a:focus img {
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.7);
+    -o-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.7);
+    -ms-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.7);
+}
+
+#content .post .entry-footer {
+    margin: 1em 0;
+}
