@@ -95,12 +95,12 @@ INSTALLED_APPS = (
     #Gironimo,
     'gironimo.accounts',
     'gironimo.page',
+    'gironimo.utils',
     
     #Third-Party,
     'django_assets',
     'django_ajax',
     'imagequery',
-    'django_model_utils',
     'tagging',
     'south',
     'django_hits',

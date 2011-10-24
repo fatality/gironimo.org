@@ -20,16 +20,16 @@ class PageAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
             'classes': ['wide', 'extrapretty'],
-            'fields': ['title', 'url', 'base_template', 'content',],
+            'fields': ['title', 'url', 'content',],
         }),
         (_('HTML Metainformationen'), {
-                'classes': ['collapse', 'extrapretty'],
+                'classes': ['collapse', 'wide', 'extrapretty'],
                 'fields': ['html_title', 'html_description', 'html_keywords',],
         }),
     ]
     
     list_display = ('title', 'created', 'modified',)
-    list_filter = ['created', 'modified', 'base_template',]
+    list_filter = ['created', 'modified',]
     search_fields = ['title',]
     date_hierarchy = 'created'
 

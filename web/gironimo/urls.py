@@ -11,5 +11,6 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^$', 'gironimo.views.index', name='index'),
+    url(r'^', include('gironimo.page.urls')),
 )
 
