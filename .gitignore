@@ -5,3 +5,4 @@
 *.html~
 *.css~
 local_settings.py
+htdocs/
