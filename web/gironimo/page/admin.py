@@ -28,7 +28,7 @@ class PageAdmin(admin.ModelAdmin):
         }),
     ]
     
-    list_display = ('title', 'created', 'modified',)
+    list_display = ('title', 'url', 'created', 'modified',)
     list_filter = ['created', 'modified',]
     search_fields = ['title',]
     date_hierarchy = 'created'

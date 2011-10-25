@@ -5,6 +5,9 @@ from gironimo.page.models import Page
 
 
 def view_page(request, url=''):
+    clean_url = url.split('.', 1)
+    ext = clean_url[1]
+    url = clean_url[0]
     try:
         page = Page.objects.get(url=u'/%s' % url)
     except Page.DoesNotExist:

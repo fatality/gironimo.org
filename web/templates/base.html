@@ -12,6 +12,8 @@
         <link rel="index" title="gironimo.org" href="http://www.gironimo.org/" />
         
         <meta name="robots" content="{% block robots %}index,follow{% endblock %}" />
+        <meta name="description" content="{% block description %}{% endblock %}" />
+        <meta name="keywords" content="{% block keywords %}{% endblock %}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         
         <link rel="icon" href="{{ STATIC_URL|default:'/static/' }}lib/images/favicon.ico" type="image/x-icon" />
