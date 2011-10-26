@@ -93,9 +93,10 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     
     #Gironimo,
+    'gironimo.utils',
     'gironimo.accounts',
     'gironimo.page',
-    'gironimo.utils',
+    'gironimo.menu',
     
     #Third-Party,
     'django_assets',
