@@ -332,6 +332,6 @@ class Entry(get_base_model()):
 
 moderator.register(Entry, EntryCommentModerator)
 mptt.register(Category, order_insertion_by=['title'])
-post_save.connect(ping_directories_handler, sender=Entry, dispatch_uid='blog.entry.post_save.ping_directories')
-post_save.connect(ping_external_urls_handler, sender=Entry, dispatch_uid='blog.entry.post_save.ping_external_urls')
+post_save.connect(ping_directories_handler, sender=Entry, dispatch_uid='gironimo.blog.entry.post_save.ping_directories')
+post_save.connect(ping_external_urls_handler, sender=Entry, dispatch_uid='gironimo.blog.entry.post_save.ping_external_urls')
 
