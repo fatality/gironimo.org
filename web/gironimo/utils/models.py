@@ -20,6 +20,7 @@ class StatMixin(models.Model):
     class Meta:
         abstract = True
 
+
 class PageMixin(models.Model):
     html_title = models.CharField(
         verbose_name=_(u'Titel <title>'), 
