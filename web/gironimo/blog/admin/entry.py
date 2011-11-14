@@ -2,12 +2,13 @@ from datetime import datetime
 from django.forms import Media
 from django.contrib import admin
 from django.contrib.auth.models import User
-from django.utils.html import strip_tags, truncate_words
+from django.utils.html import strip_tags
+from django.utils.text import truncate_words
 from django.conf.urls.defaults import url, patterns
 from django.conf import settings as project_settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse, NoReverseMatch
-from tagging import Tag
+from tagging.models import Tag
 from gironimo.blog import config
 from gironimo.blog.managers import HIDDEN, PUBLISHED
 from gironimo.blog.ping import DirectoryPinger
@@ -24,12 +25,12 @@ class EntryAdmin(admin.ModelAdmin):
         }),
         (_('Options'), {
                 'fields': ('featured', 'excerpt', 'template', 'related', 
-                           'authors', 'created', 'start_publication', 
+                           'authors', 'start_publication', 
                            'end_publication',),
                 'classes': ('collapse', 'collapse-closed',)
         }),
         (_('Privacy'), {
-                'fields': ('password', 'login-required',),
+                'fields': ('password', 'login_required',),
                 'classes': ('collapse', 'collapse-closed',)
         }),
         (_('Discussion'), {
@@ -276,7 +277,7 @@ class EntryAdmin(admin.ModelAdmin):
                 }, name='blog_entry_markitup'
             ),
         )
-        return urls += entry_admin_urls
+        return urls + entry_admin_urls
     
     def _media(self):
         STATIC_URL = '%sblog/' % project_settings.STATIC_URL
@@ -305,7 +306,7 @@ class EntryAdmin(admin.ModelAdmin):
             media += TinyMCE().media + Media(
                 js=(reverse('tinymce-js', args=('admin/blog/entry',)),)
             )
-        elif config.WYSIWYG = 'markitup':
+        elif config.WYSIWYG == 'markitup':
             media += Media(
                 js=(
                     '%sjs/markitup/jquery.markitup.js' % STATIC_URL,

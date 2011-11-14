@@ -1,4 +1,4 @@
-from django.contrib import Admin
+from django.contrib import admin
 from django.core.urlresolvers import NoReverseMatch
 from django.utils.translation import ugettext_lazy as _
 from gironimo.blog.admin.forms import CategoryAdminForm

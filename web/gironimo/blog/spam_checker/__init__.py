@@ -1,7 +1,7 @@
 """ Spam Checker Module """
 import warnings
 from django.utils.importlib import import_module
-from django.core.execptions import ImproperlyConfigured
+from django.core.exceptions import ImproperlyConfigured
 from gironimo.blog.config import SPAM_CHECKER_BACKENDS
 
 

@@ -1,10 +1,10 @@
 from django import forms
 from django.db.models import ManyToOneRel, ManyToManyRel
-from django.contrib.sites.model import Site
+from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from gironimo.blog.models import Entry, Category
-from gironimo.blog.admin.widgets import TreeNodeChoiceField, MPTTFilteredSelectMultiple, MPTTTModelMultipleChoiceField
+from gironimo.blog.admin.widgets import TreeNodeChoiceField, MPTTFilteredSelectMultiple, MPTTModelMultipleChoiceField
 
 
 class CategoryAdminForm(forms.ModelForm):

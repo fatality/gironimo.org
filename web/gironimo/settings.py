@@ -91,12 +91,14 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.comments',
     
     #Gironimo,
     'gironimo.utils',
     'gironimo.accounts',
-    'gironimo.page',
-    'gironimo.menu',
+    #'gironimo.page',
+    #'gironimo.menu',
+    'blog',
     
     #Third-Party,
     'django_assets',
@@ -107,6 +109,7 @@ INSTALLED_APPS = (
     'django_hits',
     'registration',
     'tinymce',
+    'mptt',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

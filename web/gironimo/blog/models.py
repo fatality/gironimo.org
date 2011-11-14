@@ -12,7 +12,7 @@ from django.contrib import comments
 from django.contrib.comments.models import CommentFlag
 from django.contrib.comments.moderation import moderator
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.markup.templatetags.markup import markdown, textile, restructeredtext
+from django.contrib.markup.templatetags.markup import markdown, textile, restructuredtext
 from gironimo.utils.models import StatMixin, PageMixin
 from tagging.fields import TagField
 from gironimo.blog.config import UPLOAD_TO, MARKUP_LANGUAGE, ENTRY_TEMPLATES, ENTRY_BASE_MODEL, MARKDOWN_EXTENSIONS, AUTO_CLOSE_COMMENTS_AFTER
@@ -26,7 +26,7 @@ class Author(User):
     """ Proxy Model around User """
     
     objects = models.Manager()
-    published = models.AuthorPublishedManager()
+    published = AuthorPublishedManager()
     
     def entries_published(self):
         """ Return only the entries published """
@@ -58,7 +58,7 @@ class Category(StatMixin, PageMixin, models.Model):
         blank=True, 
         null=True
     )
-    image = modelsImageField(
+    image = models.ImageField(
         _('category image'), 
         blank=True, 
         null=True, 
@@ -123,7 +123,7 @@ class EntryAbstractClass(StatMixin, PageMixin, models.Model):
         _('excerpt'), 
         blank=True, 
         null=True, 
-        helpt_text=_('optional element')
+        help_text=_('optional element')
     )
     tags = TagField(
         _('tags')
@@ -157,7 +157,7 @@ class EntryAbstractClass(StatMixin, PageMixin, models.Model):
         choices=STATUS_CHOICES, 
         default=DRAFT
     )
-    feateured = models.BooleanField(
+    featured = models.BooleanField(
         _('featured'), 
         default=False
     )
@@ -171,12 +171,12 @@ class EntryAbstractClass(StatMixin, PageMixin, models.Model):
     )
     start_publication = models.DateTimeField(
         _('start publication'), 
-        help_text=_('date start publish')
+        help_text=_('date start publish'), 
         default=datetime.now
     )
     end_publication = models.DateTimeField(
         _('end publication'), 
-        helpt_text=_('date end publish'), 
+        help_text=_('date end publish'), 
         default=datetime(2042, 11, 9)
     )
     sites = models.ManyToManyField(
@@ -304,7 +304,7 @@ class EntryAbstractClass(StatMixin, PageMixin, models.Model):
 def get_base_model():
     """ Determine the base Model to inherit in the Entry Model, this allow to overload it. """
     if not ENTRY_BASE_MODEL:
-        return EntryAbastractClass
+        return EntryAbstractClass
     dot = ENTRY_BASE_MODEL.rindex('.')
     module_name = ENTRY_BASE_MODEL[:dot]
     class_name = ENTRY_BASE_MODEL[dot + 1:]
@@ -330,7 +330,8 @@ class Entry(get_base_model()):
         )
 
 
-moderator.register(Entry, EntryCommentModerator)
+if Entry not in moderator._registry:
+    moderator.register(Entry, EntryCommentModerator)
 mptt.register(Category, order_insertion_by=['title'])
 post_save.connect(ping_directories_handler, sender=Entry, dispatch_uid='gironimo.blog.entry.post_save.ping_directories')
 post_save.connect(ping_external_urls_handler, sender=Entry, dispatch_uid='gironimo.blog.entry.post_save.ping_external_urls')

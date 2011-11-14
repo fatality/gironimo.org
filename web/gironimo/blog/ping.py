@@ -4,7 +4,7 @@ import threading
 from urllib2 import urlopen
 from urlparse import urlsplit
 from logging import getLogger
-from BeautifulSoup import BeatifulSoup
+from BeautifulSoup import BeautifulSoup
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from gironimo.blog.config import PROTOCOL
