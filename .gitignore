@@ -4,5 +4,6 @@
 *.py~
 *.html~
 *.css~
+*.js~
 local_settings.py
 htdocs/
