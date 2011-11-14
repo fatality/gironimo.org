@@ -131,7 +131,6 @@ AJAX_CONFIG_PROCESSORS = (
 ASSETS_DEBUG = False
 
 AUTH_PROFILE_MODULE = 'gironimo.accounts.UserProfile'
-ACCOUNT_ACTIVATION_DAYS = 3
 
 TINYMCE_JS_URL = STATIC_URL + 'lib/js/tiny_mce/tiny_mce.js'
 TINYMCE_JS_ROOT = STATIC_URL + 'lib/js/tiny_mce'
