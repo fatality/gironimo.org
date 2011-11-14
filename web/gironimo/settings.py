@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.comments',
+    'django.contrib.sitemaps',
     
     #Gironimo,
     'gironimo.utils',
@@ -109,6 +110,8 @@ INSTALLED_APPS = (
     'django_hits',
     'tinymce',
     'mptt',
+    'django_xmlrpc',
+    'django_bitly',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -118,6 +121,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	'django.core.context_processors.media',
 	'django.core.context_processors.static',
 	'django.contrib.messages.context_processors.messages',
+	#'gironimo.blog.context_processors.version',
 )
 
 IMAGEQUERY_DEFAULT_OPTIONS = {'quality': 92}
