@@ -7,7 +7,7 @@ TEMPLATE_DEBUG = DEBUG
 gettext_noop = lambda s: s
 
 ADMINS = (
-    (u'Marc Rochow', 'marc.rochow@gironimo.org'),
+    (u'Marc Rochow', 'mrochow@gironimo.org'),
 )
 
 MANAGERS = ADMINS
@@ -107,7 +107,6 @@ INSTALLED_APPS = (
     'tagging',
     'south',
     'django_hits',
-    'registration',
     'tinymce',
     'mptt',
 )
