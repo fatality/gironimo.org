@@ -1,5 +1,5 @@
-{% extends "admin/zinnia/widgets/base.html" %}
-{% load i18n zinnia_tags %}
+{% extends "admin/blog/widgets/base.html" %}
+{% load i18n blog_tags %}
 
 {% block module_id %}comments{% endblock %}
 
@@ -7,6 +7,5 @@
 {% block title %}{% trans "Recent comments" %}{% endblock %}
 
 {% block content %}
-  {% get_recent_comments 3 "admin/zinnia/widgets/_recent_comments.html" %}
+    {% get_recent_comments 3 "admin/blog/widgets/_recent_comments.html" %}
 {% endblock %}
-
