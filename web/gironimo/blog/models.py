@@ -97,7 +97,7 @@ class Category(StatMixin, PageMixin, models.Model):
         verbose_name_plural = _('categories')
 
 
-class EntryAbstractClass(StatMixin, PageMixin, models.Model):
+class EntryAbstractClass(models.Model):
     """ Base Model design for publishing entries """
     STATUS_CHOICES = (
         (DRAFT, _('draft')),
@@ -168,6 +168,14 @@ class EntryAbstractClass(StatMixin, PageMixin, models.Model):
     pingback_enabled = models.BooleanField(
         _('linkback enabled'),
         default=True
+    )
+    created = models.DateTimeField(
+        _('creation date'),
+        default=datetime.now
+    )
+    modified = models.DateTimeField(
+        _('last update'),
+        default=datetime.now
     )
     start_publication = models.DateTimeField(
         _('start publication'), 
@@ -294,7 +302,9 @@ class EntryAbstractClass(StatMixin, PageMixin, models.Model):
     def get_absolute_url(self):
         """ Return entries URL """
         return ('blog_entry_detail', (), {
-                'category': self.categories.all()[0],
+                'year': self.created.strftime('%Y'),
+                'month': self.created.strftime('%m'),
+                'day': self.created.strftime('%d'),
                 'slug': self.slug})
     
     class Meta:

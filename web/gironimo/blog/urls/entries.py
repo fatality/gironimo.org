@@ -55,9 +55,9 @@ urlpatterns = patterns('gironimo.blog.views.entries',
         name='blog_entry_archive_day'
     ),
     url(
-        r'^(?P<path>[-\/\w]+)/(?P<slug>[-\w]+)/$.html',
-        'entry_day',
-        entry_conf,
+        r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
+        'entry_detail',
+        entry_conf_detail,
         name='blog_entry_detail'
     ),
     url(
