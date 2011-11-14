@@ -56,7 +56,7 @@ class MPTTFilteredSelectMultiple(widgets.FilteredSelectMultiple):
     def __init__(self, verbose_name, is_stacked, attrs=None, choices=()):
         super(MPTTFilteredSelectMultiple, self).__init__(verbose_name, is_stacked, attrs, choices)
     
-    def render_options(self, choices, select_choices):
+    def render_options(self, choices, selected_choices):
         """ This is copy'n'pasted from django.forms.widgets Select(Widget) 
         change to the for loop and render_option so they will unpack and use our 
         extra tuple of mptt sort fields (if you pass in some default choices for 
