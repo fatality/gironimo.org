@@ -1,9 +1,10 @@
-from urllib2 import urlopen, URLError, HTTPError, urlsplit
+from urllib2 import urlopen, URLError, HTTPError
+from urlparse import urlsplit
 from django.contrib import comments
 from django.utils.html import strip_tags
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import resolve, Resolver404
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.contrib.contenttypes.models import ContentType
 from gironimo.blog.models import Entry
 from gironimo.blog.config import PINGBACK_CONTENT_LENGTH

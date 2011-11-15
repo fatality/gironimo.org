@@ -2,22 +2,27 @@ import os
 from datetime import datetime
 from xmlrpclib import Fault
 from xmlrpclib import DateTime
+
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 from django.utils.html import strip_tags
 from django.utils.text import truncate_words
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.template.defaultfilters import slugify
-from gironimo.blog.models import Entry, Category
-from gironimo.blog.settings import PROTOCOL, UPLOAD_TO
+
+from gironimo.blog.models import Entry
+from gironimo.blog.models import Category
+from gironimo.blog.config import PROTOCOL
+from gironimo.blog.config import UPLOAD_TO
 from gironimo.blog.managers import DRAFT, PUBLISHED
 from django_xmlrpc.decorators import xmlrpc_func
 
 
+# http://docs.nucleuscms.org/blog/12#errorcodes
 LOGIN_ERROR = 801
 PERMISSION_DENIED = 803
 
@@ -34,7 +39,7 @@ def authenticate(username, password, permission=None):
         raise Fault(PERMISSION_DENIED, _('User account unavailable.'))
     if permission:
         if not user.has_perm(permission):
-            raise Fault(PERMISSION_DENIED, _('User cannot %s') % permission)
+            raise Fault(PERMISSION_DENIED, _('User cannot %s.') % permission)
     return user
 
 
@@ -75,10 +80,11 @@ def category_structure(category, site):
         'description': category.title,
         'htmlUrl': '%s://%s%s' % (PROTOCOL, site.domain, category.get_absolute_url()),
         'rssUrl': '%s://%s%s' % (PROTOCOL, site.domain, reverse('blog_category_feed', args=[category.tree_path])),
-        'categoryId': category.pk
+        # Useful Wordpress Extensions
+        'categoryId': category.pk,
         'parentId': category.parent and category.parent.pk or 0,
         'categoryDescription': category.description,
-        'categoryName:' category.title
+        'categoryName': category.title
     }
 
 
@@ -89,18 +95,21 @@ def post_structure(entry, site):
         'title': entry.title,
         'description': unicode(entry.html_content),
         'link': '%s://%s%s' % (PROTOCOL, site.domain, entry.get_absolute_url()),
-        'permaLink': '%s::%s%s' % (PROTOCOL, site.domain, entry.get_absolute_url()),
+        # Basic Extensions
+        'permaLink': '%s://%s%s' % (PROTOCOL, site.domain, entry.get_absolute_url()),
         'categories': [cat.title for cat in entry.categories.all()],
         'dateCreated': DateTime(entry.created.isoformat()),
         'postid': entry.pk,
         'userid': author.username,
-        'mt_excerpt': entry.exceprt,
+        # Useful Movable Type Extensions
+        'mt_excerpt': entry.excerpt,
         'mt_allow_comments': int(entry.comment_enabled),
         'mt_allow_pings': int(entry.pingback_enabled),
         'mt_keywords': entry.tags,
+        # Useful Wordpress Extensions
         'wp_author': author.username,
         'wp_author_id': author.pk,
-        'wp_author_display_name': authro.username,
+        'wp_author_display_name': author.username,
         'wp_password': entry.password,
         'wp_slug': entry.slug,
         'sticky': entry.featured
@@ -109,7 +118,7 @@ def post_structure(entry, site):
 
 @xmlrpc_func(returns='struct[]', args=['string', 'string', 'string'])
 def get_users_blogs(apikey, username, password):
-    """ bloggger.getUsersBlogs(api_key, username, password) => blog structure[] """
+    """ blogger.getUsersBlogs(api_key, username, password) => blog structure[] """
     authenticate(username, password)
     site = Site.objects.get_current()
     return [blog_structure(site)]
@@ -132,8 +141,8 @@ def get_authors(apikey, username, password):
 
 @xmlrpc_func(returns='boolean', args=['string', 'string', 'string', 'string', 'string'])
 def delete_post(apikey, post_id, username, password, publish):
-    """ blogger.deletePost(api_key, post_id, username, password, 'publish') => boolean """
-    user = authenticate(username, password, 'blog.delete_entry')
+    """blogger.deletePost(api_key, post_id, username, password, 'publish') => boolean """
+    user = authenticate(username, password, 'gironimo.blog.delete_entry')
     entry = Entry.objects.get(id=post_id, authors=user)
     entry.delete()
     return True
@@ -149,7 +158,7 @@ def get_post(post_id, username, password):
 
 @xmlrpc_func(returns='struct[]', args=['string', 'string', 'string', 'integer'])
 def get_recent_posts(blog_id, username, password, number):
-    """ metaWeblog.getRecentPosts(blog_id, username, password, number) => post structure[] """
+    """metaWeblog.getRecentPosts(blog_id, username, password, number) => post structure[] """
     user = authenticate(username, password)
     site = Site.objects.get_current()
     return [post_structure(entry, site) for entry in Entry.objects.filter(authors=user)[:number]]
@@ -166,7 +175,7 @@ def get_categories(blog_id, username, password):
 @xmlrpc_func(returns='string', args=['string', 'string', 'string', 'struct'])
 def new_category(blog_id, username, password, category_struct):
     """ wp.newCategory(blog_id, username, password, category) => category_id """
-    authenticate(username, password, 'blog.add_category')
+    authenticate(username, password, 'gironimo.blog.add_category')
     category_dict = {
         'title': category_struct['name'],
         'description': category_struct['description'],
@@ -182,9 +191,10 @@ def new_category(blog_id, username, password, category_struct):
 @xmlrpc_func(returns='string', args=['string', 'string', 'string', 'struct', 'boolean'])
 def new_post(blog_id, username, password, post, publish):
     """ metaWeblog.newPost(blog_id, username, password, post, publish) => post_id """
-    user = authenticate(username, password, 'blog.add_entry')
+    user = authenticate(username, password, 'gironimo.blog.add_entry')
     if post.get('dateCreated'):
-        created = datetime.strptime(post['dateCreated'].value.replace('Z', '').replace('-', ''), '%Y%m%dT%H:%M:%S')
+        created = datetime.strptime(
+            post['dateCreated'].value.replace('Z', '').replace('-', ''), '%Y%m%dT%H:%M:%S')
     else:
         created = datetime.now()
     
@@ -193,7 +203,7 @@ def new_post(blog_id, username, password, post, publish):
         'content': post['description'],
         'excerpt': post.get('mt_excerpt', truncate_words(strip_tags(post['description']), 50)),
         'created': created,
-        'modified': modified,
+        'modified': created,
         'comment_enabled': post.get('mt_allow_comments', 1) == 1,
         'pingback_enabled': post.get('mt_allow_pings', 1) == 1,
         'featured': post.get('sticky', 0) == 1,
@@ -220,13 +230,13 @@ def new_post(blog_id, username, password, post, publish):
 @xmlrpc_func(returns='boolean', args=['string', 'string', 'string', 'struct', 'boolean'])
 def edit_post(post_id, username, password, post, publish):
     """ metaWeblog.editPost(post_id, username, password, post, publish) => boolean """
-    user = authenticate(username, password, 'blog.change_entry')
+    user = authenticate(username, password, 'gironimo.blog.change_entry')
     entry = Entry.objects.get(id=post_id, authors=user)
     if post.get('dateCreated'):
         created = datetime.strptime(post['dateCreated'].value.replace('Z', '').replace('-', ''), '%Y%m%dT%H:%M:%S')
     else:
-        created = entry.creation_date
-    
+        created = entry.created
+
     entry.title = post['title']
     entry.content = post['description']
     entry.excerpt = post.get('mt_excerpt', truncate_words(strip_tags(post['description']), 50))
@@ -241,7 +251,7 @@ def edit_post(post_id, username, password, post, publish):
     entry.password = post.get('wp_password', '')
     entry.save()
     
-    if 'wp_author_id' in post and user.has_perm('blog.can_change_author'):
+    if 'wp_author_id' in post and user.has_perm('gironimo.blog.can_change_author'):
         if int(post['wp_author_id']) != user.pk:
             author = User.objects.get(pk=post['wp_author_id'])
             entry.authors.clear()
