@@ -1,0 +1,9 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+{% for object in object_list %}
+    {{ object.html_content|safe }}
+{% endfor %}
+
+{% endblock %}

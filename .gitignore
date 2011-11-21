@@ -5,5 +5,6 @@
 *.html~
 *.css~
 *.js~
+*.json~
 local_settings.py
 htdocs/
