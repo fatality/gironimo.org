@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from django.db import models
 from django.contrib.sites.models import Site
 
@@ -12,7 +13,9 @@ def tags_published():
     """ Return the published tags """
     from tagging.models import Tag
     from gironimo.blog.models import Entry
-    tags_entry_published = Tag.objects.usage_for_queryset(Entry.published.all())
+    tags_entry_published = Tag.objects.usage_for_queryset(
+        Entry.published.all())
+    # Need to do that until the issue #44 of django-tagging is fixed
     return Tag.objects.filter(name__in=[t.name for t in tags_entry_published])
 
 
@@ -33,22 +36,24 @@ class AuthorPublishedManager(models.Manager):
 def entries_published(queryset):
     """ Return only the entries published """
     now = datetime.now()
-    return queryset.filter(
-        status=PUBLISHED,
-        start_publication__lte=now,
-        end_publication__gt=now,
-        sites=Site.objects.get_current())
+    return queryset.filter(status=PUBLISHED,
+                           start_publication__lte=now,
+                           end_publication__gt=now,
+                           sites=Site.objects.get_current())
 
 
 class EntryPublishedManager(models.Manager):
     """ Manager to retrieve published entries """
     
     def get_query_set(self):
-        return entries_published(super(EntryPublishedManager, self).get_query_set())
+        """ Return published entries """
+        return entries_published(
+            super(EntryPublishedManager, self).get_query_set())
     
     def on_site(self):
         """ Return entries published on current site """
-        return super(EntryPublishedManager, self).get_query_set().filter(sites=Site.objects.get_current())
+        return super(EntryPublishedManager, self).get_query_set(
+            ).filter(sites=Site.objects.get_current())
     
     def search(self, pattern):
         """ Top level search method on entries """
@@ -73,5 +78,6 @@ class EntryPublishedManager(models.Manager):
                 lookup = query_part
             else:
                 lookup |= query_part
+
         return self.get_query_set().filter(lookup)
 

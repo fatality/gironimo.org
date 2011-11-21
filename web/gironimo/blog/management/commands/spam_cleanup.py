@@ -1,6 +1,7 @@
 from django.contrib import comments
 from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import NoArgsCommand
+
 from gironimo.blog.models import Entry
 
 
@@ -12,12 +13,10 @@ class Command(NoArgsCommand):
         verbosity = int(options.get('verbosity', 1))
         
         content_type = ContentType.objects.get_for_model(Entry)
-        spams = comments.get_model().objects.filter(
-            is_public=False,
-            content_type=content_type,
-            flags__flag='spam'
-        )
-        spams.count = spams.count()
+        spams = comments.get_model().objects.filter(is_public=False,
+                                                    content_type=content_type,
+                                                    flags__flag='spam')
+        spams_count = spams.count()
         spams.delete()
         
         if verbosity:

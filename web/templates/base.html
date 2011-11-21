@@ -1,4 +1,4 @@
-{% load django_ajax_tags assets %}
+{% load django_ajax_tags i18n assets %}
 
 <!DOCTYPE html>
 
@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8" />
         
-        <title>{% block title %}gironimo.org{% endblock %}</title>
+        <title>{% block title %}{{ site_name }}{% endblock %}</title>
         
         <link rel="profile" href="http://gmpg.org/xfn/11" />
         <link rel="index" title="gironimo.org" href="http://www.gironimo.org/" />

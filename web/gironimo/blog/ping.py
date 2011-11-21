@@ -4,20 +4,25 @@ import threading
 from urllib2 import urlopen
 from urlparse import urlsplit
 from logging import getLogger
+
 from BeautifulSoup import BeautifulSoup
+
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
+
 from gironimo.blog.config import PROTOCOL
 
 
 class URLRessources(object):
     """ Object defining the ressources of the website """
-    
+
     def __init__(self):
         self.current_site = Site.objects.get_current()
         self.site_url = '%s://%s' % (PROTOCOL, self.current_site.domain)
-        self.blog_url = '%s%s' % (self.site_url, reverse('blog_entry_archive_index'))
-        self.blog_feed = '%s%s' % (self.site_url, reverse('blog_entry_latest_feed'))
+        self.blog_url = '%s%s' % (self.site_url,
+                                  reverse('blog_entry_archive_index'))
+        self.blog_feed = '%s%s' % (self.site_url,
+                                   reverse('blog_entry_latest_feed'))
 
 
 class DirectoryPinger(threading.Thread):
@@ -47,30 +52,25 @@ class DirectoryPinger(threading.Thread):
     
     def ping_entry(self, entry):
         """ Ping an entry to a Directory """
-        entry_url = '%s%s' % (self.ressources.site_url, entry.get_absolute_url())
+        entry_url = '%s%s' % (self.ressources.site_url,
+                              entry.get_absolute_url())
         categories = '|'.join([c.title for c in entry.categories.all()])
         
         try:
             reply = self.server.weblogUpdates.extendedPing(
                 self.ressources.current_site.name,
-                self.ressources.blog_url,
-                entry_url,
-                self.ressources.blog_feed,
-                categories
-            )
+                self.ressources.blog_url, entry_url,
+                self.ressources.blog_feed, categories)
         except Exception:
             try:
                 reply = self.server.weblogUpdates.ping(
                     self.ressources.current_site.name,
-                    self.ressources.blog_url,
-                    entry_url,
-                    categories
-                )
+                    self.ressources.blog_url, entry_url,
+                    categories)
             except Exception:
-                reply = {
-                    'message': '%s is an invalid directory.' % self.server_name, 
-                    'flerror': True
-                }
+                reply = {'message': '%s is an invalid directory.' % \
+                         self.server_name,
+                         'flerror': True}
         return reply
 
 
@@ -82,14 +82,15 @@ class ExternalUrlsPinger(threading.Thread):
         self.entry = entry
         self.timeout = timeout
         self.ressources = URLRessources()
-        self.entry_url = '%s%s' % (self.ressources.site_url, self.entry.get_absolute_url())
+        self.entry_url = '%s%s' % (self.ressources.site_url,
+                                   self.entry.get_absolute_url())
         
         threading.Thread.__init__(self)
         if start_now:
             self.start()
     
     def run(self):
-        """ Ping external URLs in a Thread """
+        """ Ping external URLS in a Thread """
         logger = getLogger('gironimo.blog.ping.external_urls')
         socket.setdefaulttimeout(self.timeout)
         
@@ -110,6 +111,14 @@ class ExternalUrlsPinger(threading.Thread):
             return False
         return url_splitted.netloc != urlsplit(site_url).netloc
     
+    def find_external_urls(self, entry):
+        """ Find external urls in an entry """
+        soup = BeautifulSoup(entry.html_content)
+        external_urls = [a['href'] for a in soup.findAll('a')
+                         if self.is_external_url(
+                             a['href'], self.ressources.site_url)]
+        return external_urls
+    
     def find_pingback_href(self, content):
         """ Try to find Link markup to pingback url """
         soup = BeautifulSoup(content)
@@ -126,20 +135,22 @@ class ExternalUrlsPinger(threading.Thread):
         for url in urls:
             try:
                 page = urlopen(url)
-                header = page.info()
+                headers = page.info()
                 
                 if 'text/' not in headers.get('Content-Type', '').lower():
                     continue
                 
-                server_url = header.get('x-Pingback')
+                server_url = headers.get('X-Pingback')
                 if not server_url:
-                    sever_url = self.find_pingback_href(page.read())
+                    server_url = self.find_pingback_href(page.read())
                 
                 if server_url:
                     server_url_splitted = urlsplit(server_url)
                     if not server_url_splitted.netloc:
                         url_splitted = urlsplit(url)
-                        server_url = '%s://%s%s' % (url_splitted.scheme, url_splitted.netloc, server_url)
+                        server_url = '%s://%s%s' % (url_splitted.scheme,
+                                                    url_splitted.netloc,
+                                                    server_url)
                     pingback_urls[url] = server_url
             except IOError:
                 pass

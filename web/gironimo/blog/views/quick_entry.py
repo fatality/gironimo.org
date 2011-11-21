@@ -1,4 +1,5 @@
 from urllib import urlencode
+
 from django import forms
 from django.utils.html import linebreaks
 from django.shortcuts import redirect
@@ -7,8 +8,10 @@ from django.contrib.sites.models import Site
 from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str
 from django.contrib.auth.decorators import permission_required
+
 from gironimo.blog.models import Entry
-from gironimo.blog.managers import DRAFT, PUBLISHED
+from gironimo.blog.managers import DRAFT
+from gironimo.blog.managers import PUBLISHED
 
 
 class QuickEntryForm(forms.Form):
@@ -34,17 +37,18 @@ def view_quick_entry(request):
             entry_dict['status'] = status
             entry = Entry.objects.create(**entry_dict)
             entry.sites.add(Site.objects.get_current())
+            entry.authors.add(request.user)
             return redirect(entry)
         
-        data = {
-            'title': smart_str(request.POST.get('title', '')),
-            'content': smart_str(linebreaks(request.POST.get('content', ''))),
-            'tags': smart_str(request.POST.get('tags', '')),
-            'slug': slugify(request.POST.get('title', '')),
-            'authors': request.user.pk,
-            'sites': Site.objects.get_current().pk
-        }
-        return redirect('%s?%s' % (reverse('admin:blog_entry_add'), urlencode(data)))
+        data = {'title': smart_str(request.POST.get('title', '')),
+                'content': smart_str(linebreaks(request.POST.get(
+                    'content', ''))),
+                'tags': smart_str(request.POST.get('tags', '')),
+                'slug': slugify(request.POST.get('title', '')),
+                'authors': request.user.pk,
+                'sites': Site.objects.get_current().pk}
+        return redirect('%s?%s' % (reverse('admin:blog_entry_add'),
+                                   urlencode(data)))
     
     return redirect('admin:blog_entry_add')
 

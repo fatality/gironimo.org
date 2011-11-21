@@ -1,8 +1,8 @@
-""" TypePad spam checker backend """
 from django.conf import settings
 from django.utils.encoding import smart_str
 from django.contrib.sites.models import Site
 from django.core.exceptions import ImproperlyConfigured
+
 from gironimo.blog.config import PROTOCOL
 
 try:
@@ -11,8 +11,10 @@ try:
 except ImportError:
     raise ImproperlyConfigured('akismet module is not available')
 
+
 if not getattr(settings, 'TYPEPAD_SECRET_API_KEY', ''):
     raise ImproperlyConfigured('You have to set TYPEPAD_SECRET_API_KEY')
+
 
 TYPEPAD_API_KEY = settings.TYPEPAD_SECRET_API_KEY
 
@@ -41,11 +43,7 @@ def backend(comment, content_object, request):
         'comment_author_email': smart_str(comment.userinfo.get('email', '')),
         'comment_author_url': smart_str(comment.userinfo.get('url', '')),
     }
-    
-    is_spam = typepad.comment_check(
-        smart_str(comment.comment),
-        data=typepad_data,
-        build_data=True
-    )
+    is_spam = typepad.comment_check(smart_str(comment.comment),
+                                    data=typepad_data, build_data=True)
     return is_spam
 

@@ -1,10 +1,9 @@
-""" Akismet spam checker backend """
 from django.conf import settings
 from django.utils.encoding import smart_str
 from django.contrib.sites.models import Site
 from django.core.exceptions import ImproperlyConfigured
-from gironimo.blog.config import PROTOCOL
 
+from gironimo.blog.config import PROTOCOL
 
 try:
     from akismet import Akismet
@@ -16,12 +15,14 @@ except ImportError:
 if not getattr(settings, 'AKISMET_SECRET_API_KEY', ''):
     raise ImproperlyConfigured('You have to set AKISMET_SECRET_API_KEY')
 
+
 AKISMET_API_KEY = settings.AKISMET_SECRET_API_KEY
 
 
 def backend(comment, content_object, request):
     """ Akismet spam checker backend """
     blog_url = '%s://%s/' % (PROTOCOL, Site.objects.get_current().domain)
+    
     akismet = Akismet(key=AKISMET_API_KEY, blog_url=blog_url)
     
     if not akismet.verify_key():
@@ -37,11 +38,7 @@ def backend(comment, content_object, request):
         'comment_author_email': smart_str(comment.userinfo.get('email', '')),
         'comment_author_url': smart_str(comment.userinfo.get('url', '')),
     }
-    
-    is_spam = akismet.comment_check(
-        smart_str(comment.comment),
-        data=akismet_data,
-        build_data=True
-    )
+    is_spam = akismet.comment_check(smart_str(comment.comment),
+                                    data=akismet_data, build_data=True)
     return is_spam
 

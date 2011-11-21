@@ -1,23 +1,31 @@
 from urlparse import urljoin
 from BeautifulSoup import BeautifulSoup
+
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
-from django.core.urlresolvers import reverse, NoReverseMatch
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Atom1Feed
 from django.utils.translation import ugettext as _
 from django.contrib.syndication.views import Feed
+from django.core.urlresolvers import NoReverseMatch
 from django.core.exceptions import ObjectDoesNotExist
-from tagging.models import Tag, TaggedItem
+
+from tagging.models import Tag
+from tagging.models import TaggedItem
+
 from gironimo.blog.models import Entry
-from gironimo.blog.config import COPYRIGHT, PROTOCOL, FEEDS_FORMAT, FEEDS_MAX_ITEMS
+from gironimo.blog.config import COPYRIGHT
+from gironimo.blog.config import PROTOCOL
+from gironimo.blog.config import FEEDS_FORMAT
+from gironimo.blog.config import FEEDS_MAX_ITEMS
 from gironimo.blog.managers import entries_published
 from gironimo.blog.views.categories import get_category_or_404
-from gironimo.blog.templatetags.blog_tags import get_gravatar
+from gironimo.blog.templatetags.zinnia_tags import get_gravatar
 
 
 class BlogFeed(Feed):
-    """ Base Feed for Blog """
+    """ Base Feed """
     feed_copyright = COPYRIGHT
     
     def __init__(self):
@@ -35,10 +43,10 @@ class EntryFeed(BlogFeed):
     
     def item_pubdate(self, item):
         """ Publication date of an entry """
-        return item.created
+        return item.creation_date
     
     def item_categories(self, item):
-        """ Entries categories """
+        """ Entry's categories """
         return [category.title for category in item.categories.all()]
     
     def item_author_name(self, item):
@@ -52,9 +60,10 @@ class EntryFeed(BlogFeed):
         return self.item_author.email
     
     def item_author_link(self, item):
-        """ Returns the authors URL """
+        """ Returns the author's URL """
         try:
-            author_url = reverse('blog_author_detail', args=[self.item_author.username])
+            author_url = reverse('blog_author_detail',
+                                 args=[self.item_author.username])
             return self.site_url + author_url
         except NoReverseMatch:
             return self.site_url
@@ -85,7 +94,7 @@ class LatestEntries(EntryFeed):
         return reverse('blog_entry_archive_index')
     
     def items(self):
-        """ Items are published entries """
+        """Items are published entries"""
         return Entry.published.all()[:FEEDS_MAX_ITEMS]
     
     def title(self):
@@ -134,7 +143,7 @@ class AuthorEntries(EntryFeed):
     
     def link(self, obj):
         """ URL of the author """
-        return reverse('blog_author_detail', args=[obj.username])
+        return reverse('bloga_author_detail', args=[obj.username])
     
     def title(self, obj):
         """ Title of the feed """
@@ -154,7 +163,8 @@ class TagEntries(EntryFeed):
     
     def items(self, obj):
         """ Items are the published entries of the tag """
-        return TaggedItem.objects.get_by_model(Entry.published.all(), obj)[:FEEDS_MAX_ITEMS]
+        return TaggedItem.objects.get_by_model(
+            Entry.published.all(), obj)[:FEEDS_MAX_ITEMS]
     
     def link(self, obj):
         """ URL of the tag """
@@ -173,14 +183,14 @@ class SearchEntries(EntryFeed):
     """ Feed filtered by a search pattern """
     
     def get_object(self, request):
-        """ The Get paramater 'pattern' is the object """
-        pattern = request.Get.get('pattern', '')
+        """ The GET parameter 'pattern' is the object """
+        pattern = request.GET.get('pattern', '')
         if len(pattern) < 3:
             raise ObjectDoesNotExist
         return pattern
     
     def items(self, obj):
-        """ Items are the published entries found """
+        """ Items are the published entries founds """
         return Entry.published.search(obj)[:FEEDS_MAX_ITEMS]
     
     def link(self, obj):
@@ -201,9 +211,12 @@ class EntryDiscussions(BlogFeed):
     title_template = 'feeds/discussion_title.html'
     description_template = 'feeds/discussion_description.html'
     
-    def get_object(self, request, slug, category):
-        """ Retrieve the discussions by entries slug """
-        return get_object_or_404(Entry.published, slug=slug, categories.all()[0]=category)
+    def get_object(self, request, year, month, day, slug):
+        """ Retrieve the discussions by entry's slug """
+        return get_object_or_404(Entry.published, slug=slug,
+                                 creation_date__year=year,
+                                 creation_date__month=month,
+                                 creation_date__day=day)
     
     def items(self, obj):
         """ Items are the discussions on the entry """
@@ -226,11 +239,11 @@ class EntryDiscussions(BlogFeed):
         return item.userinfo['name']
     
     def item_author_email(self, item):
-        """ Authors email of the discussion """
+        """ Author's email of the discussion """
         return item.userinfo['email']
     
     def item_author_link(self, item):
-        """ Authors URL of the discussion """
+        """ Author's URL of the discussion """
         return item.userinfo['url']
     
     def title(self, obj):
@@ -281,7 +294,7 @@ class EntryPingbacks(EntryDiscussions):
     title_template = 'feeds/pingback_title.html'
     description_template = 'feeds/pingback_description.html'
     
-    def item(self, obj):
+    def items(self, obj):
         """ Items are the pingbacks on the entry """
         return obj.pingbacks[:FEEDS_MAX_ITEMS]
     
@@ -304,18 +317,18 @@ class EntryTrackbacks(EntryDiscussions):
     description_template = 'feeds/trackback_description.html'
     
     def items(self, obj):
-        """ Items are the trackbacks of the entry """
+        """ Items are the trackbacks on the entry """
         return obj.trackbacks[:FEEDS_MAX_ITEMS]
     
     def item_link(self, item):
         """ URL of the trackback """
         return item.get_absolute_url('#trackback_%(id)s')
     
-    def title(self, item):
+    def title(self, obj):
         """ Title of the feed """
         return _('Trackbacks on %s') % obj.title
     
-    def description(self, item):
+    def description(self, obj):
         """ Description of the feed """
         return _('The latest trackbacks for the entry %s') % obj.title
 

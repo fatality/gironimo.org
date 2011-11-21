@@ -1,52 +1,48 @@
-from django.conf.urls.defaults import url, patterns
-from gironimo.blog.feeds import LatestEntries, EntryDiscussions, EntryComments, EntryTrackbacks, EntryPingbacks, SearchEntries, TagEntries, CategoryEntries, AuthorEntries
+from django.conf.urls.defaults import url
+from django.conf.urls.defaults import patterns
+
+from gironimo.blog.feeds import LatestEntries
+from gironimo.blog.feeds import EntryDiscussions
+from gironimo.blog.feeds import EntryComments
+from gironimo.blog.feeds import EntryTrackbacks
+from gironimo.blog.feeds import EntryPingbacks
+from gironimo.blog.feeds import SearchEntries
+from gironimo.blog.feeds import TagEntries
+from gironimo.blog.feeds import CategoryEntries
+from gironimo.blog.feeds import AuthorEntries
 
 
 urlpatterns = patterns('',
-    url(
-        r'^latest/$',
+    url(r'^latest/$',
         LatestEntries(),
-        name='blog_entry_latest_feed'
-    ),
-    url(
-        r'^suche/$',
+        name='blog_entry_latest_feed'),
+    url(r'^search/$',
         SearchEntries(),
-        name='blog_entry_search_feed'
-    ),
-    url(
-        r'^tags/(?P<slug>[- \w]+)/$',
+        name='blog_entry_search_feed'),
+    url(r'^tags/(?P<slug>[- \w]+)/$',
         TagEntries(),
-        name='blog_tag_feed'
-    ),
-    url(
-        r'^autoren/(?P<username>[.+-@\w]+)/$',
+        name='blog_tag_feed'),
+    url(r'^authors/(?P<username>[.+-@\w]+)/$',
         AuthorEntries(),
-        name='blog_author_feed'
-    ),
-    url(
-        r'^kategorien/(?P<path>[-\/\w]+)/$',
+        name='blog_author_feed'),
+    url(r'^categories/(?P<path>[-\/\w]+)/$',
         CategoryEntries(),
-        name='blog_category_feed'
-    ),
-    url(
-        r'^diskussionen/(?P<path>[-\/\w]+)/(?P<slug>[-\w]+).html',
+        name='blog_category_feed'),
+    url(r'^discussions/(?P<year>\d{4})/(?P<month>\d{2})/' \
+        '(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
         EntryDiscussions(),
-        name='blog_entry_discussion_feed'
-    ),
-    url(
-        r'^kommentare/(?P<path>[-\/\w]+)/(?P<slug>[-\w]+).html',
+        name='blog_entry_discussion_feed'),
+    url(r'^comments/(?P<year>\d{4})/(?P<month>\d{2})/' \
+        '(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
         EntryComments(),
-        name='blog_entry_comment_feed'
-    ),
-    url(
-        r'^pingbacks/(?P<path>[-\/\w]+)/(?P<slug>[-\w]+).html',
+        name='blog_entry_comment_feed'),
+    url(r'^pingbacks/(?P<year>\d{4})/(?P<month>\d{2})/' \
+        '(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
         EntryPingbacks(),
-        name='blog_entry_pingback_feed'
-    ),
-    url(
-        r'^trackbacks/(?P<path>[-\/\w]+)/(?P<slug>[-\w]+).html',
+        name='blog_entry_pingback_feed'),
+    url(r'^trackbacks/(?P<year>\d{4})/(?P<month>\d{2})/' \
+        '(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
         EntryTrackbacks(),
-        name='blog_entry_trackback_feed'
-    ),
+        name='blog_entry_trackback_feed'),
 )
 

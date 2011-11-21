@@ -1,7 +1,8 @@
-""" Spam Checker Module """
 import warnings
+
 from django.utils.importlib import import_module
 from django.core.exceptions import ImproperlyConfigured
+
 from gironimo.blog.config import SPAM_CHECKER_BACKENDS
 
 
@@ -11,7 +12,8 @@ def get_spam_checker(backend_path):
         backend_module = import_module(backend_path)
         backend = getattr(backend_module, 'backend')
     except (ImportError, AttributeError):
-        warnings.warn('%s backend cannot be imported' % backend_path, RuntimeWarning)
+        warnings.warn('%s backend cannot be imported' % backend_path,
+                      RuntimeWarning)
         backend = None
     except ImproperlyConfigured, e:
         warnings.warn(str(e), RuntimeWarning)
@@ -20,7 +22,8 @@ def get_spam_checker(backend_path):
     return backend
 
 
-def check_is_spam(content, content_object, request, backends=SPAM_CHECKER_BACKENDS):
+def check_is_spam(content, content_object, request,
+                  backends=SPAM_CHECKER_BACKENDS):
     """ Return True if the content is a spam, else False """
     for backend_path in backends:
         spam_checker = get_spam_checker(backend_path)

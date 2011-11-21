@@ -1,5 +1,7 @@
 from math import sqrt
-from gironimo.blog.config import F_MIN, F_MAX
+
+from gironimo.blog.config import F_MIN
+from gironimo.blog.config import F_MAX
 
 
 def pearson_score(list1, list2):
@@ -12,8 +14,8 @@ def pearson_score(list1, list2):
     prod_sum = sum([list1[i] * list2[i] for i in range(len(list1))])
     
     num = prod_sum - (sum1 * sum2 / len(list1))
-    den = sqrt((sum_sq1 - pow(sum1, 2) / len(list1)) * (sum_sq2 - pow(sum2, 2) / len(list2)))
-    
+    den = sqrt((sum_sq1 - pow(sum1, 2) / len(list1)) *
+               (sum_sq2 - pow(sum2, 2) / len(list2)))
     if den == 0:
         return 0.0
     return 1.0 - num / den
@@ -21,6 +23,7 @@ def pearson_score(list1, list2):
 
 class ClusteredModel(object):
     """ Wrapper around Model class building a dataset of instances """
+    
     def __init__(self, queryset, fields=['id']):
         self.fields = fields
         self.queryset = queryset
@@ -29,12 +32,14 @@ class ClusteredModel(object):
         """ Generate a dataset with the queryset and specified fields """
         dataset = {}
         for item in self.queryset.filter():
-            dataset[item] = ' '.join([unicode(item.__dict__[field]) for field in self.fields])
+            dataset[item] = ' '.join([unicode(item.__dict__[field])
+                                      for field in self.fields])
         return dataset
 
 
 class VectorBuilder(object):
     """ Build a list of vectors based on datasets """
+    
     def __init__(self, queryset, fields):
         self.key = ''
         self.columns = []
@@ -44,7 +49,7 @@ class VectorBuilder(object):
     
     def build_dataset(self):
         """ Generate whole dataset """
-        data =  {}
+        data = {}
         words_total = {}
         
         model_data = self.clustered_model.dataset()
@@ -55,10 +60,10 @@ class VectorBuilder(object):
                 words_item_total.setdefault(word, 0)
                 words_total[word] += 1
                 words_item_total[word] += 1
-                data[instance] = words_item_total
+            data[instance] = words_item_total
         
         top_words = []
-        for word, count in words_total_items():
+        for word, count in words_total.items():
             frequency = float(count) / len(data)
             if frequency > F_MIN and frequency < F_MAX:
                 top_words.append(word)
@@ -66,7 +71,8 @@ class VectorBuilder(object):
         self.dataset = {}
         self.columns = top_words
         for instance in data.keys():
-            self.dataset[instance] = [data[instance].get(word, 0) for word in top_words]
+            self.dataset[instance] = [data[instance].get(word, 0)
+                                      for word in top_words]
         self.key = self.generate_key()
     
     def generate_key(self):

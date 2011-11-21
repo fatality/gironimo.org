@@ -1,7 +1,10 @@
 from functools import wraps
+
 from django.template import RequestContext
 from django.contrib.auth.views import login
-from django.shortcuts import redirect, get_object_or_404, render_to_response
+from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render_to_response
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 from django.views.decorators.csrf import csrf_protect
@@ -15,7 +18,7 @@ def update_queryset(view, queryset, queryset_parameter='queryset'):
     
     @wraps(view)
     def wrapper(*args, **kwargs):
-        """ Regenerate the queryset before passing it to the view """
+        """ Regenerate the queryset before passing it to the view. """
         kwargs[queryset_parameter] = queryset()
         return view(*args, **kwargs)
     
@@ -26,31 +29,36 @@ def update_queryset(view, queryset, queryset_parameter='queryset'):
 @never_cache
 def password(request, entry):
     """ Displays the password form and handle validation by setting the valid 
-    password in a cookie """
+    password in a cookie. """
     error = False
     if request.method == 'POST':
         if request.POST.get('password') == entry.password:
-            request.session['blog_entry_%s_password' % entry.pk] = entry.password
+            request.session[
+                'blog_entry_%s_password' % entry.pk] = entry.password
             return redirect(entry)
         error = True
-    return render_to_response('blog/password.html', {
-    'error': error}, context_instance=RequestContext(request))
+    return render_to_response('blog/password.html', {'error': error},
+                              context_instance=RequestContext(request))
 
 
 def protect_entry(view):
     """ Decorator performing a security check if needed around the 
-    generic.date_base.entry_detail view and specify the template used to render 
-    the entry """
+    generic.date_based.entry_detail view and specify the template used to 
+    render the entry """
     
     @wraps(view)
     def wrapper(*ka, **kw):
         """ Do security check and retrieve the template """
         request = ka[0]
-        entry = get_object_or_404(kw['queryset'], slug=kw['slug'], created__year=kw['year'], created__month=kw['month'], created__day=kw['day'])
+        entry = get_object_or_404(kw['queryset'], slug=kw['slug'],
+                                  creation_date__year=kw['year'],
+                                  creation_date__month=kw['month'],
+                                  creation_date__day=kw['day'])
         
         if entry.login_required and not request.user.is_authenticated():
             return login(request, 'blog/login.html')
-        if entry.password and entry.password != request.session.get('blog_entry_%s_password' % entry.pk):
+        if entry.password and entry.password != \
+               request.session.get('blog_entry_%s_password' % entry.pk):
             return password(request, entry)
         kw['template_name'] = entry.template
         return view(*ka, **kw)
@@ -60,13 +68,12 @@ def protect_entry(view):
 
 def template_name_for_entry_queryset_filtered(model_type, model_name):
     """ Return a custom template name for views returning a queryset of Entry 
-    filtered by another model """
+    filtered by another model. """
     template_name_list = (
         'blog/%s/%s/entry_list.html' % (model_type, model_name),
         'blog/%s/%s_entry_list.html' % (model_type, model_name),
         'blog/%s/entry_list.html' % model_type,
-        'blog/entry_list.html'
-    )
+        'blog/entry_list.html')
     
     for template_name in template_name_list:
         try:

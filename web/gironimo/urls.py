@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^xmlrpc/$', 'django_xmlrpc.views.handle_xmlrpc'),
     url(r'^$', 'gironimo.views.index', name='index'),
-    url(r'^', include('gironimo.page.urls')),
+    #url(r'^', include('gironimo.page.urls')),
 )
 
 urlpatterns += patterns('django.contrib.sitemaps.views',

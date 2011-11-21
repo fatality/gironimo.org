@@ -1,7 +1,11 @@
 from django.contrib.sitemaps import Sitemap
 from django.core.urlresolvers import reverse
+
 from tagging.models import TaggedItem
-from gironimo.blog.models import Entry, Author, Category
+
+from gironimo.blog.models import Entry
+from gironimo.blog.models import Author
+from gironimo.blog.models import Category
 from gironimo.blog.managers import tags_published
 
 
@@ -14,8 +18,8 @@ class EntrySitemap(Sitemap):
         """ Return published entries """
         return Entry.published.all()
     
-    def latest(self):
-        """ Return last modifications of an entry """
+    def lastmod(self, obj):
+        """ Return last modification of an entry """
         return obj.last_update
 
 
@@ -24,17 +28,18 @@ class CategorySitemap(Sitemap):
     changefreq = 'monthly'
     
     def cache(self, categories):
-        """ Cache categories entries percent on total entries """
+        """ Cache categorie's entries percent on total entries """
         len_entries = float(Entry.published.count())
         self.cache_categories = {}
         for cat in categories:
             if len_entries:
-                self.cache_categories[cat.pk] = cat.entries_published().count() / len_entries
+                self.cache_categories[cat.pk] = cat.entries_published(
+                    ).count() / len_entries
             else:
                 self.cache_categories[cat.pk] = 0.0
     
     def items(self):
-        """ Returns all categories with coeff """
+        """ Return all categories with coeff """
         categories = Category.objects.all()
         self.cache(categories)
         return categories
@@ -44,7 +49,7 @@ class CategorySitemap(Sitemap):
         entries = obj.entries_published()
         if not entries:
             return None
-            return entries[0].created
+        return entries[0].creation_date
     
     def priority(self, obj):
         """ Compute priority with cached coeffs """
@@ -60,7 +65,7 @@ class AuthorSitemap(Sitemap):
     changefreq = 'monthly'
     
     def items(self):
-        """ Returns published authors """
+        """ Return published authors """
         return Author.published.all()
     
     def lastmod(self, obj):
@@ -68,7 +73,7 @@ class AuthorSitemap(Sitemap):
         entries = obj.entries_published()
         if not entries:
             return None
-        return entries[0].created
+        return entries[0].creation_date
     
     def location(self, obj):
         """ Return url of an author """
@@ -80,11 +85,12 @@ class TagSitemap(Sitemap):
     changefreq = 'monthly'
     
     def cache(self, tags):
-        """ Cache tags entries percent on total entries """
+        """ Cache tag's entries percent on total entries """
         len_entries = float(Entry.published.count())
         self.cache_tags = {}
         for tag in tags:
-            entries = TaggedItem.objects.get_by_model(Entry.published.all(), tag)
+            entries = TaggedItem.objects.get_by_model(
+                Entry.published.all(), tag)
             self.cache_tags[tag.pk] = (entries, entries.count() / len_entries)
     
     def items(self):
@@ -96,7 +102,7 @@ class TagSitemap(Sitemap):
     def lastmod(self, obj):
         """ Return last modification of a tag """
         entries = self.cache_tags[obj.pk][0]
-        return entries[0].created
+        return entries[0].creation_date
     
     def priority(self, obj):
         """ Compute priority with cached coeffs """

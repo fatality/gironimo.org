@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic.list_detail import object_list
+
 from gironimo.blog.models import Category
 from gironimo.blog.config import PAGINATION
-from gironimo.views.decorators import template_name_for_entry_queryset_filtered
+from gironimo.blog.views.decorators import template_name_for_entry_queryset_filtered
 
 
 def get_category_or_404(path):
@@ -17,10 +18,13 @@ def category_detail(request, path, page=None, **kwargs):
     
     category = get_category_or_404(path)
     if not kwargs.get('template_name'):
-        kwargs['template_name'] = template_name_for_entry_queryset_filtered('category', category.slug)
+        kwargs['template_name'] = template_name_for_entry_queryset_filtered(
+            'category', category.slug)
     
     extra_context.update({'category': category})
     kwargs['extra_context'] = extra_context
     
-    return object_list(request, queryset=category.entries.published(), paginate_by=PAGINATION, page=page, **kwargs)
+    return object_list(request, queryset=category.entries_published(),
+                       paginate_by=PAGINATION, page=page,
+                       **kwargs)
 

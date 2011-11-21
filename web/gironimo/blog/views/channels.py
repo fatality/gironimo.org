@@ -1,4 +1,5 @@
 from django.views.generic.list_detail import object_list
+
 from gironimo.blog.models import Entry
 
 
