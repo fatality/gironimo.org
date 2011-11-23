@@ -99,7 +99,7 @@ INSTALLED_APPS = (
     'gironimo.accounts',
     #'gironimo.page',
     #'gironimo.menu',
-    'blog',
+    'gironimo.blog',
     
     #Third-Party,
     'django_assets',
