@@ -1,4 +1,5 @@
 from cms.models.fields import PlaceholderField
+
 from gironimo.blog.models import EntryAbstractClass
 
 

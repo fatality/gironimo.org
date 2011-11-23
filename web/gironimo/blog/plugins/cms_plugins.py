@@ -1,9 +1,12 @@
 import itertools
+
 from django.conf import settings
 from django.utils.translation import ugettext as _
+
 from tagging.models import TaggedItem
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
+
 from gironimo.blog.models import Entry
 from gironimo.blog.models import Author
 from gironimo.blog.managers import tags_published
@@ -51,7 +54,8 @@ class CMSLatestEntriesPlugin(CMSPluginBase):
             kwargs['queryset'] = Author.published.all()
         if db_field.name == 'tags':
             kwargs['queryset'] = tags_published()
-        return super(CMSLatestEntriesPlugin, self).formfield_for_manytomany(db_field, request, **kwargs)
+        return super(CMSLatestEntriesPlugin, self).formfield_for_manytomany(
+            db_field, request, **kwargs)
     
     def render(self, context, instance, placeholder):
         """ Update the context with plugin's data """
@@ -61,25 +65,25 @@ class CMSLatestEntriesPlugin(CMSPluginBase):
             cats = instance.categories.all()
             
             if instance.subcategories:
-                cats = itertools.chain(cats, *[c.get_descendants() for c in cats])
+                cats = itertools.chain(cats, *[c.get_descendants()
+                                               for c in cats])
             
             entries = entries.filter(categories__in=cats)
         if instance.authors.count():
             entries = entries.filter(authors__in=instance.authors.all())
         if instance.tags.count():
-            entries = TaggedItem.objects.get_union_by_model(entries, instance.tags.all())
+            entries = TaggedItem.objects.get_union_by_model(
+                entries, instance.tags.all())
         
         entries = entries.distinct()[:instance.number_of_entries]
-        context.update({
-            'entries': entries,
-            'object': instance,
-            'placeholder': placeholder
-        })
+        context.update({'entries': entries,
+                        'object': instance,
+                        'placeholder': placeholder})
         return context
     
     def icon_src(self, instance):
         """ Icon source of the plugin """
-        return settings.STATIC_URL + u'img/blog/plugin.png'
+        return settings.STATIC_URL + u'blog/img/plugin.png'
 
 
 class CMSSelectedEntriesPlugin(CMSPluginBase):
@@ -93,17 +97,15 @@ class CMSSelectedEntriesPlugin(CMSPluginBase):
     text_enabled = True
     
     def render(self, context, instance, placeholder):
-        """ Update the context with plugin's data"""
-        context.update({
-            'entries': instance.entries.all(),
-            'object': instance,
-            'placeholder': placeholder
-        })
+        """ Update the context with plugin's data """
+        context.update({'entries': instance.entries.all(),
+                        'object': instance,
+                        'placeholder': placeholder})
         return context
     
     def icon_src(self, instance):
         """ Icon source of the plugin """
-        return settings.STATIC_URL + u'img/blog/plugin.png'
+        return settings.STATIC_URL + u'blog/img/plugin.png'
 
 
 class CMSRandomEntriesPlugin(CMSPluginBase):
@@ -116,16 +118,16 @@ class CMSRandomEntriesPlugin(CMSPluginBase):
     text_enabled = True
     
     def render(self, context, instance, placeholder):
-        """ Update the context with plugin's data """
-        context.update({
-            'number_of_entries': instance.number_of_entries,
-            'template_to_render': str(instance.template_to_render) or 'blog/tags/random_entries.html'
-        })
+        """Update the context with plugin's data"""
+        context.update(
+            {'number_of_entries': instance.number_of_entries,
+             'template_to_render': str(instance.template_to_render) or
+             'blog/tags/random_entries.html'})
         return context
     
     def icon_src(self, instance):
         """ Icon source of the plugin """
-        return settings.STATIC_URL + u'img/blog/plugin.png'
+        return settings.STATIC_URL + u'blog/img/plugin.png'
 
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
