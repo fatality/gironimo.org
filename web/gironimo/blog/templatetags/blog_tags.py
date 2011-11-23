@@ -168,7 +168,7 @@ def get_calendar_entries(context, year=None, month=None,
                      datetime.today()
         year, month = date_month.timetuple()[:2]
     
-    calendar = ZinniaCalendar()
+    calendar = GironimoCalendar()
     current_month = datetime(year, month, 1)
     
     dates = list(Entry.published.dates('creation_date', 'month'))

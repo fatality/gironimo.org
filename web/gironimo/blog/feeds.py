@@ -21,7 +21,7 @@ from gironimo.blog.config import FEEDS_FORMAT
 from gironimo.blog.config import FEEDS_MAX_ITEMS
 from gironimo.blog.managers import entries_published
 from gironimo.blog.views.categories import get_category_or_404
-from gironimo.blog.templatetags.zinnia_tags import get_gravatar
+from gironimo.blog.templatetags.blog_tags import get_gravatar
 
 
 class BlogFeed(Feed):

@@ -18,7 +18,7 @@ from tagging.models import Tag
 
 from gironimo.blog.models import Entry
 from gironimo.blog.models import Category
-from gironimo.blog.signals import disconnect_zinnia_signals
+from gironimo.blog.signals import disconnect_blog_signals
 from gironimo.blog.managers import DRAFT, HIDDEN, PUBLISHED
 
 

@@ -102,6 +102,6 @@ class MPTTFilteredSelectMultiple(widgets.FilteredSelectMultiple):
     class Media:
         """MPTTFilteredSelectMultiple's Media"""
         js = (settings.ADMIN_MEDIA_PREFIX + 'js/core.js',
-              settings.STATIC_URL + 'zinnia/js/mptt_m2m_selectbox.js',
+              settings.STATIC_URL + 'blog/js/mptt_m2m_selectbox.js',
               settings.ADMIN_MEDIA_PREFIX + 'js/SelectFilter2.js',)
 

@@ -77,7 +77,7 @@ class EntryAdmin(admin.ModelAdmin):
         """ Return the authors in HTML """
         try:
             authors = ['<a href="%s" target="blank">%s</a>' %
-                       (reverse('zinnia_author_detail',
+                       (reverse('blog_author_detail',
                                 args=[author.username]),
                         author.username) for author in entry.authors.all()]
         except NoReverseMatch:
@@ -103,7 +103,7 @@ class EntryAdmin(admin.ModelAdmin):
         """ Return the tags linked in HTML """
         try:
             return ', '.join(['<a href="%s" target="blank">%s</a>' %
-                              (reverse('zinnia_tag_detail',
+                              (reverse('blog_tag_detail',
                                        args=[tag.name]), tag.name)
                               for tag in Tag.objects.get_for_object(entry)])
         except NoReverseMatch:

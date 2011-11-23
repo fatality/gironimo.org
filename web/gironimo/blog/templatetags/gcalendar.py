@@ -56,7 +56,7 @@ class GironimoCalendar(HTMLCalendar):
                  '</tr></tfoot>'
         if previous_month:
             previous_content = '<a href="%s" class="previous-month">%s</a>' % (
-                reverse('zinnia_entry_archive_month', args=[
+                reverse('blog_entry_archive_month', args=[
                     previous_month.strftime('%Y'),
                     previous_month.strftime('%m')]),
                 date_format(previous_month, 'YEAR_MONTH_FORMAT'))

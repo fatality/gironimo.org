@@ -59,7 +59,7 @@ SPAM_CHECKER_BACKENDS = getattr(settings, 'BLOG_SPAM_CHECKER_BACKENDS',
                                 ())
 
 URL_SHORTENER_BACKEND = getattr(settings, 'BLOG_URL_SHORTENER_BACKEND',
-                                'zinnia.url_shortener.backends.default')
+                                'gironimo.blog.url_shortener.backends.default')
 
 STOP_WORDS = getattr(settings, 'BLOG_STOP_WORDS',
                      ('able', 'about', 'across', 'after', 'all', 'almost',

@@ -30,7 +30,7 @@ class Command(NoArgsCommand):
         make_option('--blogger-username', dest='blogger_username', default='',
                     help='The username to login to Blogger with'),
         make_option('--category-title', dest='category_title', default='',
-                    help='The Zinnia category to import Blogger posts to'),
+                    help='The category to import Blogger posts to'),
         make_option('--blogger-blog-id', dest='blogger_blog_id', default='',
                     help='The id of the Blogger blog to import'),
         make_option('--author', dest='author', default='',
