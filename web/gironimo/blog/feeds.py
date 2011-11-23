@@ -71,7 +71,7 @@ class EntryFeed(BlogFeed):
     def item_enclosure_url(self, item):
         """ Returns an image for enclosure """
         if item.image:
-            return item.image.url
+            return self.site_url + item.image.url
         
         img = BeautifulSoup(item.html_content).find('img')
         if img:
