@@ -1,38 +1,104 @@
-{% load django_ajax_tags i18n assets %}
+{% load django_ajax_tags i18n assets blog_tags %}
+{% get_tags as entry_tags %}
 
 <!DOCTYPE html>
 
-<html class="no-js" dir="ltr" lang="de-DE">
+<html class="no-js" dir="ltr" lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="UTF-8" />
         
         <title>{% block title %}{{ site_name }}{% endblock %}</title>
         
-        <link rel="profile" href="http://gmpg.org/xfn/11" />
-        <link rel="index" title="gironimo.org" href="http://www.gironimo.org/" />
-        
-        <meta name="robots" content="{% block robots %}index,follow{% endblock %}" />
-        <meta name="description" content="{% block description %}{% endblock %}" />
-        <meta name="keywords" content="{% block keywords %}{% endblock %}" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        
-        <link rel="icon" href="{{ STATIC_URL|default:'/static/' }}lib/images/favicon.ico" type="image/x-icon" />
+        {% block meta %}
+        <meta
+            name="cache-control"
+            content="public" />
+        <meta
+            name="robots"
+            content="{% block robots %}index,follow{% endblock %}" />
+        <meta
+            name="language"
+            content="{{ LANGUAGE_CODE }}" />
+        <meta
+            name="description"
+            content="{% block description %}{% trans 'A personal blog about the life with Linux and the daily frustration with the web.' %}{% endblock %}" />
+        <meta
+            name="keywords"
+            content="{% block keywords %}django, blog {{ entry_tags|join:', ' }}{% endblock %}" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta
+            name="author"
+            content="Marc Rochow" />
+        <meta
+            name="generator"
+            content="gironimo.org {{ GIRONIMO_VERSION }}" />
+        {% endblock %}
+        {% block link %}
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="{{ STATIC_URL|default:'/static/' }}lib/images/favicon.ico" />
+        <link
+            rel="profile"
+            href="http://gmpg.org/xfn/11" />
+        <link
+            rel="pingback"
+            href="/xmlrpc/" />
+        <link
+            rel="index"
+            title="gironimo.org"
+            href="{% url index %}" />
+        <link
+            rel="EditURI"
+            type="application/rsd+xml"
+            href="{% url blog_rsd %}" />
+        <link
+            rel="wlwmanifest"
+            type="application/wlwmanifest+xml"
+            href="{% blog_wlwmanifest %}" />
+        <link
+            rel="search"
+            type="application/opensearchdescription+xml"
+            title="{{ site_name }}"
+            href="{% url blog_opensearch %}" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="{% trans 'RSS Feed of the latest entries' %}"
+            href="{% url blog_entry_latest_feed %}" />
+        {% get_archives_entries "blog/tags/archives_entries_link.html" %}
+        {% endblock %}
         
         {% assets "css_base" %}
-        <link rel="stylesheet" href="{{ ASSET_URL }}" type="text/css" media="screen" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen, projection"
+            href="{{ ASSET_URL }}" />
         {% endassets %}
         
-        <script type="text/javascript" src="{% url js_i18n %}"></script>
+        <script
+            type="text/javascript"
+            src="{% url js_i18n %}">
+        </script>
         <script type="text/javascript">
             if (typeof gironimo == 'undefined') var gironimo = {};
             gironimo.config = {% json ajax_config %};
         </script>
         <!--[if lt IE 9]>
-        <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script
+            type="text/javascript"
+            src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+        </script>
         <![endif]-->
         
         {% assets "js_base" %}
-        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        <script
+            type="text/javascript"
+            src="{{ ASSET_URL }}">
+        </script>
         {% endassets %}
         
         <script type="text/javascript">
