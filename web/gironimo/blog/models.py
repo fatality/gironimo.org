@@ -289,7 +289,8 @@ class Entry(get_base_model()):
                        ('can_change_author', 'Can change author'), )
 
 
-moderator.register(Entry, EntryCommentModerator)
+if Entry not in moderator._registry:
+    moderator.register(Entry, EntryCommentModerator)
 mptt.register(Category, order_insertion_by=['title'])
 post_save.connect(ping_directories_handler, sender=Entry,
                   dispatch_uid='gironimo.blog.entry.post_save.ping_directories')

@@ -122,7 +122,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	'django.core.context_processors.static',
 	'django.contrib.messages.context_processors.messages',
 	'gironimo.utils.context_processors.gironimo',
-	#'gironimo.blog.context_processors.version',
+	'gironimo.blog.context_processors.version',
 )
 
 IMAGEQUERY_DEFAULT_OPTIONS = {'quality': 92}
