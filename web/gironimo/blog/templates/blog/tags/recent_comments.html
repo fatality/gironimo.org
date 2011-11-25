@@ -1,0 +1,22 @@
+{% load i18n blog_tags %}
+<ul>
+    {% for comment in comments %}
+        <li class="clearfix">
+            {% with entry=comment.content_object %}
+                <a href="{{ entry.get_absolute_url }}#comment_{{ comment_pk }}" title="{% trans 'Comment on' %} {{ entry.title }}">
+                    <img alt="{{ comment.user_name }}" src="{% get_gravatar comment.user_email %}" />
+                </a>
+                <div class="newest-comment">
+                    <p>
+                        {{ comment.user_name }} {% trans "on" %}
+                        <a href="{{ entry.get_absolute_url }}#comment_{{ comment.pk }}" title="{% trans 'Comment on' %} {{ entry.title }}">
+                            {{ entry.title }}
+                        </a>
+                    </p>
+                </div>
+            {% endwith %}
+        </li>
+    {% empty %}
+        <li>{% trans "No comments yet." %}</li>  
+    {% endfor %}
+</ul>

@@ -1,0 +1,15 @@
+{% load i18n %}
+<ul>
+    {% for author in authors %}
+        <li class="vcard">
+            <a href="{% url blog_author_detail author.username %}" title="{% trans 'View all entries from' %} {{ author.username }}" class="fn nickname url">
+                {{ author.username }}
+            </a>
+            {% with entry_count=author.entries_published.count %}
+                ({{ entry_count }})
+            {% endwith %}
+        </li>
+    {% empty %}
+        <li>{% trans "No authors yet." %}</li>
+    {% endfor %}
+</ul>
