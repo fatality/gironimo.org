@@ -64,6 +64,8 @@ class Category(models.Model):
     slug = models.SlugField(help_text=_('used for publication'),
                             unique=True, max_length=255)
     description = models.TextField(_('description'), blank=True)
+    image = models.ImageField(_('image'), blank=True, null=True,
+                              upload_to=UPLOAD_TO)
     
     parent = models.ForeignKey('self', null=True, blank=True,
                                verbose_name=_('parent category'),
