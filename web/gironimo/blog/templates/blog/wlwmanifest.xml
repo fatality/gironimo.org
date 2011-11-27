@@ -44,7 +44,7 @@
         {blog-homepage-url}{% url admin:index %}
         ]]></adminUrl>
         <postEditingUrl><![CDATA[
-        {blog-homepage-url}{% url admin:zinnia_entry_changelist %}{post-id}/
+        {blog-homepage-url}{% url admin:blog_entry_changelist %}{post-id}/
         ]]></postEditingUrl>
     </weblog>
     
