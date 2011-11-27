@@ -1,0 +1,92 @@
+{% load tagging_tags comments i18n %}
+<arcticle id="post-{{ object.pk }}" class="post">
+    <header class="entry-header">
+        <h2>
+            <a href="{{ object.get_absolute_url }}" title="{% trans 'View' %} {{ object.title }}" rel="bookmark">
+                {{ object.title }}
+            </a>
+        </h2>
+        <ul class="entry-meta clearfix">
+            <li class="author">
+                {% if object.authors.count %}
+                    {% trans "Written by" %}
+                    {% for author in object.authors.all %}
+                        <a href="{% url blog_author_detail author %}" rel="author" title="{% trans 'View all articles from' %} {{ author }}">
+                            {{ author }}
+                        </a>
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% trans "Sorry. No author!" %}
+                {% endif %}
+            </li>
+            <li>
+                <time datetime="{{ object.creation_date|date:'c'">{{ object.creation_date|date:"DATE_FORMAT" }}</time>
+            </li>
+            <li>
+                {% if object.categories.count %}
+                    {% trans "in" %}
+                    {% for category in object.categories.all %}
+                        <a href="{{ category.get_absolute_url }}" title="{% trans 'View all entries in' %} {{ category }}" rel="tag category">
+                            {{ category }}
+                        </a>
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% trans "No category" %}
+                {% endif %}
+            </li>
+            <li>
+                {% if object.comments_are_open %}
+                    {% with object.comments.count as comment_count %}
+                        <a href="{{ object.get_absolute_url }}#comments" title="{% trans 'View comments on' %} {{ object.title }}">
+                            {% blocktrans count comment_count as comment_count %}{{ comment_count }} comment{% plural %}{{ comment_count }} comments{% endblocktrans %}
+                        </a>
+                    {% endwith %}
+                {% else %}
+                    {% trans "Comments are closed" %}
+                {% endif %}
+            </li>
+        </ul>
+    </header>
+    <div class="entry-content">
+        {% if object.image %}
+            <p class="entry-image">
+                <a href="{{ object.get_absolute_url }}" rel="bookmark">
+                    <img src="{{ object.image.url }}" alt="{{ object.title }}" />
+                </a>
+            </p>
+        {% endif %}
+        {{ object.content }}
+    </div>
+    <footer class="entry-footer">
+        <ul class="entry-footer-meta clearfix">
+            <li>
+                {% trans "Short URL" %}: <a href="{{ object.short_url }}" title="{{ object.title }}" rel="shortlink">{{ object.short_url }}</a>
+            </li>
+            <li>
+                {% trans "Tags" %}: 
+                {% tags_for_object object as tag_list %}
+                {% for tag in tag_list %}
+                    <a href="{% url blog_tag_detail tag %}" title="{% trans 'View all entries by Tag' %} {{ tag }}" rel="tag">{{ tag }}</a>
+                {% empty %}
+                    {% trans "No tags" %}
+                {% endfor %}
+            </li>
+            <li>
+                {% with object.pingbacks.count as pingback_count %}
+                    <a href="{{ object.get_absolute_url }}#pingbacks" title="{{ object.title }}">
+                        {% blocktrans count pingback_count as pingback_count %}{{ pingback_count }} pingback{% plural %}{{ pingback_count }} pingbacks{% endblocktrans %}
+                    </a>
+                {% endwith %}
+            </li>
+            <li>
+                {% with object.trackbacks.count as trackback_count %}
+                    <a href="{{ object.get_absolute_url }}#trackbacks" title="{{ object.title }}">
+                        {% blocktrans count trackback_count as trackback_count %}{{ trackback_count }} trackback{% plural %}{{ trackback_count }} trackbacks{% endblocktrans %}
+                    </a>
+                {% endwith %}
+            </li>
+        </ul>
+    </footer>
+</article>

@@ -1,0 +1,34 @@
+{% extends "blog/entry_list.html" %}
+{% load i18n %}
+
+{% block description %}
+    {% trans "Archives" %} {{ month|date:"YEAR_MONTH_FORMAT" }} {% trans "on" %} {{ site_name }}
+{% endblock %}
+
+{% block title %}
+    {% trans "Archives" %} {{ month|date:"YEAR_MONTH_FORMAT" }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <section>
+        <article class="post">
+            <header class="entry-header">
+                <h2>
+                    <a href="{% blog_entry_archive_index %}" rel="archives">
+                        {% trans "Daily archives" %}
+                    </a>
+                </h2>
+            </header>
+            <div class="entry-content">
+                <ul>
+                    {% for date in date_list %}
+                        <a href="{% url blog_entry_archive_day date|date:"Y" date|date:"m" date|date:"d" %}" rel="archives">
+                            {{ date|date:"DATE_FORMAT" }}
+                        </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </article>
+    </section>
+{% endblock %}

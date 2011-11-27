@@ -1,0 +1,52 @@
+{% extends "blog/base.html" %}
+{% load i18n mptt_tags %}
+
+{% block description %}
+    {% trans "Category list on" %} {{ site_name }}
+{% endblock %}
+
+{% block title %}
+    {% trans "Category" %} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <article class="post">
+        <header class="entry-header">
+            <h2>
+                <a href="{% url blog_category_list %}" rel="tag category" title="{% trans 'List all categories on' %} {{ site_name }}">
+                    {% trans "Category list" %}
+                </a>
+            </h2>
+        </header>
+        <div class="entry-content">
+            {% for object, structure in object_list|tree_info %}
+                {% if structure.new_level %}
+                    <ul><li>
+                {% else %}
+                    </li><li>
+                {% endif %}
+                <a href="{{ object.get_absolute_url }}" rel="category tag" title="{% trans 'View all entries in' %} {{ object }}">
+                    {{ object }}
+                </a>
+                {% blocktrans count object.entries_published.count as entry_count %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
+                {% if object.image %}
+                    <p class="entry-image">
+                        <a href="{{ object.get_absolute_url }}" rel="category tag" title="{% trans 'View all entries in' %} {{ object }}">
+                            <img src="{{ object.image.url }}" alt="{{ object }}" />
+                        </a>
+                    </p>
+                {% endif %}
+                {% if object.description %}
+                    <p>{{ object.description|striptags|safe }}</p>
+                {% endif %}
+                {% for level in structure.closed_levels %}
+                    </li></ul>
+                {% endfor %}
+            {% empty %}
+                <ul>
+                    <li>{% trans No categories yet." %}</li>
+                </ul>
+            {% endfor %}
+        </div>
+    </article>
+{% endblock %}

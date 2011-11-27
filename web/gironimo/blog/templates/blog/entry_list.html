@@ -1,0 +1,126 @@
+{% extends "blog/base.html" %}
+{% load i18n blog_tags %}
+
+{% block description %}
+    {% trans "Latest entries for" %} 
+    {% if category %}{% trans "the category" %} {{ category }}
+        {% if category.description %}: {{ category.description|striptags|safe }}{% endif %}
+    {% endif %}
+    {% if tag %}{% trans "the tag" %} {{ tag }}{% endif %}
+    {% if author %}{% trans "the author" %} {{ author }}{% endif %}
+    {% if page_obj %}
+        {% ifnotequal page_obj.number 1 %} {% trans "page" %} {{ page_obj.number }}{% endifnotequal %}
+    {% endif %}
+{% endblock %}
+
+{% block link %}
+    {{ block.super }}
+    {% if category %}
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="{% trans 'RSS Feed' %} {{ category.title }}"
+            href="{% url blog_category_feed category.tree_path %}" />
+    {% endif %}
+    {% if tag %}
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="{% trans 'RSS Feed' %} {{ tag.name }}"
+            href="{% url blog_tag_feed tag.name %}" />
+    {% endif %}
+    {% if author %}
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="{% trans 'RSS Feed' %} {{ author.username }}"
+            href="{% url blog_author_feed author.username %}" />
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% trans "Latest entries" %}
+    {% if category %}| {% trans "Category" %} {{ category }}{% endif %}
+    {% if tag %}| {% trans "Tag" %} {{ tag }}{% endif %}
+    {% if author %}| {% trans "Author" %} {{ author }}{% endif %}
+    {% if page_obj %}
+        {% ifnotequal page_obj.number 1 %}| {% trans "Page" %}{% endifnotequal %}
+    {% endif %}
+    - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <article class="post">
+        <header class="entry-header">
+            <h2>
+                {% if category %}
+                    <a href="{{ category.get_absolute_url }}" title="{% trans 'View all entries in' %} {{ category.title }}" rel="bookmark">
+                        {{ category.title }}
+                    </a>
+                {% endif %}
+                {% if tag %}
+                    <a href="{% url blog_tag_detail tag.name %}" title="{% trans 'View all entries in' %} {{ tag.name }}" rel="bookmark">
+                        {% trans "Tag" %}: {{ tag }}
+                    </a>
+                {% endif %}
+                {% if author %}
+                    {% with author=author.username %}
+                        <a href="{% url blog_author_detail author %}" title="{% trans 'View all entries by' %} {{ author }}" rel="bookmark">
+                            {% trans "Entries by" %} {{ author }}
+                        </a>
+                    {% endwith %}
+                {% endif %}
+            </h2>
+        </header>
+        <div class="entry-content">
+            {% if category %}
+                {% if category.image %}
+                    <p class="entry-image">
+                        <a href="{{ category.get_absolute_url }}" rel="bookmark" title="{% trans 'View all entries in' %} {{ category.title }}">
+                            <img src="{{ category.image.url }}" alt="{{ category.title }}" />
+                        </a>
+                    </p>
+                {% endif %}
+                {% if category.description %}
+                    <p>{{ category.description|striptags|safe }}</p>
+                {% endif %}
+            {% endif %}
+            <section>
+                {% for object in object_list %}
+                    {% with object.html_content|truncatewords_html:100|safe as object_content %}
+                        {% include "blog/_entry_detail.html" %}
+                    {% endwith %}
+                {% empty %}
+                    <p>{% trans "No entries yet." %}</p>
+                {% endfor %}
+            </section>
+        </div>
+    </article>
+    {% if is_paginated %}
+        {% blog_pagination page_obj %}
+    {% endif %}
+{% endblock %}
+
+{% block admin_tools %}
+    {% if category and perms.blog.change_category %}
+        <li>
+            <a href="{% url admin:blog_category_change category.pk %}" title="{% trans 'Edit the category' %}">
+                {% trans "Edit the category" %}
+            </a>
+        </li>
+    {% endif %}
+    {% if tag and perms.tagging.change_tag %}
+        <li>
+            <a href="{% url admin:tagging_tag_change tag.pk %}" title="{% trans 'Edit the tag' %}">
+                {% trans "Edit the tag" %}
+            </a>
+        </li>
+    {% endif %}
+    {% if author and perms.auth.change_user %}
+        <li>
+            <a href="{% url admin:auth_user_change author.pk %}" title="{% trans 'Edit the author' %}">
+                {% trans "Edit the author" %}
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}

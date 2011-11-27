@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+{% load i18n %}
+
+{% block description %}
+    {% trans "Author list on" %} {{ site_name }}
+{% endblock %}
+
+{% block title %}
+    {% trans "Authors" %} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <article class="post">
+        <header class="entry-header">
+            <h2>
+                <a href="{% url blog_author_list %}" rel="author" title="{% trans 'List all authors on' %} {{ site_name }}">
+                    {% trans "Author list" %}
+                </a>
+            </h2>
+        </header>
+        <div class="entry-content">
+            <ul>
+                {% for object in object_list %}
+                    <li>
+                        <a href="{% url blog_author_detail %}" title="{{ object.username }}">
+                            {{ object.username }}
+                        </a>
+                        {% blocktrans count object.entries_published.count as entry_count %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
+                    </li>
+                {% empty %}
+                    <li>{% trans "No authors yet." %}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </article>
+{% endblock %}

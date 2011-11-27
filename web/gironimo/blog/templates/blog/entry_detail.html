@@ -1,0 +1,256 @@
+{% extends "blog/base.html" %}
+{% load i18n comments blog_tags %}
+
+{% block title %}
+    {{ object.title }} - {{ block.super }}
+{% endblock %}
+
+{% block description %}
+    {% if object.excerpt %}
+        {{ object.excerpt|striptags }}
+    {% else %}
+        {{ object.content|striptags|truncatewords:160 }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if objects.category %}
+        {{ object.category }}
+    {% endif %}
+    {% if objects.tags %}
+        {{ objects.tags }}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block link %}
+    {{ block.super }}
+    {% with object.previous_entry as previous_entry %}
+        {% if previous_entry %}
+            <link
+                rel="prev"
+                title="{{ previous_entry.title }}"
+                href="{{ previous_entry.get_absolute_url }}" />
+        {% endif %}
+    {% endwith %}
+    {% with object.next_entry as next_entry %}
+        {% if next_entry %}
+            <link
+                rel="next"
+                title="{{ next_entry.title }}"
+                href="{{ next_entry.get_absolute_url }}" />
+        {% endif %}
+    {% endwith %}
+    <link
+        rel="shortlink"
+        href="{{ object.short_url }}" />
+    <link
+        rel="canonical"
+        href="{{ object.get_absolute_url }}" />
+    {% with year=object.creation_date|date:"Y" month=object.creation_date|date:"m" day=object.creation_date|date:"d" %}
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="{% trans 'RSS Feed of discussions on' %} '{{ object.title }}'"
+            href="{% url blog_entry_discussion_feed year month day object.slug %}" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="{% trans 'RSS Feed of comments on' %} '{{ object.title }}'"
+            href="{% url blog_entry_comment_feed year month day object.slug %}" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="{% trans 'RSS Feed of pingbacks on' %} '{{ object.title }}'"
+            href="{% url blog_entry_pingback_feed year month day object.slug %}" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="{% trans 'RSS Feed of trackbacks on' %} '{{ object.title }}'"
+            href="{% url blog_entry_trackback_feed year month day object.slug %}" />
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    {% block entry-content %}
+        {% with object.html_content|safe as object_content %}
+            {% include "blog/_entry_detail.html" %}
+        {% endwith %}
+    {% endblock %}
+    
+    {% block entry-widgets %}
+        <section>
+            <div class="entry-widgets">
+                {% with object.next_entry as next_entry %}
+                    {% if next_entry %}
+                        <div class="entry-next">
+                            <h3>{% trans "Next entry" %}</h3>
+                            <p>
+                                <a href="{{ next_entry.get_absolute_url }}" title="{% trans 'View' %} {{ next.entry.title }}" rel="next">
+                                    {{ next_entry.title }}
+                                </a>
+                            </p>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                {% with object.previous_entry as previous_entry %}
+                    {% if previous_entry %}
+                        <div class="entry-previous">
+                            <h3>{% trans "Previous entry" %}</h3>
+                            <p>
+                                <a href="{{ previous_entry.get_absolute_url" title="{% trans 'View' %} {{ previous_entry.title }}" rel="prev">
+                                    {{ previous_entry.title }}
+                                </a>
+                            </p>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                {% if object.related_published %}
+                    <div class="entry-related">
+                        <h3>{% trans "Related entries" %}</h3>
+                        <ul>
+                            {% for entry in object.related_published %}
+                                <li>
+                                    <a href="{{ entry.get_absolute_url }}" title="{% trans 'View' %} {{ entry.title }}" rel="bookmark">
+                                        {{ entry.title }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <div class="entry-similar">
+                    <h3>{% trans "Similar entries" %}</h3>
+                    {% get_similar_entries 5 %}
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+    
+    {% block entry-comments %}
+        <section>
+            <div id="comments">
+                <h3>{% trans "Comments" %}</h3>
+                {% with object.comments as comment_list %}
+                    {% if comment_list.count %}
+                        <ol id="comment_list">
+                            {% for comment in comment_list %}
+                                <li id="comment_{{ comment.pk }}" class="comment vcard {% cycle box1,box2 %}{% if comment.user in object.authors.all %} post-author{% endif %}">
+                                    <img src="{% get_gravatar comment.email 60 'G' %}" class="gravatar photo" alt="{{ comment.user_name }}" />
+                                    <p class="comment-info">
+                                        {% if comment.url %}
+                                            <a href="{{ comment.url }}" rel="external nofollow" class="fn url">{{ comment.user_name }}</a>
+                                        {% else %}
+                                            {{ comment.user_name }}
+                                        {% endif %}
+                                        {% trans "on" %}
+                                        <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
+                                    </p>
+                                    {{ comment.comment|linebreaks }}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                        {% if not object.comments_are_open %}
+                            <p>{% trans "Comments are closed." %}</p>
+                        {% endif %}
+                    {% else %}
+                        {% if object.comments_are_open %}
+                            <p>{% trans "No comments yet." %}</p>
+                        {% else %}
+                            <p>{% trans "Comments are closed." %}</p>
+                        {% endif %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </section>
+    {% endblock %}
+    
+    {% block entry-pingbacks %}
+        <section>
+            <div id="pingbacks">
+                <h3>{% trans "Pingbacks" %}</h3>
+                {% with object.pingbacks as pingback_list %}
+                    {% if pingback_list.count %}
+                        <ol id="pingback-list">
+                            {% for pingback in pingback_list %}
+                                <li id="pingback_{{ pingback.pk }}" class="pingback vcard {% cycle box1,box2 %}">
+                                    <p class="pingback-info">
+                                        <a href="{{ pingback.url }}" rel="external nofollow" class="fn url org">
+                                            {{ pingback.user_name }}
+                                        </a>
+                                        {% trans "on" %}
+                                        <time datetime="{{ pingback.submit_date:date:'c' %}">{{ pingback.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
+                                    </p>
+                                    <p class="pingback-content">
+                                        {{ pingback.comment }}
+                                    </p>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    {% endif %}
+                    {% if object.pingback_enabled %}
+                        <p>{% trans "Pingbacks are open." %}</p>
+                    {% else %}
+                        <p>{% trans "Pingbacks are closed." %}</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </section>
+    {% endblock %}
+    
+    {% block entry-trackbacks %}
+        {% with object.trackbacks as trackback_list %}
+            {% if trackback_list.count or object.pingback_enabled %}
+                <section>
+                    <div id="trackbacks">
+                        <h3>{% trans "Trackbacks" %}</h3>
+                        {% if trackback_list.count %}
+                            <ol id="trackback-list">
+                                {% for trackback in trackback_list %}
+                                    <li id="trackback_{{ trackback.pk }}" class="trackback vcard {% cycle box1,box2 %}">
+                                        <p class="trackback-info">
+                                            <a href="{{ trackback.url }}" rel="external nofollow" class="fn url org">
+                                                {{ trackback.user_name }}
+                                            </a>
+                                            {% trans "on" %}
+                                            <time datetime="{{ trackback.submit_date|date:'c' }}">{{ trackback.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
+                                        </p>
+                                        <p class="trackback-content">
+                                            {{ trackback.comment }}
+                                        </p>
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {% endif %}
+                        {% if object.pingback_enabled %}
+                            <p>
+                                <a href="{% url blog_entry_trackback object.pk %}" rel="trackback">
+                                    {% trans "Trackback URL " %}
+                                </a>
+                            </p>
+                        {% endif %}
+                    </div>
+                </section>
+            {% endif %}
+        {% endwith %}
+    {% endblock %}
+    
+    {% block entry-comments-form %}
+        {% if object.comments_are_open %}
+            <section>
+                {% render_comment_form for object %}
+            </section>
+        {% endif %}
+    {% endblock %}
+{% endblock %}
+
+{% block admin_tools %}
+    {% if perms.blog.change_entry %}
+        <li>
+            <a href="{% url admin:blog_entry_change object.pk %}" title="{% trans 'Edit the entry' %}">
+                {% trans "Edit the entry" %}
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}

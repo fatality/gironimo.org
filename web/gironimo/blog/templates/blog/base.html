@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n blog_tags %}
+
+{% block title %}
+    {% trans "Blog" %} - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% block_breadcrumbs %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "blog/sidebar.html" %}
+{% endblock %}
