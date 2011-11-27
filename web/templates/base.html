@@ -120,10 +120,13 @@
         <div id="main">
             <div class="site-wrapper">
                 <div id="content">
+                    <h1 class="content-title">
+                        {% block breadcrumbs %}{% endblock %}
+                    </h1>
                     {% block content %}{% endblock %}
                 </div>
                 <div id="sidebar" class="clearfix" role="complementary">
-                    {% include "common/page/base_sidebar.html" %}
+                    {% block sidebar %}{% endblock %}
                 </div>
                 <div class="clear"></div>
                 <footer id="footer">
