@@ -99,7 +99,7 @@
                         <div class="entry-previous">
                             <h3>{% trans "Previous entry" %}</h3>
                             <p>
-                                <a href="{{ previous_entry.get_absolute_url" title="{% trans 'View' %} {{ previous_entry.title }}" rel="prev">
+                                <a href="{{ previous_entry.get_absolute_url }}" title="{% trans 'View' %} {{ previous_entry.title }}" rel="prev">
                                     {{ previous_entry.title }}
                                 </a>
                             </p>
@@ -180,7 +180,7 @@
                                             {{ pingback.user_name }}
                                         </a>
                                         {% trans "on" %}
-                                        <time datetime="{{ pingback.submit_date:date:'c' %}">{{ pingback.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
+                                        <time datetime="{{ pingback.submit_date|date:'c' }}">{{ pingback.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
                                     </p>
                                     <p class="pingback-content">
                                         {{ pingback.comment }}

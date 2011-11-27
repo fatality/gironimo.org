@@ -28,7 +28,7 @@ def ping_directories_handler(sender, **kwargs):
     if entry.is_visible and config.SAVE_PING_DIRECTORIES:
         from gironimo.blog.ping import DirectoryPinger
         
-        for directory in settings.PING_DIRECTORIES:
+        for directory in config.PING_DIRECTORIES:
             DirectoryPinger(directory, [entry])
 
 
