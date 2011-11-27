@@ -245,22 +245,22 @@ class BlogViewsTestCase(ViewsBaseCase):
         self.assertEquals(
             self.client.post('/trackback/1/',
                              {'url': 'http://example.com'}).content,
-            '<?xml version="1.0" encoding="utf-8"?>\n<response>\n  \n  '
-            '<error>1</error>\n  <message>Trackback is not enabled for '
-            'Test 1</message>\n  \n</response>\n')
+            '<?xml version="1.0" encoding="utf-8"?>\n<response>\n    \n        '
+            '<error>1</error>\n        <message>Trackback is not enabled for '
+            'Test 1</message>\n    \n</response>\n')
         entry.pingback_enabled = True
         entry.save()
         self.assertEquals(
             self.client.post('/trackback/1/',
                              {'url': 'http://example.com'}).content,
-            '<?xml version="1.0" encoding="utf-8"?>\n<response>\n  \n  '
-            '<error>0</error>\n  \n</response>\n')
+            '<?xml version="1.0" encoding="utf-8"?>\n<response>\n    \n        '
+            '<error>0</error>\n    \n</response>\n')
         self.assertEquals(
             self.client.post('/trackback/1/',
                              {'url': 'http://example.com'}).content,
-            '<?xml version="1.0" encoding="utf-8"?>\n<response>\n  \n  '
-            '<error>1</error>\n  <message>Trackback is already registered'
-            '</message>\n  \n</response>\n')
+            '<?xml version="1.0" encoding="utf-8"?>\n<response>\n    \n        '
+            '<error>1</error>\n        <message>Trackback is already registered'
+            '</message>\n    \n</response>\n')
 
 
 class BlogCustomDetailViews(ViewsBaseCase):
