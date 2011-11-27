@@ -25,7 +25,6 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'templates'),
     os.path.join(os.path.dirname(__file__), 'tests', 'templates'),
 )
 

@@ -40,19 +40,19 @@ def suite():
         EntryHtmlContentTestCase, # 19 tests, ~0.421s
         CategoryTestCase, # 17 tests, ~0.443s
         BlogViewsTestCase, # 34 tests, fail,, ~0.828s
-        #BlogFeedsTestCase, # 29 tests, ~0.578s
-        #BlogSitemapsTestCase, # 20 tests, ~0.500s
-        #ComparisonTestCase, # 18 tests, ~0.432s
-        #DirectoryPingerTestCase, # 16 tests, 0.420s
-        #ExternalUrlsPingerTestCase, # 20 tests, ~0.437s
-        #TemplateTagsTestCase, # 32 tests, ~0.587s
-        #QuickEntryTestCase, # 16 tests, fail, ~0.429s
-        #URLShortenerTestCase, # 16 tests, 0.427s
-        #EntryCommentModeratorTestCase, # 20 tests, ~0.464s
-        #BlogCustomDetailViews, # 18 tests, fail, ~0.466s
-        #SpamCheckerTestCase, # 16 tests, ~0.420s
-        #EntryAdminTestCase, # 16 tests, ~0.541s
-        #CategoryAdminTestCase, # 16 tests, ~0.511s
+        BlogFeedsTestCase, # 29 tests, ~0.578s
+        BlogSitemapsTestCase, # 20 tests, ~0.500s
+        ComparisonTestCase, # 18 tests, ~0.432s
+        DirectoryPingerTestCase, # 16 tests, 0.420s
+        ExternalUrlsPingerTestCase, # 20 tests, ~0.437s
+        TemplateTagsTestCase, # 32 tests, ~0.587s
+        QuickEntryTestCase, # 16 tests, fail, ~0.429s
+        URLShortenerTestCase, # 16 tests, 0.427s
+        EntryCommentModeratorTestCase, # 20 tests, ~0.464s
+        BlogCustomDetailViews, # 18 tests, ~0.466s
+        SpamCheckerTestCase, # 16 tests, ~0.420s
+        EntryAdminTestCase, # 16 tests, ~0.541s
+        CategoryAdminTestCase, # 16 tests, ~0.511s
     )
     
     # Total: 121 tests, ~2.159s
