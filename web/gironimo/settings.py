@@ -12,6 +12,10 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+EDITORAL_STAFF = MANAGERS + (
+    #(u'Your Name', 'your_email@domain.com'),
+)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -29,6 +33,7 @@ LANGUAGE_CODE = 'de'
 
 LANGUAGES = (
     ('de', gettext_noop('German')),
+    ('en', gettext_noop('English')),
 )
 
 SITE_ID = 1

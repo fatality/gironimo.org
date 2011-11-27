@@ -14,21 +14,22 @@ STATIC_URL = '/static/'
 
 ROOT_URLCONF = 'gironimo.blog.tests.urls'
 
-TEMPLATE_CONTEXT_PROCESSORS = [
+TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
-]
+)
 
-TEMPLATE_LOADERS = [
-    ['django.template.loaders.cached.Loader', [
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader'
-        ]
-    ]
-]
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    #'django.template.loaders.eggs.Loader',
+)
 
-TEMPLATE_DIRS = [os.path.join(os.path.dirname(__file__), 'tests', 'templates')]
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'templates'),
+    os.path.join(os.path.dirname(__file__), 'tests', 'templates'),
+)
 
-INSTALLED_APPS = [
+INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.comments',
     'django.contrib.sessions',
@@ -36,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django_xmlrpc',
+    'django_assets',
+    'django_ajax',
     'mptt',
     'tagging',
-    'gironimo.blog'
-]
+    'gironimo.blog',
+)
 
 BLOG_PAGINATION = 3
 

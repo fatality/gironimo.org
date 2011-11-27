@@ -501,7 +501,7 @@ class TemplateTagsTestCase(TestCase):
         self.assertEquals(html.strip(), '')
         self.publish_entry()
         html = t.render(Context())
-        self.assertEquals(html.strip(), 'test, blog')
+        self.assertEquals(html.strip(), 'blog, test')
         
         template_error_as = """
         {% load blog_tags %}

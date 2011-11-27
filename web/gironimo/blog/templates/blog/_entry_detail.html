@@ -68,7 +68,7 @@
                 {% trans "Tags" %}: 
                 {% tags_for_object object as tag_list %}
                 {% for tag in tag_list %}
-                    <a href="{% url blog_tag_detail tag %}" title="{% trans 'View all entries by Tag' %} {{ tag }}" rel="tag">{{ tag }}</a>
+                    <a href="{% url blog_tag_detail tag %}" title="{% trans 'View all entries by pattern' %} {{ tag }}" rel="tag">{{ tag }}</a>
                 {% empty %}
                     {% trans "No tags" %}
                 {% endfor %}

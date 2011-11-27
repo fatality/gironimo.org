@@ -71,7 +71,7 @@ class EntryFeed(BlogFeed):
     def item_enclosure_url(self, item):
         """ Returns an image for enclosure """
         if item.image:
-            return self.site_url + item.image.url
+            return item.image.url
         
         img = BeautifulSoup(item.html_content).find('img')
         if img:
@@ -143,7 +143,7 @@ class AuthorEntries(EntryFeed):
     
     def link(self, obj):
         """ URL of the author """
-        return reverse('bloga_author_detail', args=[obj.username])
+        return reverse('blog_author_detail', args=[obj.username])
     
     def title(self, obj):
         """ Title of the feed """
