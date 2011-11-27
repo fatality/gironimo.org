@@ -6,6 +6,7 @@
       "rght": 2, 
       "description": "All entries containing tests.", 
       "parent": null, 
+      "image": null, 
       "slug": "tests", 
       "title": "Tests", 
       "level": 0, 
@@ -20,6 +21,7 @@
       "rght": 2, 
       "description": "All uncategorized entries.", 
       "parent": null, 
+      "image": null, 
       "slug": "uncategorized", 
       "title": "Uncategorized", 
       "level": 0, 
@@ -39,7 +41,7 @@
       "tags": "welcome, blog, test", 
       "image": "", 
       "title": "Hello World !", 
-      "excerpt": "Welcome to the Zinnia blogging application written in Django.This is your first entry, don't hesite to archive or remove it.Or you can simply add a new entry.", 
+      "excerpt": "Welcome to the Gironimo blogging application written in Django.This is your first entry, don't hesite to archive or remove it.Or you can simply add a new entry.", 
       "sites": [
         1
       ], 
@@ -47,7 +49,7 @@
         3
       ], 
       "creation_date": "2010-01-01 00:00:00", 
-      "content": "<p>Welcome to the Zinnia blogging application written in Django.</p><p>This is your first entry, don't hesite to <a title=\"Edit this entry.\" href=\"/admin/blog/entry/1/\">archive or remove it</a>.</p><p>Or you can simply <a title=\"Add a new entry.\" href=\"/admin/blog/entry/add/\">add a new entry</a>.</p>", 
+      "content": "<p>Welcome to the Gironimo blogging application written in Django.</p><p>This is your first entry, don't hesite to <a title=\"Edit this entry.\" href=\"/admin/blog/entry/1/\">archive or remove it</a>.</p><p>Or you can simply <a title=\"Add a new entry.\" href=\"/admin/blog/entry/add/\">add a new entry</a>.</p>", 
       "start_publication": "2010-01-01 00:00:00", 
       "authors": [
         1
