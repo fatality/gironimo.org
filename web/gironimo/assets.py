@@ -4,6 +4,7 @@ from django_assets import Bundle, register
 js = Bundle(
     'lib/js/modernizr.js',
     'lib/js/jquery.js',
+    'lib/js/jquery.ui.js',
     'lib/js/gironimo.js',
     'lib/js/gironimo.utils.js',
     'lib/js/superfish.js',
