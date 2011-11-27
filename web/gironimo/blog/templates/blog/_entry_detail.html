@@ -21,7 +21,7 @@
                 {% endif %}
             </li>
             <li>
-                <time datetime="{{ object.creation_date|date:'c'">{{ object.creation_date|date:"DATE_FORMAT" }}</time>
+                <time datetime="{{ object.creation_date|date:'c' }}">{{ object.creation_date|date:"DATE_FORMAT" }}</time>
             </li>
             <li>
                 {% if object.categories.count %}
