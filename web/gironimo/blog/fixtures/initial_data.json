@@ -1,0 +1,153 @@
+[
+    {
+        "pk": 3,
+        "model": "blog.category",
+        "fields": {
+            "rght": 3,
+            "description": "scripting",
+            "parent": 2,
+            "title": "JavaScript",
+            "image": "",
+            "level": 1,
+            "lft": 2,
+            "tree_id": 2,
+            "slug": "javascript"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "blog.category",
+        "fields": {
+            "rght": 2,
+            "description": "testing",
+            "parent": null,
+            "title": "Test",
+            "image": "",
+            "level": 0,
+            "lft": 1,
+            "tree_id": 1,
+            "slug": "test"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "blog.category",
+        "fields": {
+            "rght": 4,
+            "description": "blaaa",
+            "parent": null,
+            "title": "Webentwicklung",
+            "image": "",
+            "level": 0,
+            "lft": 1,
+            "tree_id": 2,
+            "slug": "webentwicklung"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "blog.entry",
+        "fields": {
+            "status": 2,
+            "login_required": false,
+            "password": "",
+            "end_publication": "2042-03-15 00:00:00",
+            "template": "blog/entry_detail.html",
+            "comment_enabled": true,
+            "tags": "test, blog, lorem ipsum",
+            "image": "",
+            "title": "Lorem Ipsum",
+            "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo mi at massa iaculis at facilisis sem viverra. Aliquam eget odio turpis. Sed luctus, diam sed vehicula auctor, orci tortor auctor turpis, quis bibendum enim odio sed neque. Sed eu justo vitae orci placerat suscipit eu tempus ligula. Ut condimentum, ...",
+            "sites": [
+                1
+            ],
+            "related": [
+                1
+            ],
+            "creation_date": "2011-11-28 22:02:12",
+            "content": "<p><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo mi at massa iaculis at facilisis sem viverra. Aliquam eget odio turpis. Sed luctus, diam sed vehicula auctor, orci tortor auctor turpis, quis bibendum enim odio sed neque. Sed eu justo vitae orci placerat suscipit eu tempus ligula. Ut condimentum, ...</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo mi at massa iaculis at facilisis sem viverra. Aliquam eget odio turpis. Sed luctus, diam sed vehicula auctor, orci tortor auctor turpis, quis bibendum enim odio sed neque. Sed eu justo vitae orci placerat suscipit eu tempus ligula. Ut condimentum, odio at dignissim egestas, est tortor lobortis dolor, vel feugiat massa magna non magna. Sed sit amet quam a turpis tristique auctor. Vestibulum nec sapien sed enim congue varius. Ut vulputate adipiscing neque, a egestas purus euismod nec. Donec auctor nunc ac massa mattis quis commodo tortor luctus. Integer id sem nec nisl iaculis imperdiet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris bibendum augue vitae nisi volutpat a tempor purus sodales. Nunc quis justo nunc, at tristique quam. Fusce vitae nibh tellus, quis consequat nisl. Fusce mi nulla, sollicitudin a auctor et, posuere nec leo. Curabitur vehicula velit vel lacus condimentum eget ullamcorper eros faucibus. Curabitur posuere, magna non rhoncus aliquet, ante sem cursus nibh, a mattis est lorem et lorem.</p>\r\n<p>Nullam metus ligula, sagittis eu consectetur in, pharetra non purus. Integer non porta tortor. Fusce fringilla mi eget nibh sodales viverra. Vivamus erat urna, pretium eu ornare non, sollicitudin eget urna. Praesent justo enim, hendrerit at porttitor in, adipiscing vel nulla. Vivamus nunc nisl, fermentum eget tempor nec, convallis sed justo. Pellentesque vel imperdiet leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam lacinia erat non nisi sagittis eget mattis dui dictum. Donec id lorem eu quam facilisis ultricies. Ut et dolor porta lectus adipiscing aliquam vel at odio. In hac habitasse platea dictumst. Sed mollis lacus tincidunt massa placerat sed tincidunt tortor interdum. Nunc vulputate placerat nunc eget venenatis. In aliquam rutrum nulla, sed aliquet dolor ornare interdum. Etiam fermentum mollis cursus.</p>",
+            "featured": true,
+            "start_publication": "2011-11-28 22:02:12",
+            "pingback_enabled": true,
+            "authors": [
+                1
+            ],
+            "last_update": "2011-11-28 22:03:23",
+            "slug": "lorem-ipsum",
+            "categories": [
+                1
+            ]
+        }
+    },
+    {
+        "pk": 2,
+        "model": "blog.entry",
+        "fields": {
+            "status": 2,
+            "login_required": false,
+            "password": "",
+            "end_publication": "2042-03-15 00:00:00",
+            "template": "blog/entry_detail.html",
+            "comment_enabled": true,
+            "tags": "test, blog, html",
+            "image": "",
+            "title": "Testing the elements",
+            "excerpt": "The purpose of this HTML is to help determine what default settings are with CSS and to make sure that all possible HTML Elements are included in this HTML so as to not miss any possible Elements when designing a site.",
+            "sites": [
+                1
+            ],
+            "related": [
+                1
+            ],
+            "creation_date": "2011-11-28 21:58:53",
+            "content": "<p>The purpose of this HTML is to help determine what default settings are with CSS and to make sure that all possible HTML Elements are included in this HTML so as to not miss any possible Elements when designing a site.</p>\r\n<h1>Heading 1</h1>\r\n<h2>Heading 2</h2>\r\n<h3>Heading 3</h3>\r\n<h4>Heading 4</h4>\r\n<h5>Heading 5</h5>\r\n<h6>Heading 6</h6>\r\n<h2>Paragraph</h2>\r\n<p>Lorem ipsum dolor sit amet,&nbsp;<a title=\"test link\" href=\"http://wp-themes.com/?p=36\">test link</a>&nbsp;adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p>\r\n<p>Lorem ipsum dolor sit amet,&nbsp;<em>emphasis</em>&nbsp;consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p>\r\n<h2>List Types</h2>\r\n<h3>Definition List</h3>\r\n<dl><dt>Definition List Title</dt><dd>This is a definition list division.</dd></dl>\r\n<h3>Ordered List</h3>\r\n<ol>\r\n<li>List Item 1</li>\r\n<li>List Item 2</li>\r\n<li>List Item 3</li>\r\n</ol>\r\n<h3>Unordered List</h3>\r\n<ul>\r\n<li>List Item 1</li>\r\n<li>List Item 2</li>\r\n<li>List Item 3</li>\r\n<li></li>\r\n</ul>",
+            "featured": true,
+            "start_publication": "2011-11-28 21:58:53",
+            "pingback_enabled": true,
+            "authors": [
+                1
+            ],
+            "last_update": "2011-11-28 22:01:05",
+            "slug": "testing-elements",
+            "categories": [
+                2
+            ]
+        }
+    },
+    {
+        "pk": 1,
+        "model": "blog.entry",
+        "fields": {
+            "status": 2,
+            "login_required": false,
+            "password": "",
+            "end_publication": "2042-03-15 00:00:00",
+            "template": "blog/entry_detail.html",
+            "comment_enabled": true,
+            "tags": "blog, test, linux",
+            "image": "",
+            "title": "Hello World",
+            "excerpt": "Welcome to the Zinnia blogging application written in Django. This is your first entry, don't hesite to archive or ...",
+            "sites": [
+                1
+            ],
+            "related": [
+                3,
+                2
+            ],
+            "creation_date": "2011-11-28 21:56:02",
+            "content": "<p>Welcome to the Zinnia blogging application written in Django.</p>\r\n<p>This is your first entry, don't hesite to&nbsp;<a title=\"Edit this entry\" href=\"/admin/blog/entry/1/\">archive or remove it</a>.</p>\r\n<p>Or you can simply&nbsp;<a title=\"Add a new entry\" href=\"/admin/blog/entry/add/\">add a new entry</a>.</p>",
+            "featured": false,
+            "start_publication": "2011-11-28 21:56:02",
+            "pingback_enabled": true,
+            "authors": [
+                1
+            ],
+            "last_update": "2011-11-28 21:57:32",
+            "slug": "hello-world",
+            "categories": [
+                1
+            ]
+        }
+    }
+]
