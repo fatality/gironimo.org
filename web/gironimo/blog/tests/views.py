@@ -20,14 +20,8 @@ class ViewsBaseCase(TestCase):
         self.old_CONTEXT_PROCESSORS = settings.TEMPLATE_CONTEXT_PROCESSORS
         self.old_TEMPLATE_LOADERS = settings.TEMPLATE_LOADERS
         settings.TEMPLATE_LOADERS = (
-            ('django.template.loaders.cached.Loader', (
-                'django.template.loaders.app_directories.Loader',
-                'django.template.loaders.eggs.Loader',
-                )
-             ),
-            )
-        settings.TEMPLATE_CONTEXT_PROCESSORS = (
-            'django.core.context_processors.request',
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
             )
         
         self.site = Site.objects.get_current()
@@ -99,7 +93,7 @@ class BlogViewsTestCase(ViewsBaseCase):
     def test_blog_entry_archive_month(self):
         self.check_publishing_context('/2010/01/', 1, 2)
 
-    def test_bloga_entry_archive_day(self):
+    def test_blog_entry_archive_day(self):
         self.check_publishing_context('/2010/01/01/', 1, 2)
 
     def test_blog_entry_shortlink(self):

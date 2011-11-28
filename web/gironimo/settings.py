@@ -120,14 +120,13 @@ INSTALLED_APPS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-	'django.core.context_processors.request',
-	'django.contrib.auth.context_processors.auth',
-	'django.core.context_processors.i18n',
-	'django.core.context_processors.media',
-	'django.core.context_processors.static',
-	'django.contrib.messages.context_processors.messages',
-	'gironimo.utils.context_processors.gironimo',
-	'gironimo.blog.context_processors.version',
+    'django.core.context_processors.auth',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'gironimo.utils.context_processors.gironimo',
+    'gironimo.blog.context_processors.version',
 )
 
 IMAGEQUERY_DEFAULT_OPTIONS = {'quality': 92}

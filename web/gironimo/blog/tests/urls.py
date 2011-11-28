@@ -17,5 +17,6 @@ urlpatterns += patterns('',
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^xmlrpc/$', 'django_xmlrpc.views.handle_xmlrpc'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'gironimo.views.index', name='index'),
 )
 
