@@ -1,7 +1,7 @@
 {% load tagging_tags %}
 
 $(document).ready(function() {
-    {% tags_for_model gironimo.blog.Entry as entry_tags %}
+    {% tags_for_model blog.Entry as entry_tags %}
     var data = "{{ entry_tags|join:',' }}".split(",");
     $("#id_tags").autocomplete(data, {
         width: 150,
