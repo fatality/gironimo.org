@@ -2,13 +2,286 @@
 {% load i18n blog_tags %}
 
 {% block title %}
-    {% trans "Blog" %} - {{ block.super }}
+    {% trans "Blog" %} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
-    {% blog_breadcrumbs %}
+    <li><a href="{% url index %}" title="{% trans 'Go to Homepage' %}">Blog</a></li>
 {% endblock %}
 
 {% block sidebar %}
-    {% include "blog/sidebar.html" %}
+    <aside class="widget search">
+        <h3 class="widget-title">
+            {% trans "Search gironimo.org" %}
+        </h3>
+        <div class="widget-content">
+            <form role="search" method="GET" class="searchform" action="{% url blog_entry_search %}">
+                <div>
+                    <label class="screen-reader-text" for="s"></label>
+                    <input type="text" class="text blue" placeholder="{% trans 'search gironimo.org' %}" name="s" id="s">
+                    <button type="submit" class="blue">
+                        <span>{% trans "Search" %}</span>
+                    </button>
+                    <a title="{% trans 'You can use - to exclude words or phrases, &quot;double quotes&quot; for exact phrases and the AND/OR boolean operators combined with parenthesis for complex searchs.' %}">
+                        <img src="{{ STATIC_URL }}blog/img/help.png" alt="?" width="14" height="14" />
+                    </a>
+                </div>
+            </form>
+        </div>
+    </aside>
+    <div class="sidebar-left">
+        <aside class="widget follow">
+            <h3 class="widget-title">
+                Follow Me
+            </h3>
+            <div class="widget-content">
+                <ul class="clearfix">
+                    <li class="rss"><a href="#">RSS Feed</a></li>
+                    <li class="facebook"><a href="#">Facebook</a></li>
+                    <li class="twitter"><a href="#">Twitter</a></li>
+                    <li class="youtube"><a href="#">YouTube</a></li>
+                    <li class="gplus"><a href="#">Google+</a></li>
+                    <li class="lastfm"><a href="#">Last.fm</a></li>
+                    <li class="deviantart"><a href="#">Deviantart</a></li>
+                    <li class="xing"><a href="#">Xing</a></li>
+                </ul>
+            </div>
+        </aside>
+        <aside id="categories" class="widget categories">
+            <h3 class="widget-title">
+                {% trans "Categories" %}
+            </h3>
+            <div class="widget-content">
+                {% get_categories %}
+                {% comment %}
+                <ul>
+                    <li><a href="#" title="">Computer</a></li>
+                    <li><a href="#" title="">Film</a></li>
+                    <li><a href="#" title="">Handy</a></li>
+                    <li><a href="#" title="">Leben</a></li>
+                    <li><a href="#" title="">Linux</a></li>
+                    <li><a href="#" title="">Medien</a></li>
+                    <li><a href="#" title="">Musik</a></li>
+                    <li><a href="#" title="">Netzwelt</a></li>
+                    <li><a href="#" title="">Politik</a></li>
+                    <li><a href="#" title="">Privat</a></li>
+                    <li><a href="#" title="">SEO</a></li>
+                    <li><a href="#" title="">Sport</a></li>
+                    <li><a href="#" title="">Studium</a></li>
+                    <li><a href="#" title="">Webentwicklung</a></li>
+                    <li><a href="#" title="">Webseite</a></li>
+                    <li><a href="#" title="">Wissenschaft</a></li>
+                </ul>
+                {% endcomment %}
+            </div>
+        </aside>
+        <aside id="archiv" class="widget archiv">
+            <h3 class="widget-title">
+                {% trans "Archives" %}
+            </h3>
+            <div class="widget-content">
+                {% get_archives_entries_tree %}
+                {% comment %}
+                <ul>
+                    <li><a href="#" title="">Juli 2011 (2)</a></li>
+                    <li><a href="#" title="">April 2011 (1)</a></li>
+                    <li><a href="#" title="">Januar 2011 (1)</a></li>
+                    <li><a href="#" title="">Dezember 2010 (2)</a></li>
+                    <li><a href="#" title="">Oktober 2010 (2)</a></li>
+                    <li><a href="#" title="">September 2010 (3)</a></li>
+                    <li><a href="#" title="">August 2010 (6)</a></li>
+                    <li><a href="#" title="">Juli 2010 (6)</a></li>
+                    <li><a href="#" title="">Juni 2010 (3)</a></li>
+                    <li><a href="#" title="">Mai 2010 (2)</a></li>
+                    <li><a href="#" title="">April 2010 (2)</a></li>
+                    <li><a href="#" title="">März 2010 (2)</a></li>
+                    <li><a href="#" title="">Februar 2010 (2)</a></li>
+                    <li><a href="#" title="">Januar 2010 (5)</a></li>
+                    <li><a href="#" title="">Dezember 2009 (4)</a></li>
+                    <li><a href="#" title="">November 2009 (4)</a></li>
+                    <li><a href="#" title="">Oktober 2009 (3)</a></li>
+                    <li><a href="#" title="">September 2009 (6)</a></li>
+                    <li><a href="#" title="">August 2009 (1)</a></li>
+                    <li><a href="#" title="">Juli 2009 (4)</a></li>
+                    <li><a href="#" title="">Juni 2009 (6)</a></li>
+                    <li><a href="#" title="">Mai 2009 (5)</a></li>
+                    <li><a href="#" title="">April 2009 (5)</a></li>
+                    <li><a href="#" title="">März 2009 (5)</a></li>
+                    <li><a href="#" title="">Februar 2009 (7)</a></li>
+                    <li><a href="#" title="">Januar 2009 (1)</a></li>
+                    <li><a href="#" title="">Dezember 2008 (2)</a></li>
+                </ul>
+                {% endcomment %}
+            </div>
+        </aside>
+        <aside id="links" class="widget links last">
+            <h3 class="widget-title">
+                Links
+            </h3>
+            <div class="widget-content">
+                <ul>
+                    <li><a href="#" title="">Dr. Scream</a></li>
+                    <li><a href="#" title="">Marcel Volz</a></li>
+                    <li><a href="#" title="">Mark Schewe</a></li>
+                    <li><a href="#" title="">Tortugabay</a></li>
+                    <li><a href="#" title="">Wiedi</a></li>
+                    <li><a href="#" title="">Webmasterpro</a></li>
+                    <li><a href="#" title="">Team23 Webdesign</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    <div class="sidebar-right">
+        <aside id="amazon" class="widget amazon">
+            <h3 class="widget-title">
+                Amazon Angebote
+            </h3>
+            <div class="widget-content">
+                <a href="#"><img alt="Amazon" src="/static/lib/images/amazon.jpg" /></a>
+            </div>
+        </aside>
+        <aside class="widget most">
+            <h3 class="widget-title">
+                {% trans "Popular entries" %}
+            </h3>
+            <div class="widget-content">
+                {% get_popular_entries 7 %}
+                {% comment %}
+                <ul>
+                    <li><a href="#" title="">Howto: Veetle unter Ubuntu 64-bit installieren</a></li>
+                    <li><a href="#" title="">Hassliebe</a></li>
+                    <li><a href="#" title="">CSS3 und Box Shadows</a></li>
+                    <li><a href="#" title="">Python und Qt &ndash; PyQt4</a></li>
+                    <li><a href="#" title="">SWFUpload in Django integrieren</a></li>
+                    <li><a href="#" title="">Linux und der Desktop Markt</a></li>
+                    <li><a href="#" title="">WordPress Permalink Struktur ändern ohne Google zu ärgern</a></li>
+                </ul>
+                {% endcomment %}
+            </div>
+        </aside>
+        <aside id="comments" class="widget comments">
+            <h3 class="widget-title">
+                {% trans "Recent comments" %}
+            </h3>
+            <div class="widget-content">
+                {% get_recent_comments 7 %}
+                {% comment %}
+                <ul>
+                    <li class="clearfix">
+                        <a href="#" title=""><img alt="" src="/static/lib/images/gravatar.png"></a>
+                        <div class="newest-comment">
+                            <p>
+                                <a title="" href="#"><span class="autor">Marc Rochow</span></a>
+                                Vielen Dank für die Anmerkungen, ist nun im Artikel eingearbeitet.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <a href="#" title=""><img alt="" src="/static/lib/images/gravatar.png"></a>
+                        <div class="newest-comment">
+                            <p>
+                                <a title="" href="#"><span class="autor">Marc Rochow</span></a>
+                                Vielen Dank für die Anmerkungen, ist nun im Artikel eingearbeitet.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <a href="#" title=""><img alt="" src="/static/lib/images/gravatar.png"></a>
+                        <div class="newest-comment">
+                            <p>
+                                <a title="" href="#"><span class="autor">Marc Rochow</span></a>
+                                Vielen Dank für die Anmerkungen, ist nun im Artikel eingearbeitet.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <a href="#" title=""><img alt="" src="/static/lib/images/gravatar.png"></a>
+                        <div class="newest-comment">
+                            <p>
+                                <a title="" href="#"><span class="autor">Marc Rochow</span></a>
+                                Vielen Dank für die Anmerkungen, ist nun im Artikel eingearbeitet.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <a href="#" title=""><img alt="" src="/static/lib/images/gravatar.png"></a>
+                        <div class="newest-comment">
+                            <p>
+                                <a title="" href="#"><span class="autor">Marc Rochow</span></a>
+                                Vielen Dank für die Anmerkungen, ist nun im Artikel eingearbeitet.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <a href="#" title=""><img alt="" src="/static/lib/images/gravatar.png"></a>
+                        <div class="newest-comment">
+                            <p>
+                                <a title="" href="#"><span class="autor">Marc Rochow</span></a>
+                                Vielen Dank für die Anmerkungen, ist nun im Artikel eingearbeitet.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <a href="#" title=""><img alt="" src="/static/lib/images/gravatar.png"></a>
+                        <div class="newest-comment">
+                            <p>
+                                <a title="" href="#"><span class="autor">Marc Rochow</span></a>
+                                Vielen Dank für die Anmerkungen, ist nun im Artikel eingearbeitet.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                {% endcomment %}
+            </div>
+        </aside>
+        <aside id="tags" class="widget tags">
+            <h3 class="widget-title">
+                {% trans "Tags" %}
+            </h3>
+            <div class="widget-content">
+                {% get_tag_cloud %}
+                {% comment %}
+                <a href="http://linuxundich.de/de/tag/adobe-flash/" class="tag-link-126" title="15 Themen" style="font-size: 10.1374045802pt;">Adobe Flash</a> <a href="http://linuxundich.de/de/tag/allgemein/" class="tag-link-1" title="9 Themen" style="font-size: 8pt;">Allgemein</a> <a href="http://linuxundich.de/de/tag/android/" class="tag-link-278" title="42 Themen" style="font-size: 14.7328244275pt;">Android</a> <a href="http://linuxundich.de/de/tag/bildbearbeitung/" class="tag-link-29" title="9 Themen" style="font-size: 8pt;">Bildbearbeitung</a> <a href="http://linuxundich.de/de/tag/browser/" class="tag-link-72" title="15 Themen" style="font-size: 10.1374045802pt;">Browser</a> <a href="http://linuxundich.de/de/tag/chromium/" class="tag-link-236" title="14 Themen" style="font-size: 9.92366412214pt;">Chromium</a> <a href="http://linuxundich.de/de/tag/debian/" class="tag-link-142" title="17 Themen" style="font-size: 10.7786259542pt;">Debian</a> <a href="http://linuxundich.de/de/tag/desktop/" class="tag-link-95" title="13 Themen" style="font-size: 9.60305343511pt;">Desktop</a> <a href="http://linuxundich.de/de/tag/dropbox/" class="tag-link-299" title="13 Themen" style="font-size: 9.60305343511pt;">Dropbox</a> <a href="http://linuxundich.de/de/tag/firefox/" class="tag-link-73" title="32 Themen" style="font-size: 13.5572519084pt;">Firefox</a> <a href="http://linuxundich.de/de/tag/flash/" class="tag-link-125" title="13 Themen" style="font-size: 9.60305343511pt;">Flash</a> <a href="http://linuxundich.de/de/tag/fun/" class="tag-link-234" title="10 Themen" style="font-size: 8.42748091603pt;">Fun</a> <a href="http://linuxundich.de/de/tag/gimp/" class="tag-link-181" title="10 Themen" style="font-size: 8.42748091603pt;">gimp</a> <a href="http://linuxundich.de/de/tag/gnome/" class="tag-link-8" title="74 Themen" style="font-size: 17.4045801527pt;">GNOME</a> <a href="http://linuxundich.de/de/tag/ubuntu/" class="tag-link-3" title="201 Themen" style="font-size: 22pt;">GNU/Linux</a> <a href="http://linuxundich.de/de/tag/google/" class="tag-link-44" title="24 Themen" style="font-size: 12.2748091603pt;">Google</a> <a href="http://linuxundich.de/de/tag/hardware/" class="tag-link-26" title="23 Themen" style="font-size: 12.0610687023pt;">Hardware</a> <a href="http://linuxundich.de/de/tag/in-eigener-sache/" class="tag-link-201" title="14 Themen" style="font-size: 9.92366412214pt;">In eigener Sache</a> <a href="http://linuxundich.de/de/tag/internet/" class="tag-link-32" title="11 Themen" style="font-size: 8.85496183206pt;">Internet</a> <a href="http://linuxundich.de/de/tag/jabber/" class="tag-link-111" title="11 Themen" style="font-size: 8.85496183206pt;">Jabber</a> <a href="http://linuxundich.de/de/tag/jaunty/" class="tag-link-190" title="24 Themen" style="font-size: 12.2748091603pt;">Jaunty</a> <a href="http://linuxundich.de/de/tag/karmic/" class="tag-link-232" title="37 Themen" style="font-size: 14.1984732824pt;">Karmic</a> <a href="http://linuxundich.de/de/tag/links/" class="tag-link-216" title="11 Themen" style="font-size: 8.85496183206pt;">Links</a> <a href="http://linuxundich.de/de/tag/linux/" class="tag-link-21" title="40 Themen" style="font-size: 14.5190839695pt;">Linux</a> <a href="http://linuxundich.de/de/tag/lucid/" class="tag-link-352" title="30 Themen" style="font-size: 13.2366412214pt;">Lucid</a> <a href="http://linuxundich.de/de/tag/maverick/" class="tag-link-663" title="10 Themen" style="font-size: 8.42748091603pt;">Maverick</a> <a href="http://linuxundich.de/de/tag/multimedia/" class="tag-link-50" title="30 Themen" style="font-size: 13.2366412214pt;">Multimedia</a> <a href="http://linuxundich.de/de/tag/natty/" class="tag-link-664" title="23 Themen" style="font-size: 12.0610687023pt;">Natty</a> <a href="http://linuxundich.de/de/tag/nautilus/" class="tag-link-18" title="13 Themen" style="font-size: 9.60305343511pt;">Nautilus</a> <a href="http://linuxundich.de/de/tag/netzwerk/" class="tag-link-25" title="16 Themen" style="font-size: 10.4580152672pt;">Netzwerk</a> <a href="http://linuxundich.de/de/tag/news/" class="tag-link-22" title="13 Themen" style="font-size: 9.60305343511pt;">News</a> <a href="http://linuxundich.de/de/tag/samsung-galaxy/" class="tag-link-280" title="13 Themen" style="font-size: 9.60305343511pt;">Samsung Galaxy</a> <a href="http://linuxundich.de/de/tag/sicherheit/" class="tag-link-23" title="23 Themen" style="font-size: 12.0610687023pt;">Sicherheit</a> <a href="http://linuxundich.de/de/tag/skype/" class="tag-link-188" title="16 Themen" style="font-size: 10.4580152672pt;">Skype</a> <a href="http://linuxundich.de/de/tag/software/" class="tag-link-38" title="17 Themen" style="font-size: 10.7786259542pt;">Software</a> <a href="http://linuxundich.de/de/tag/spiele/" class="tag-link-207" title="13 Themen" style="font-size: 9.60305343511pt;">Spiele</a> <a href="http://linuxundich.de/de/tag/tux/" class="tag-link-812" title="16 Themen" style="font-size: 10.4580152672pt;">Tux</a> <a href="http://linuxundich.de/de/tag/unity/" class="tag-link-662" title="18 Themen" style="font-size: 10.9923664122pt;">Unity</a> <a href="http://linuxundich.de/de/tag/video/" class="tag-link-12" title="16 Themen" style="font-size: 10.4580152672pt;">Video</a> <a href="http://linuxundich.de/de/tag/virtualbox/" class="tag-link-119" title="19 Themen" style="font-size: 11.2061068702pt;">VirtualBox</a> <a href="http://linuxundich.de/de/tag/virtualisierung/" class="tag-link-62" title="14 Themen" style="font-size: 9.92366412214pt;">Virtualisierung</a> <a href="http://linuxundich.de/de/tag/vpn/" class="tag-link-34" title="12 Themen" style="font-size: 9.17557251908pt;">VPN</a> <a href="http://linuxundich.de/de/tag/webcam/" class="tag-link-11" title="10 Themen" style="font-size: 8.42748091603pt;">Webcam</a> <a href="http://linuxundich.de/de/tag/windows/" class="tag-link-86" title="11 Themen" style="font-size: 8.85496183206pt;">Windows</a> <a href="http://linuxundich.de/de/tag/wordpress/" class="tag-link-103" title="18 Themen" style="font-size: 10.9923664122pt;">Wordpress</a>
+                {% endcomment %}
+            </div>
+        </aside>
+        <aside id="newest" class="widget newest {% if not user.is_authenticated %}last{% endif %}">
+            <h3 class="widget-title">
+                {% trans "Recent Entries" %}
+            </h3>
+            <div class="widget-content">
+                {% get_recent_entries 7 %}
+                {% comment %}
+                <ul>
+                    <li><a href="#" title="">Howto: Veetle unter Ubuntu 64-bit installieren</a></li>
+                    <li><a href="#" title="">SWFUpload in Django integrieren</a></li>
+                    <li><a href="#" title="">Artikel auf webmasterpro.de</a></li>
+                    <li><a href="#" title="">CSS3 und Box Shadows</a></li>
+                    <li><a href="#" title="">Das Jahr 2010 in der Statistik</a></li>
+                    <li><a href="#" title="">Warum semantischer Code wichtig ist</a></li>
+                    <li><a href="#" title="">WordPress Permalink Struktur ändern ohne Google zu ärgern</a></li>
+                </ul>
+                {% endcomment %}
+            </div>
+        </aside>
+        {% if user.is_authenticated %}
+            <aside id="admin" class="widget admin last">
+                <h3 class="widget-title">
+                    {% trans "Admin area" %}
+                </h3>
+                <div class="widget-content">
+                    <ul>
+                        {% if perms.blog %}
+                            <li><a href="{% url admin:app_list 'blog' %}" title="{% trans 'Dashboard' %}">{% trans "Dashboard" %}</a></li>
+                        {% endif %}
+                        {% if perms.blog.add_entry %}
+                            <li><a href="{% url admin:blog_entry_add %}" title="{% trans 'Post an entry' %}">{% trans "Post an entry" %}</a></li>
+                        {% endif %}
+                        {% block admin_tools %}{% endblock %}
+                        <li><a href="{% url admin:logout %}" title="{% trans 'Logout' %}">{% trans "Logout" %}</a></li>
+                    </ul>
+                </div>
+            </aside>
+        {% endif %}
+    </div>
 {% endblock %}

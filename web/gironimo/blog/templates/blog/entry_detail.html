@@ -14,11 +14,13 @@
 {% endblock %}
 
 {% block keywords %}
-    {% if objects.category %}
-        {{ object.category }}
+    {% if object.categories.count %}
+        {% for category in object.categories.all %}
+            {{ category }},
+        {% endfor %}
     {% endif %}
-    {% if objects.tags %}
-        {{ objects.tags }}
+    {% if object.tags %}
+        {{ object.tags }}
     {% else %}
         {{ block.super }}
     {% endif %}
@@ -72,85 +74,112 @@
     {% endwith %}
 {% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% for category in object.categories.all %}
+        <li>
+            <a href="{{ category.get_absolute_url }}" title="{% trans 'View all entries in' %} {{ category }}">{{ category }}</a>
+        </li>
+    {% endfor %}
+    <li><a href="{{ object.get_absolute_url }}" title="{% trans 'View' %} {{ object.title }}">{{ object.title }}</a></li>
+{% endblock %}
+
 {% block content %}
-    {% block entry-content %}
-        {% with object.html_content|safe as object_content %}
-            {% include "blog/_entry_detail.html" %}
-        {% endwith %}
-    {% endblock %}
-    
-    {% block entry-widgets %}
-        <section>
-            <div class="entry-widgets">
-                {% with object.next_entry as next_entry %}
-                    {% if next_entry %}
-                        <div class="entry-next">
-                            <h3>{% trans "Next entry" %}</h3>
-                            <p>
-                                <a href="{{ next_entry.get_absolute_url }}" title="{% trans 'View' %} {{ next.entry.title }}" rel="next">
-                                    {{ next_entry.title }}
-                                </a>
-                            </p>
+    <arcticle id="post-{{ object.pk }}" class="post">
+        {% block entry-content %}
+            {% with object.html_content|safe as object_content %}
+                {% include "blog/_entry_detail.html" %}
+            {% endwith %}
+        {% endblock %}
+        
+        {% block entry-authors %}
+            {% if object.authors.count %}
+                <aside class="authors">
+                    <h3>{% blocktrans count object.authors.count as author_count %}About the author{% plural %}About the authors{% endblocktrans %}</h3>
+                    {% for author in object.authors.all %}
+                        <div class="author-box">
+                            <h3>{% if author.first_name %}{{ author.first_name }}{% if author.last_name %} {{ author.last_name }}{% endif %}{% else %}{{ author }}{% endif %}</h3>
+                            <img src="{% get_gravatar author.email 60 'G' %}" class="gravatar photo" alt="{{ author.user_name }}" />
+                            {% with author.get_profile.about as author_description %}
+                                {% if author_description %}
+                                    <p>{{ author_description }}</p>
+                                {% else %}
+                                    <p>{% trans "No author description yet." %}</p>
+                                {% endif %}
+                            {% endwith %}
                         </div>
-                    {% endif %}
-                {% endwith %}
-                {% with object.previous_entry as previous_entry %}
-                    {% if previous_entry %}
-                        <div class="entry-previous">
-                            <h3>{% trans "Previous entry" %}</h3>
-                            <p>
-                                <a href="{{ previous_entry.get_absolute_url }}" title="{% trans 'View' %} {{ previous_entry.title }}" rel="prev">
-                                    {{ previous_entry.title }}
-                                </a>
-                            </p>
-                        </div>
-                    {% endif %}
-                {% endwith %}
-                {% if object.related_published %}
-                    <div class="entry-related">
-                        <h3>{% trans "Related entries" %}</h3>
-                        <ul>
-                            {% for entry in object.related_published %}
-                                <li>
-                                    <a href="{{ entry.get_absolute_url }}" title="{% trans 'View' %} {{ entry.title }}" rel="bookmark">
-                                        {{ entry.title }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+                    {% endfor %}
+                </aside>
+            {% endif %}
+        {% endblock %}
+        
+        {% block entry-widgets %}
+            {% with object.next_entry as next_entry %}
+                {% if next_entry %}
+                    <aside class="entry-next">
+                        <h3>{% trans "Next entry" %}</h3>
+                        <p>
+                            <a href="{{ next_entry.get_absolute_url }}" title="{% trans 'View' %} {{ next.entry.title }}" rel="next">
+                                {{ next_entry.title }}
+                            </a>
+                        </p>
+                    </aside>
                 {% endif %}
-                <div class="entry-similar">
-                    <h3>{% trans "Similar entries" %}</h3>
-                    {% get_similar_entries 5 %}
-                </div>
-            </div>
-        </section>
-    {% endblock %}
-    
-    {% block entry-comments %}
-        <section>
-            <div id="comments">
+            {% endwith %}
+            {% with object.previous_entry as previous_entry %}
+                {% if previous_entry %}
+                    <aside class="entry-previous">
+                        <h3>{% trans "Previous entry" %}</h3>
+                        <p>
+                            <a href="{{ previous_entry.get_absolute_url }}" title="{% trans 'View' %} {{ previous_entry.title }}" rel="prev">
+                                {{ previous_entry.title }}
+                            </a>
+                        </p>
+                    </aside>
+                {% endif %}
+            {% endwith %}
+            {% if object.related_published %}
+                <aside class="entry-related">
+                    <h3>{% trans "Related entries" %}</h3>
+                    <ul>
+                        {% for entry in object.related_published %}
+                            <li>
+                                <a href="{{ entry.get_absolute_url }}" title="{% trans 'View' %} {{ entry.title }}" rel="bookmark">
+                                    {{ entry.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </aside>
+            {% endif %}
+            <aside class="entry-similar">
+                <h3>{% trans "Similar entries" %}</h3>
+                {% get_similar_entries 5 %}
+            </aside>
+        {% endblock %}
+        
+        {% block entry-comments %}
+            <aside id="comments">
                 <h3>{% trans "Comments" %}</h3>
                 {% with object.comments as comment_list %}
                     {% if comment_list.count %}
-                        <ol id="comment_list">
-                            {% for comment in comment_list %}
-                                <li id="comment_{{ comment.pk }}" class="comment vcard {% cycle box1,box2 %}{% if comment.user in object.authors.all %} post-author{% endif %}">
+                        {% for comment in comment_list %}
+                            <article id="comment_{{ comment.pk }}" class="comment">
+                                <header>
                                     <img src="{% get_gravatar comment.email 60 'G' %}" class="gravatar photo" alt="{{ comment.user_name }}" />
-                                    <p class="comment-info">
-                                        {% if comment.url %}
-                                            <a href="{{ comment.url }}" rel="external nofollow" class="fn url">{{ comment.user_name }}</a>
-                                        {% else %}
-                                            {{ comment.user_name }}
-                                        {% endif %}
-                                        {% trans "on" %}
-                                        <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
-                                    </p>
+                                    {% if comment.url %}
+                                        <a href="{{ comment.url }}" rel="external nofollow" class="fn url">{{ comment.user_name }}</a>
+                                    {% else %}
+                                        {{ comment.user_name }}
+                                    {% endif %}
+                                    {% trans "on" %}
+                                    <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
+                                </header>
+                                <p class="comment-info">
                                     {{ comment.comment|linebreaks }}
-                                </li>
-                            {% endfor %}
-                        </ol>
+                                </p>
+                            </article>
+                        {% endfor %}
                         {% if not object.comments_are_open %}
                             <p>{% trans "Comments are closed." %}</p>
                         {% endif %}
@@ -162,32 +191,28 @@
                         {% endif %}
                     {% endif %}
                 {% endwith %}
-            </div>
-        </section>
-    {% endblock %}
-    
-    {% block entry-pingbacks %}
-        <section>
-            <div id="pingbacks">
+            </aside>
+        {% endblock %}
+        
+        {% block entry-pingbacks %}
+            <aside id="pingbacks">
                 <h3>{% trans "Pingbacks" %}</h3>
                 {% with object.pingbacks as pingback_list %}
                     {% if pingback_list.count %}
-                        <ol id="pingback-list">
-                            {% for pingback in pingback_list %}
-                                <li id="pingback_{{ pingback.pk }}" class="pingback vcard {% cycle box1,box2 %}">
-                                    <p class="pingback-info">
-                                        <a href="{{ pingback.url }}" rel="external nofollow" class="fn url org">
-                                            {{ pingback.user_name }}
-                                        </a>
-                                        {% trans "on" %}
-                                        <time datetime="{{ pingback.submit_date|date:'c' }}">{{ pingback.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
-                                    </p>
-                                    <p class="pingback-content">
-                                        {{ pingback.comment }}
-                                    </p>
-                                </li>
-                            {% endfor %}
-                        </ol>
+                        {% for pingback in pingback_list %}
+                            <article id="pingback_{{ pingback.pk }}" class="pingback">
+                                <header>
+                                    <a href="{{ pingback.url }}" rel="external nofollow" class="fn url org">
+                                        {{ pingback.user_name }}
+                                    </a>
+                                    {% trans "on" %}
+                                    <time datetime="{{ pingback.submit_date|date:'c' }}">{{ pingback.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
+                                </header>
+                                <p class="pingback-info">
+                                    {{ pingback.comment }}
+                                </p>
+                            </article>
+                        {% endfor %}
                     {% endif %}
                     {% if object.pingback_enabled %}
                         <p>{% trans "Pingbacks are open." %}</p>
@@ -195,33 +220,29 @@
                         <p>{% trans "Pingbacks are closed." %}</p>
                     {% endif %}
                 {% endwith %}
-            </div>
-        </section>
-    {% endblock %}
-    
-    {% block entry-trackbacks %}
-        {% with object.trackbacks as trackback_list %}
-            {% if trackback_list.count or object.pingback_enabled %}
-                <section>
-                    <div id="trackbacks">
+            </aside>
+        {% endblock %}
+        
+        {% block entry-trackbacks %}
+            {% with object.trackbacks as trackback_list %}
+                {% if trackback_list.count or object.pingback_enabled %}
+                    <aside id="trackbacks">
                         <h3>{% trans "Trackbacks" %}</h3>
                         {% if trackback_list.count %}
-                            <ol id="trackback-list">
-                                {% for trackback in trackback_list %}
-                                    <li id="trackback_{{ trackback.pk }}" class="trackback vcard {% cycle box1,box2 %}">
-                                        <p class="trackback-info">
-                                            <a href="{{ trackback.url }}" rel="external nofollow" class="fn url org">
-                                                {{ trackback.user_name }}
-                                            </a>
-                                            {% trans "on" %}
-                                            <time datetime="{{ trackback.submit_date|date:'c' }}">{{ trackback.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
-                                        </p>
-                                        <p class="trackback-content">
-                                            {{ trackback.comment }}
-                                        </p>
-                                    </li>
-                                {% endfor %}
-                            </ol>
+                            {% for trackback in trackback_list %}
+                                <article id="trackback_{{ trackback.pk }}" class="trackback">
+                                    <header>
+                                        <a href="{{ trackback.url }}" rel="external nofollow" class="fn url org">
+                                            {{ trackback.user_name }}
+                                        </a>
+                                        {% trans "on" %}
+                                        <time datetime="{{ trackback.submit_date|date:'c' }}">{{ trackback.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
+                                    </header>
+                                    <p class="trackback-info">
+                                        {{ trackback.comment }}
+                                    </p>
+                                </article>
+                            {% endfor %}
                         {% endif %}
                         {% if object.pingback_enabled %}
                             <p>
@@ -230,19 +251,20 @@
                                 </a>
                             </p>
                         {% endif %}
-                    </div>
-                </section>
+                    </aside>
+                {% endif %}
+            {% endwith %}
+        {% endblock %}
+        
+        {% block entry-comments-form %}
+            {% if object.comments_are_open %}
+                <aside id="new-comment">
+                    <h3>{% trans "Add a new comment" %}</h3>
+                    {% render_comment_form for object %}
+                </aside>
             {% endif %}
-        {% endwith %}
-    {% endblock %}
-    
-    {% block entry-comments-form %}
-        {% if object.comments_are_open %}
-            <section>
-                {% render_comment_form for object %}
-            </section>
-        {% endif %}
-    {% endblock %}
+        {% endblock %}
+    </article>
 {% endblock %}
 
 {% block admin_tools %}
