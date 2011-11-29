@@ -24,36 +24,43 @@ class EntryAdmin(admin.ModelAdmin):
     """ Admin for Entry model """
     form = EntryAdminForm
     date_hierarchy = 'creation_date'
-    fieldsets = ((_('Content'), {'fields': ('title', 'content',
-                                            'image', 'status')}),
-                 (_('Options'), {'fields': ('featured', 'excerpt', 'template',
-                                            'related', 'authors',
-                                            'creation_date',
-                                            'start_publication',
-                                            'end_publication'),
-                                 'classes': ('collapse', 'collapse-closed')}),
-                 (_('Privacy'), {'fields': ('password', 'login_required',),
-                                 'classes': ('collapse', 'collapse-closed')}),
-                 (_('Discussion'), {'fields': ('comment_enabled',
-                                               'pingback_enabled')}),
-                 (_('Publication'), {'fields': ('categories', 'tags',
-                                                'sites', 'slug')}))
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'content', 'tags', 'excerpt', 'image',
+                       'featured', 'status', 'categories',),
+            'classes': ('wide', 'extrapretty',),
+        }),
+        (_('Options'), {
+            'fields': ('authors', 'related', 'template', 'comment_enabled',
+                       'pingback_enabled', 'sites',),
+            'classes': ('wide', 'extrapretty', 'collapse', 'collapse-closed',),
+        }),
+        (_('Date options'), {
+            'fields': ('creation_date', 'start_publication',
+                       'end_publication',),
+            'classes': ('wide', 'extrapretty', 'collapse', 'collapse-closed',),
+        }),
+        (_('Privacy'), {
+            'fields': ('password', 'login_required',),
+            'classes': ('wide', 'extrapretty', 'collapse', 'collapse-closed',),
+        }),
+    )
     list_filter = ('categories', 'authors', 'status', 'featured',
                    'login_required', 'comment_enabled', 'pingback_enabled',
                    'creation_date', 'start_publication',
-                   'end_publication', 'sites')
+                   'end_publication', 'sites',)
     list_display = ('get_title', 'get_authors', 'get_categories',
                     'get_tags', 'get_sites',
                     'get_comments_are_open', 'pingback_enabled',
                     'get_is_actual', 'get_is_visible', 'get_link',
-                    'get_short_url', 'creation_date')
+                    'get_short_url', 'creation_date',)
     radio_fields = {'template': admin.VERTICAL}
-    filter_horizontal = ('categories', 'authors', 'related')
+    filter_horizontal = ('categories', 'authors', 'related',)
     prepopulated_fields = {'slug': ('title', )}
-    search_fields = ('title', 'excerpt', 'content', 'tags')
+    search_fields = ('title', 'excerpt', 'content', 'tags',)
     actions = ['make_mine', 'make_published', 'make_hidden',
                'close_comments', 'close_pingbacks',
-               'ping_directories', 'make_tweet', 'put_on_top']
+               'ping_directories', 'make_tweet', 'put_on_top',]
     actions_on_top = True
     actions_on_bottom = True
     
