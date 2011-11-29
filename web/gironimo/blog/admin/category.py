@@ -8,7 +8,12 @@ from gironimo.blog.admin.forms import CategoryAdminForm
 class CategoryAdmin(admin.ModelAdmin):
     """ Admin for Category model """
     form = CategoryAdminForm
-    fields = ('title', 'parent', 'description', 'slug')
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'parent', 'slug', 'description', 'image',),
+            'classes': ('wide', 'extrapretty',),
+        }),
+    )
     list_display = ('title', 'slug', 'get_tree_path', 'description')
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ('title', 'description')
