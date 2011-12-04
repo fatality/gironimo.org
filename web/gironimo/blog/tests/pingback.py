@@ -14,6 +14,7 @@ from BeautifulSoup import BeautifulSoup
 
 from gironimo.blog.models import Entry
 from gironimo.blog.models import Category
+from gironimo.blog.managers import PINGBACK
 from gironimo.blog.managers import PUBLISHED
 from gironimo.blog.tests.utils import TestTransport
 from gironimo.blog.xmlrpc.pingback import generate_pingback_content
@@ -197,7 +198,7 @@ class PingBackTestCase(TestCase):
             site=self.site, comment='Test pingback',
             user_url='http://example.com/blog/1/',
             user_name='Test pingback')
-        comment.flags.create(user=self.author, flag='pingback')
+        comment.flags.create(user=self.author, flag=PINGBACK)
 
         response = self.server.pingback.extensions.getPingbacks(target)
         self.assertEquals(response, [

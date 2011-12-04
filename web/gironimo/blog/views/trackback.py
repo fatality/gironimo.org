@@ -7,6 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.views.generic.simple import direct_to_template
 
 from gironimo.blog.models import Entry
+from gironimo.blog.managers import TRACKBACK
 
 
 @csrf_exempt
@@ -33,7 +34,7 @@ def entry_trackback(request, object_id):
                 user_name=blog_name, defaults={'comment': excerpt})
             if created:
                 user = entry.authors.all()[0]
-                comment.flags.create(user=user, flag='trackback')
+                comment.flags.create(user=user, flag=TRACKBACK)
             else:
                 error = u'Trackback is already registered'
         

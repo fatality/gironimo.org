@@ -30,6 +30,7 @@ from gironimo.blog.config import AUTO_CLOSE_COMMENTS_AFTER
 from gironimo.blog.managers import entries_published
 from gironimo.blog.managers import EntryPublishedManager
 from gironimo.blog.managers import AuthorPublishedManager
+from gironimo.blog.managers import PINGBACK, TRACKBACK
 from gironimo.blog.managers import DRAFT, HIDDEN, PUBLISHED
 from gironimo.blog.moderator import EntryCommentModerator
 from gironimo.blog.url_shortener import get_url_shortener
@@ -225,12 +226,12 @@ class EntryAbstractClass(models.Model):
     @property
     def pingbacks(self):
         """ Return published pingbacks """
-        return self.discussions.filter(flags__flag='pingback')
+        return self.discussions.filter(flags__flag=PINGBACK)
     
     @property
     def trackbacks(self):
         """ Return published trackbacks """
-        return self.discussions.filter(flags__flag='trackback')
+        return self.discussions.filter(flags__flag=TRACKBACK)
     
     @property
     def comments_are_open(self):

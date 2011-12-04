@@ -14,6 +14,7 @@ from django.contrib.comments.models import CommentFlag
 from gironimo.blog import models
 from gironimo.blog.models import Entry
 from gironimo.blog.managers import PUBLISHED
+from gironimo.blog.managers import PINGBACK, TRACKBACK
 from gironimo.blog.models import get_base_model
 from gironimo.blog.models import EntryAbstractClass
 from gironimo.blog import models as models_settings
@@ -67,7 +68,7 @@ class EntryTestCase(TestCase):
         
         comment = comments.get_model().objects.create(
             comment='My Pingback 1', content_object=self.entry, site=site)
-        comment.flags.create(user=author, flag='pingback')
+        comment.flags.create(user=author, flag=PINGBACK)
         self.assertEquals(self.entry.discussions.count(), 3)
         self.assertEquals(self.entry.comments.count(), 2)
         self.assertEquals(self.entry.pingbacks.count(), 1)
@@ -75,7 +76,7 @@ class EntryTestCase(TestCase):
         
         comment = comments.get_model().objects.create(
             comment='My Trackback 1', content_object=self.entry, site=site)
-        comment.flags.create(user=author, flag='trackback')
+        comment.flags.create(user=author, flag=TRACKBACK)
         self.assertEquals(self.entry.discussions.count(), 4)
         self.assertEquals(self.entry.comments.count(), 2)
         self.assertEquals(self.entry.pingbacks.count(), 1)

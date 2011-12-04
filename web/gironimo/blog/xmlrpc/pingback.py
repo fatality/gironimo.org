@@ -16,6 +16,7 @@ from django.contrib.contenttypes.models import ContentType
 from django_xmlrpc.decorators import xmlrpc_func
 
 from gironimo.blog.models import Entry
+from gironimo.blog.managers import PINGBACK
 from gironimo.blog.config import PINGBACK_CONTENT_LENGTH
 
 
@@ -105,7 +106,7 @@ def pingback_ping(source, target):
             defaults={'comment': description, 'user_name': title})
         if created:
             user = entry.authors.all()[0]
-            comment.flags.create(user=user, flag='pingback')
+            comment.flags.create(user=user, flag=PINGBACK)
             return 'Pingback from %s to %s registered.' % (source, target)
         return PINGBACK_ALREADY_REGISTERED
     except:

@@ -11,6 +11,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 
 from gironimo.blog.config import PROTOCOL
+from gironimo.blog.managers import PINGBACK
 
 
 class URLRessources(object):
@@ -125,7 +126,7 @@ class ExternalUrlsPinger(threading.Thread):
         for link in soup.findAll('link'):
             dict_attr = dict(link.attrs)
             if 'rel' in dict_attr and 'href' in dict_attr:
-                if dict_attr['rel'].lower() == 'pingback':
+                if dict_attr['rel'].lower() == PINGBACK:
                     return dict_attr.get('href')
     
     def find_pingback_urls(self, urls):

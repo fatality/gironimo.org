@@ -20,6 +20,7 @@ from gironimo.blog.models import Entry
 from gironimo.blog.models import Category
 from gironimo.blog.signals import disconnect_blog_signals
 from gironimo.blog.managers import DRAFT, HIDDEN, PUBLISHED
+from gironimo.blog.managers import PINGBACK, TRACKBACK
 
 
 WP_NS = 'http://wordpress.org/export/%s/'
@@ -280,9 +281,9 @@ class Command(LabelCommand):
         django.contrib.comments """
         for comment_node in comment_nodes:
             is_pingback = comment_node.find(
-                '{%s}comment_type' % WP_NS).text == 'pingback'
+                '{%s}comment_type' % WP_NS).text == PINGBACK
             is_trackback = comment_node.find(
-                '{%s}comment_type' % WP_NS).text == 'trackback'
+                '{%s}comment_type' % WP_NS).text == TRACKBACK
             
             title = 'Comment #%s' % (comment_node.find(
                 '{%s}comment_id/' % WP_NS).text)
@@ -329,10 +330,10 @@ class Command(LabelCommand):
                     user=entry.authors.all()[0], flag='spam')
             if is_pingback:
                 comment.flags.create(
-                    user=entry.authors.all()[0], flag='pingback')
+                    user=entry.authors.all()[0], flag=PINGBACK)
             if is_trackback:
                 comment.flags.create(
-                    user=entry.authors.all()[0], flag='trackback')
+                    user=entry.authors.all()[0], flag=TRACKBACK)
             
             self.write_out(self.style.ITEM('OK\n'))
 

@@ -18,6 +18,7 @@ from gironimo.blog.models import Author
 from gironimo.blog.models import Category
 from gironimo.blog.managers import DRAFT
 from gironimo.blog.managers import PUBLISHED
+from gironimo.blog.managers import PINGBACK, TRACKBACK
 from gironimo.blog.templatetags.blog_tags import get_authors
 from gironimo.blog.templatetags.blog_tags import get_gravatar
 from gironimo.blog.templatetags.blog_tags import get_tag_cloud
@@ -319,7 +320,7 @@ class TemplateTagsTestCase(TestCase):
         linkback_1 = comments.get_model().objects.create(
             comment='My Linkback 1', site=site,
             content_object=self.entry)
-        linkback_1.flags.create(user=user, flag='pingback')
+        linkback_1.flags.create(user=user, flag=PINGBACK)
         context = get_recent_linkbacks(3, 'custom_template.html')
         self.assertEquals(len(context['linkbacks']), 0)
         self.assertEquals(context['template'], 'custom_template.html')
@@ -331,7 +332,7 @@ class TemplateTagsTestCase(TestCase):
         linkback_2 = comments.get_model().objects.create(
             comment='My Linkback 2', site=site,
             content_object=self.entry)
-        linkback_2.flags.create(user=user, flag='trackback')
+        linkback_2.flags.create(user=user, flag=TRACKBACK)
         context = get_recent_linkbacks()
         self.assertEquals(list(context['linkbacks']), [linkback_2, linkback_1])
     

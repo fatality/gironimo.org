@@ -16,6 +16,7 @@ from tagging.models import Tag
 from gironimo.blog.models import Entry
 from gironimo.blog.models import Category
 from gironimo.blog.managers import PUBLISHED
+from gironimo.blog.managers import PINGBACK, TRACKBACK
 from gironimo.blog import feeds
 from gironimo.blog.feeds import EntryFeed
 from gironimo.blog.feeds import LatestEntries
@@ -63,12 +64,12 @@ class BlogFeedsTestCase(TestCase):
                                                        user=self.author,
                                                        content_object=entry,
                                                        site=self.site)
-        pingback.flags.create(user=self.author, flag='pingback')
+        pingback.flags.create(user=self.author, flag=PINGBACK)
         trackback = comments.get_model().objects.create(comment='My Trackback',
                                                         user=self.author,
                                                         content_object=entry,
                                                         site=self.site)
-        trackback.flags.create(user=self.author, flag='trackback')
+        trackback.flags.create(user=self.author, flag=TRACKBACK)
         return [comment, pingback, trackback]
     
     def test_entry_feed(self):
