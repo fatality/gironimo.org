@@ -110,7 +110,7 @@ class BlogFeedsTestCase(TestCase):
         entry.image = 'image_field.jpg'
         entry.save()
         self.assertEquals(feed.item_enclosure_url(entry),
-                          '%simage_field.jpg' % settings.MEDIA_URL)
+                          'http://example.com/image_field.jpg')
         self.assertEquals(feed.item_enclosure_length(entry), '100000')
         self.assertEquals(feed.item_enclosure_mime_type(entry), 'image/jpeg')
         feeds.FEEDS_FORMAT = original_feeds_format
