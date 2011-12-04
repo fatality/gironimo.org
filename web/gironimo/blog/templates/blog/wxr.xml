@@ -15,7 +15,7 @@
     <channel>
         <title>{{ site.name }}</title>
         <link>{{ site_url }}</link>
-        <description>{{ description }}</description>
+        <description>Blog exported from Django Blog Gironimo</description>
         <pubDate>{% now "r" %}</pubDate>
         <generator>Blog {{ version }}</generator>
         <language>{{ language }}</language>
