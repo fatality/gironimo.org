@@ -28,7 +28,7 @@
 
 {% block link %}
     {{ block.super }}
-    {% with object.previous_entry as previous_entry %}
+    {% with previous_entry=object.previous_entry %}
         {% if previous_entry %}
             <link
                 rel="prev"
@@ -36,7 +36,7 @@
                 href="{{ previous_entry.get_absolute_url }}" />
         {% endif %}
     {% endwith %}
-    {% with object.next_entry as next_entry %}
+    {% with next_entry=object.next_entry %}
         {% if next_entry %}
             <link
                 rel="next"
@@ -87,7 +87,7 @@
 {% block content %}
     <arcticle id="post-{{ object.pk }}" class="post">
         {% block entry-content %}
-            {% with object.html_content|safe as object_content %}
+            {% with object_content=object.html_content|safe %}
                 {% include "blog/_entry_detail.html" %}
             {% endwith %}
         {% endblock %}
@@ -95,18 +95,18 @@
         {% block entry-authors %}
             {% if object.authors.count %}
                 <aside class="authors">
-                    <h3>{% blocktrans count object.authors.count as author_count %}About the author{% plural %}About the authors{% endblocktrans %}</h3>
                     {% for author in object.authors.all %}
                         <div class="author-box">
-                            <h3>{% if author.first_name %}{{ author.first_name }}{% if author.last_name %} {{ author.last_name }}{% endif %}{% else %}{{ author }}{% endif %}</h3>
-                            <img src="{% get_gravatar author.email 60 'G' %}" class="gravatar photo" alt="{{ author.user_name }}" />
-                            {% with author.get_profile.about as author_description %}
+                            <img src="{% get_gravatar author.email 78 'G' %}" class="gravatar photo" alt="{{ author.user_name }}" width="78" height="78" />
+                            <h3><a href="{% url blog_author_detail author %}" title="{% trans 'View all entries by' %} {% if author.first_name %}{{ author.first_name }}{% if author.last_name %} {{ author.last_name }}{% endif %}{% else %}{{ author }}{% endif %}">{% if author.first_name %}{{ author.first_name }}{% if author.last_name %} {{ author.last_name }}{% endif %}{% else %}{{ author }}{% endif %}</a></h3>
+                            {% with author_description=author.get_profile.about %}
                                 {% if author_description %}
                                     <p>{{ author_description }}</p>
                                 {% else %}
                                     <p>{% trans "No author description yet." %}</p>
                                 {% endif %}
                             {% endwith %}
+                            <div class="clear"></div>
                         </div>
                     {% endfor %}
                 </aside>
@@ -114,70 +114,80 @@
         {% endblock %}
         
         {% block entry-widgets %}
-            {% with object.next_entry as next_entry %}
-                {% if next_entry %}
-                    <aside class="entry-next">
-                        <h3>{% trans "Next entry" %}</h3>
-                        <p>
-                            <a href="{{ next_entry.get_absolute_url }}" title="{% trans 'View' %} {{ next.entry.title }}" rel="next">
-                                {{ next_entry.title }}
-                            </a>
-                        </p>
+            <div class="entry-widgets">
+                <div class="prev-next-entries">
+                    {% with next_entry=object.next_entry %}
+                        {% if next_entry %}
+                            <aside class="entry-next">
+                                <h3>{% trans "Next entry" %}</h3>
+                                <ul>
+                                    <li><a href="{{ next_entry.get_absolute_url }}" title="{% trans 'View' %} {{ next.entry.title }}" rel="next">
+                                        {{ next_entry.title }}
+                                    </a></li>
+                                </ul>
+                            </aside>
+                        {% endif %}
+                    {% endwith %}
+                    {% with previous_entry=object.previous_entry %}
+                        {% if previous_entry %}
+                            <aside class="entry-previous{% if object.next_entry %} topmargin{% endif %}">
+                                <h3>{% trans "Previous entry" %}</h3>
+                                <ul>
+                                    <li><a href="{{ previous_entry.get_absolute_url }}" title="{% trans 'View' %} {{ previous_entry.title }}" rel="prev">
+                                        {{ previous_entry.title }}
+                                    </a></li>
+                                </ul>
+                            </aside>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                {% if object.related_published %}
+                    <aside class="entry-related">
+                        <h3>{% trans "Related entries" %}</h3>
+                        <ul>
+                            {% for entry in object.related_published %}
+                                <li>
+                                    <a href="{{ entry.get_absolute_url }}" title="{% trans 'View' %} {{ entry.title }}" rel="bookmark">
+                                        {{ entry.title }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </aside>
                 {% endif %}
-            {% endwith %}
-            {% with object.previous_entry as previous_entry %}
-                {% if previous_entry %}
-                    <aside class="entry-previous">
-                        <h3>{% trans "Previous entry" %}</h3>
-                        <p>
-                            <a href="{{ previous_entry.get_absolute_url }}" title="{% trans 'View' %} {{ previous_entry.title }}" rel="prev">
-                                {{ previous_entry.title }}
-                            </a>
-                        </p>
-                    </aside>
-                {% endif %}
-            {% endwith %}
-            {% if object.related_published %}
-                <aside class="entry-related">
-                    <h3>{% trans "Related entries" %}</h3>
-                    <ul>
-                        {% for entry in object.related_published %}
-                            <li>
-                                <a href="{{ entry.get_absolute_url }}" title="{% trans 'View' %} {{ entry.title }}" rel="bookmark">
-                                    {{ entry.title }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                <aside class="entry-similar">
+                    <h3>{% trans "Similar entries" %}</h3>
+                    {% get_similar_entries 5 %}
                 </aside>
-            {% endif %}
-            <aside class="entry-similar">
-                <h3>{% trans "Similar entries" %}</h3>
-                {% get_similar_entries 5 %}
-            </aside>
+                <div class="clear"></div>
+            </div>
         {% endblock %}
         
         {% block entry-comments %}
             <aside id="comments">
-                <h3>{% trans "Comments" %}</h3>
-                {% with object.comments as comment_list %}
+                <h3>{% trans "Comments" %}{% if object.comments.count %} ({{ object.comments.count }}){% endif %}</h3>
+                {% with comment_list=object.comments %}
                     {% if comment_list.count %}
                         {% for comment in comment_list %}
                             <article id="comment_{{ comment.pk }}" class="comment">
                                 <header>
-                                    <img src="{% get_gravatar comment.email 60 'G' %}" class="gravatar photo" alt="{{ comment.user_name }}" />
-                                    {% if comment.url %}
-                                        <a href="{{ comment.url }}" rel="external nofollow" class="fn url">{{ comment.user_name }}</a>
-                                    {% else %}
-                                        {{ comment.user_name }}
-                                    {% endif %}
-                                    {% trans "on" %}
-                                    <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
+                                    <img src="{% get_gravatar comment.email 40 'G' %}" class="gravatar photo" alt="{{ comment.user_name }}" />
+                                    <p class="author">
+                                        {% if comment.url %}
+                                            <a href="{{ comment.url }}" rel="external nofollow">{{ comment.user_name }}</a>
+                                        {% else %}
+                                            {{ comment.user_name }}
+                                        {% endif %}
+                                    </p>
+                                    <p class="date">
+                                        {% trans "on" %}
+                                        <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
+                                    </p>
+                                    <div class="clear"></div>
                                 </header>
-                                <p class="comment-info">
+                                <div class="comment-info">
                                     {{ comment.comment|linebreaks }}
-                                </p>
+                                </div>
                             </article>
                         {% endfor %}
                         {% if not object.comments_are_open %}
@@ -185,7 +195,8 @@
                         {% endif %}
                     {% else %}
                         {% if object.comments_are_open %}
-                            <p>{% trans "No comments yet." %}</p>
+                            {% url object.get_absolute_url as entry_url %}
+                            <p>{% blocktrans %}No comments yet. <a href="{{ entry_url }}#new-comment">Be the first!</a>{% endblocktrans %}</p>
                         {% else %}
                             <p>{% trans "Comments are closed." %}</p>
                         {% endif %}
@@ -197,7 +208,7 @@
         {% block entry-pingbacks %}
             <aside id="pingbacks">
                 <h3>{% trans "Pingbacks" %}</h3>
-                {% with object.pingbacks as pingback_list %}
+                {% with pingback_list=object.pingbacks %}
                     {% if pingback_list.count %}
                         {% for pingback in pingback_list %}
                             <article id="pingback_{{ pingback.pk }}" class="pingback">
@@ -224,7 +235,7 @@
         {% endblock %}
         
         {% block entry-trackbacks %}
-            {% with object.trackbacks as trackback_list %}
+            {% with trackback_list=object.trackbacks %}
                 {% if trackback_list.count or object.pingback_enabled %}
                     <aside id="trackbacks">
                         <h3>{% trans "Trackbacks" %}</h3>
@@ -260,6 +271,16 @@
             {% if object.comments_are_open %}
                 <aside id="new-comment">
                     <h3>{% trans "Add a new comment" %}</h3>
+                    <p>{% blocktrans %}
+                        Make sure you enter the <span>* required</span> 
+                        information where indicated. Your email will be used to 
+                        indicate if you real, and will not be shown public. If 
+                        you have connected gravatar with your mail, your avatar 
+                        will be shown. Comments are <strong>moderated</strong> 
+                        – and <strong>rel="nofollow"</strong> is in use. Please 
+                        no link dropping, do not spam, and do not advertise! 
+                        Thank you!
+                    {% endblocktrans %}</p>
                     {% render_comment_form for object %}
                 </aside>
             {% endif %}

@@ -28,7 +28,7 @@
                 <a href="{{ object.get_absolute_url }}" rel="category tag" title="{% trans 'View all entries in' %} {{ object }}">
                     {{ object }}
                 </a>
-                {% blocktrans count object.entries_published.count as entry_count %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
+                {% blocktrans count entry_count=object.entries_published.count %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
                 {% if object.image %}
                     <p class="entry-image">
                         <a href="{{ object.get_absolute_url }}" rel="category tag" title="{% trans 'View all entries in' %} {{ object }}">

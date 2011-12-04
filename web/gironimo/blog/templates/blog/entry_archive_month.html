@@ -23,7 +23,7 @@
             <div class="entry-content">
                 <ul>
                     {% for date in date_list %}
-                        <a href="{% url blog_entry_archive_day date|date:"Y" date|date:"m" date|date:"d" %}" rel="archives">
+                        <a href="{% url blog_entry_archive_day date|date:'Y' date|date:'m' date|date:'d' %}" rel="archives">
                             {{ date|date:"DATE_FORMAT" }}
                         </a>
                     {% endfor %}

@@ -43,11 +43,11 @@
             {% endif %}
             {% if object_list %}
                 <p class="success">
-                    {% blocktrans count paginator.count as entry_count %}{{ entry_count }} entry found{% plural %}{{ entry_count }} entries found{% endblocktrans %}
+                    {% blocktrans count entry_count=paginator.count %}{{ entry_count }} entry found{% plural %}{{ entry_count }} entries found{% endblocktrans %}
                 </p>
             {% endif %}
             {% for object in object_list %}
-                {% with object.html_content|truncatewords_html:100|safe as object_content %}
+                {% with object_content=object.html_content|truncatewords_html:100|safe %}
                     <section>
                         {% include "blog/_entry_detail.html" %}
                     </section>

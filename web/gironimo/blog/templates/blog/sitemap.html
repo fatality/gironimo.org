@@ -21,7 +21,7 @@
                         {% for entry in category.entries_published.all %}
                             <li>
                                 <a href="{{ entry.get_absolute_url }}" title="{{ entry.title }}" rel="bookmark">{{ entry.title }}</a>
-                                {% with entry.comments.count as comment_count %}
+                                {% with comment_count=entry.comments.count %}
                                     - {{ comment_count }} {% trans "comment" %}{{ comment_count|pluralize }}
                                 {% endwith %}
                             </li>
@@ -37,7 +37,7 @@
                     {% for entry in entries %}
                         <li>
                             <a href="{{ entry.get_absolute_url }}" title="{{ entry.title }}" rel="bookmark">{{ entry.title }}</a> - {{ entry.creation_date|date:"SHORT_DATE_FORMAT" }}
-                            {% with entry.comments.count as comment_count %}
+                            {% with comment_count=entry.comments.count %}
                                 - {{ comment_count }} {% trans "comment" %}{{ comment_count|pluralize }}
                             {% endwith %}
                         </li>
@@ -54,7 +54,7 @@
                     {% else %}
                         </li><li>
                     {% endif %}
-                    <a href="{{ category.get_absolute_url }}" title="{{ category.title }}">{{ category.title }}</a> - {% blocktrans count category.entries_published.count as entry_count %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
+                    <a href="{{ category.get_absolute_url }}" title="{{ category.title }}">{{ category.title }}</a> - {% blocktrans count entry_count=category.entries_published.count %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
                     {% for level in structure.closed_levels %}
                         </li></ul>
                     {% endfor %}

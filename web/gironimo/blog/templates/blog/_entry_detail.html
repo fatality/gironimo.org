@@ -37,9 +37,9 @@
         </li>
         <li>
             {% if object.comments_are_open %}
-                {% with object.comments.count as comment_count %}
+                {% with comment_count=object.comments.count %}
                     <a href="{{ object.get_absolute_url }}#comments" title="{% trans 'View comments on' %} {{ object.title }}">
-                        {% blocktrans count comment_count as comment_count %}{{ comment_count }} comment{% plural %}{{ comment_count }} comments{% endblocktrans %}
+                        {% blocktrans count comment_count=comment_count %}{{ comment_count }} comment{% plural %}{{ comment_count }} comments{% endblocktrans %}
                     </a>
                 {% endwith %}
             {% else %}
@@ -78,16 +78,16 @@
         {% endif %}
         {% if object.pingback_enabled %}
             <li class="pingback">
-                {% with object.pingbacks.count as pingback_count %}
+                {% with pingback_count=object.pingbacks.count %}
                     <a href="{{ object.get_absolute_url }}#pingbacks" title="{{ object.title }}">
-                        {% blocktrans count pingback_count as pingback_count %}{{ pingback_count }} pingback{% plural %}{{ pingback_count }} pingbacks{% endblocktrans %}
+                        {% blocktrans count pingback_count=pingback_count %}{{ pingback_count }} pingback{% plural %}{{ pingback_count }} pingbacks{% endblocktrans %}
                     </a>
                 {% endwith %}
             </li>
             <li class="pingback">
-                {% with object.trackbacks.count as trackback_count %}
+                {% with trackback_count=object.trackbacks.count %}
                     <a href="{{ object.get_absolute_url }}#trackbacks" title="{{ object.title }}">
-                        {% blocktrans count trackback_count as trackback_count %}{{ trackback_count }} trackback{% plural %}{{ trackback_count }} trackbacks{% endblocktrans %}
+                        {% blocktrans count trackback_count=trackback_count %}{{ trackback_count }} trackback{% plural %}{{ trackback_count }} trackbacks{% endblocktrans %}
                     </a>
                 {% endwith %}
             </li>

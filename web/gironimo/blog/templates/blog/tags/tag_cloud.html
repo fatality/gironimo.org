@@ -1,6 +1,6 @@
 {% load i18n %}
 {% for tag in tags %}
-    <a href="{% url blog_tag_detail tag.name %}" title="{% blocktrans count tag.count as entry_count %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}" class="tag-{{ tag.font_size }}">
+    <a href="{% url blog_tag_detail tag.name %}" title="{% blocktrans count entry_count=tag.count %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}" class="tag-{{ tag.font_size }}">
         {{ tag }}
     </a>
 {% endfor %}
