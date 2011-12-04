@@ -1,5 +1,5 @@
 {% extends "admin/blog/widgets/base.html" %}
-{% load i18n blog_admin_tags %}
+{% load i18n blog_tags %}
 
 {% block module_id %}contents{% endblock %}
 
@@ -7,5 +7,5 @@
 {% block title %}{% trans "Today" %}{% endblock %}
 
 {% block content %}
-    {% get_content_stats %}
+    {% blog_statistics "admin/blog/widgets/_content_stats" %}
 {% endblock %}
