@@ -23,6 +23,7 @@ from gironimo.blog.templatetags.blog_tags import get_gravatar
 from gironimo.blog.templatetags.blog_tags import get_tag_cloud
 from gironimo.blog.templatetags.blog_tags import get_categories
 from gironimo.blog.templatetags.blog_tags import blog_pagination
+from gironimo.blog.templatetags.blog_tags import get_draft_entries
 from gironimo.blog.templatetags.blog_tags import get_recent_entries
 from gironimo.blog.templatetags.blog_tags import get_random_entries
 from gironimo.blog.templatetags.blog_tags import blog_breadcrumbs
@@ -100,6 +101,19 @@ class TemplateTagsTestCase(TestCase):
         self.assertEquals(len(context['entries']), 1)
         self.assertEquals(context['template'], 'custom_template.html')
         context = get_featured_entries(0)
+        self.assertEquals(len(context['entries']), 0)
+    
+    def test_draft_entries(self):
+        context = get_draft_entries()
+        self.assertEquals(len(context['entries']), 1)
+        self.assertEquals(context['template'],
+                          'blog/tags/draft_entries.html')
+        
+        self.publish_entry()
+        context = get_draft_entries(3, 'custom_template.html')
+        self.assertEquals(len(context['entries']), 0)
+        self.assertEquals(context['template'], 'custom_template.html')
+        context = get_draft_entries(0)
         self.assertEquals(len(context['entries']), 0)
     
     def test_get_random_entries(self):

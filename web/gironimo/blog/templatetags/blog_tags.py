@@ -19,6 +19,7 @@ from tagging.utils import calculate_cloud
 from gironimo.blog.models import Entry
 from gironimo.blog.models import Author
 from gironimo.blog.models import Category
+from gironimo.blog.managers import DRAFT
 from gironimo.blog.managers import tags_published
 from gironimo.blog.comparison import VectorBuilder
 from gironimo.blog.comparison import pearson_score
@@ -61,6 +62,14 @@ def get_featured_entries(number=5,
     """ Return the featured entries """
     return {'template': template,
             'entries': Entry.published.filter(featured=True)[:number]}
+
+
+@register.inclusion_tag('blog/tags/dummy.html')
+def get_draft_entries(number=5,
+                      template='blog/tags/draft_entries.html'):
+    """ Return the latest draft entries """
+    return {'template': template,
+            'entries': Entry.objects.filter(status=DRAFT)[:number]}
 
 
 @register.inclusion_tag('blog/tags/dummy.html')

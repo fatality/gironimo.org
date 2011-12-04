@@ -5,19 +5,10 @@ from django.contrib.contenttypes.models import ContentType
 from gironimo.blog.models import Entry
 from gironimo.blog.models import Author
 from gironimo.blog.models import Category
-from gironimo.blog.managers import DRAFT
 from gironimo.blog.managers import tags_published
 
 
 register = Library()
-
-
-@register.inclusion_tag('blog/tags/dummy.html')
-def get_draft_entries(
-    number=5, template='admin/blog/widgets/_draft_entries.html'):
-    """ Return the latest draft entries """
-    return {'template': template,
-            'entries': Entry.objects.filter(status=DRAFT)[:number]}
 
 
 @register.inclusion_tag('blog/tags/dummy.html')
