@@ -218,3 +218,216 @@
 #content ul.content-title li a:hover {
     color: #3151A2;
 }
+
+#content .authors,
+#content .entry-widgets {
+    margin-bottom: 20px;
+}
+
+#content .authors .author-box {
+    background-color: #FAFAFA;
+    border: 1px solid #F0F0F0;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#content .authors .author-box .gravatar {
+    float: left;
+    margin: 0 1em 1em 0;
+    background-color: #fff;
+    border-bottom: 1px solid #d7d7d7;
+    border-left: 1px solid #f2f2f2;
+    border-right: 1px solid #f2f2f2;
+    padding: 3px;
+    width: 78px;
+    height: 78px;
+}
+
+#content .authors .author-box h3 {
+    margin: 0 0 0.3em;
+}
+
+#content .authors .author-box h3 a {
+    font-size: 0.875em;
+}
+
+#content .authors .author-box p {
+    font-size: 0.825em;
+    margin: 0;
+}
+
+#content .entry-widgets {
+    background-color: #FAFAFA;
+    border: 1px solid #F0F0F0;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#content .entry-widgets .prev-next-entries,
+#content .entry-widgets .entry-related,
+#content .entry-widgets .entry-similar {
+    float: left;
+    width: 30%;
+    margin-right: 20px;
+    font-size: 0.875em;
+}
+
+#content .entry-widgets .entry-similar {
+    margin-right: 0;
+}
+
+#content .entry-widgets aside h3 {
+    color: #424242;
+    margin: 0 0 0.7em;
+}
+
+#content .entry-widgets aside ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+    list-style: square;
+}
+
+#content .entry-widgets ul li a {
+    text-decoration: none;
+    font-size: 0.95em;
+}
+
+#content .entry-widgets .topmargin {
+    margin-top: 1em;
+}
+
+#content #comments,
+#content #pingbacks,
+#content #trackbacks {
+    margin-bottom: 20px;
+}
+
+#content #comments h3,
+#content #pingbacks h3,
+#content #trackbacks h3,
+#content #new-comment h3 {
+    border-bottom: 2px solid #2f2f2f;
+    color: #2f2f2f;
+    font-size: 1.8em;
+    margin: 0 0 1em;
+    padding: 0 0 3px;
+    font-weight: normal;
+}
+
+#content #comments p,
+#content #pingbacks p,
+#content #trackbacks p,
+#content #new-comment p {
+    font-size: 0.825em;
+    margin: 0 0 1em;
+}
+
+#content #new-comment p span {
+    color: red;
+    font-weight: bold;
+}
+
+#content #comments .comment {
+    position: relative;
+    margin-bottom: 12px;
+    margin-left: 110px;
+    background-color: #f6f6f6;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 20px;
+}
+
+#content #comments .comment:last-child {
+    margin-bottom: 0px;
+}
+
+#content #comments .comment:before {
+    content: url(../images/comment-arrow.png);
+    left: -21px;
+    position: absolute;
+}
+
+#content #comments .comment img {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #D7D7D7;
+    border-left: 1px solid #F2F2F2;
+    border-right: 1px solid #F2F2F2;
+    float: left;
+    height: 68px;
+    margin: 0 1em 0 0;
+    padding: 3px;
+    width: 68px;
+    position: absolute;
+    top: 0;
+    left: -110px;
+}
+
+#content #comments .comment header span.author,
+#content #comments .comment header span.author a {
+    font-weight: bold;
+    color: #3151a2;
+    text-decoration: none;
+    margin: 0;
+    font-size: 1em;
+}
+
+#content #comments .comment header span.date {
+    font-size: 0.825em;
+    margin: 0;
+}
+
+#content #comments .comment header {
+    margin-bottom: 0.9em;
+}
+
+#content #comments .comment .comment-info p {
+    margin: 0 0 0.3em;
+}
+
+#content #comments .comment .comment-info p:last-child {
+    margin: 0;
+}
+
+/*
+#content #comments .comment {
+    margin-bottom: 12px;
+}
+
+#content #comments .comment:last-child {
+    margin-bottom: 0;
+}
+
+#content #comments .comment header {
+    background-color: #FAFAFA;
+    border-bottom: 1px solid #F0F0F0;
+    padding: 5px;
+}
+
+#content #comments .comment header p.author,
+#content #comments .comment header p.author a {
+    font-weight: bold;
+    color: #3151a2;
+    text-decoration: none;
+    margin: 2px 0 0;
+    font-size: 1em;
+}
+
+#content #comments .comment header p.date {
+    font-size: 0.825em;
+    margin: 0;
+}
+
+#content #comments .comment .comment-info {
+    background-image: url(../images/quotation_marks.jpg);
+    background-repeat: no-repeat;
+    background-position: 5px 3px;
+    padding: 10px;
+    padding-left: 60px;
+}
+
+#content #comments .comment .comment-info p {
+    margin: 0 0 0.3em;
+}
+*/

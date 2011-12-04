@@ -171,18 +171,18 @@
                         {% for comment in comment_list %}
                             <article id="comment_{{ comment.pk }}" class="comment">
                                 <header>
-                                    <img src="{% get_gravatar comment.email 40 'G' %}" class="gravatar photo" alt="{{ comment.user_name }}" />
-                                    <p class="author">
+                                    <img src="{% get_gravatar comment.email 68 'G' %}" class="gravatar photo" alt="{{ comment.user_name }}" />
+                                    <span class="author">
                                         {% if comment.url %}
                                             <a href="{{ comment.url }}" rel="external nofollow">{{ comment.user_name }}</a>
                                         {% else %}
                                             {{ comment.user_name }}
                                         {% endif %}
-                                    </p>
-                                    <p class="date">
+                                    </span>
+                                    <span class="date">
                                         {% trans "on" %}
-                                        <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}</time>
-                                    </p>
+                                        <time datetime="{{ comment.submit_date|date:'c' }}"><a href="{{ object.get_absolute_url }}#comment_{{ comment.pk }}">{{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}</a></time>
+                                    </span>
                                     <div class="clear"></div>
                                 </header>
                                 <div class="comment-info">
