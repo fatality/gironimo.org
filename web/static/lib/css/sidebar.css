@@ -148,3 +148,46 @@
 .search .widget-title {
     display: none;
 }
+
+.tags .widget-content a.tag-1 {
+    font-size: 1em;
+}
+
+.tags .widget-content a.tag-2 {
+    font-size: 1.1em;
+}
+
+.tags .widget-content a.tag-3 {
+    font-size: 1.2em;
+}
+
+.tags .widget-content a.tag-4 {
+    font-size: 1.3em;
+}
+
+.tags .widget-content a.tag-5 {
+    font-size: 1.4em;
+}
+
+.tags .widget-content a.tag-6 {
+    font-size: 1.5em;
+}
+
+.tags .widget-content a.tag-7 {
+    font-size: 1.6em;
+}
+
+.tags .widget-content a.tag-8 {
+    font-size: 1.7em;
+}
+
+.tags .widget-content a.tag-9 {
+    font-size: 1.8em;
+}
+
+.tags .widget-content a:hover,
+.tags .widget-content a:active,
+.tags .widget-content a:focus {
+    background-color: #fff0f0;
+    color: #cc0000;
+}
