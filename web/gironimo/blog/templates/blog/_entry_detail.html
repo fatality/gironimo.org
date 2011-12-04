@@ -57,6 +57,13 @@
         </p>
     {% endif %}
     {{ object.content|safe }}
+    {% if continue_reading %}
+        <p class="continue-reading">
+            <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
+                {% trans "Continue reading" %}
+            </a>
+        </p>
+    {% endif %}
 </div>
 <footer class="entry-footer">
     <ul class="entry-footer-meta clearfix">
