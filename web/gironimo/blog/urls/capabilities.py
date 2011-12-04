@@ -16,6 +16,12 @@ extra_context_opensearch.update({'copyright': COPYRIGHT,
 
 
 urlpatterns = patterns('django.views.generic.simple',
+    url(r'^humans.txt$',
+        'direct_to_template', {
+            'template': 'blog/humans.txt',
+            'mimetype': 'text/plain'
+        },
+        name='blog_humans'),
     url(r'^rsd.xml$',
         'direct_to_template', {
             'template': 'blog/rsd.xml',
