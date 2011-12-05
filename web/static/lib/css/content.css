@@ -135,6 +135,10 @@
     text-decoration: underline;
 }
 
+#content .post .entry-content {
+    line-height: 1.6;
+}
+
 #content .post .entry-content p,
 #content .post .entry-content ul,
 #content .post .entry-content ol {
@@ -192,30 +196,20 @@
     margin: 1em 0;
 }
 
-#content ul.content-title {
+#content .content-title {
     margin: 0 0 0.8em;
     padding: 0;
     font-size: 0.9em;
     text-transform: uppercase;
-    list-style: none;
     font-weight: bold;
 }
 
-#content ul.content-title li {
-    float: left;
-    margin-right: 15px;
-    background-image: url(../images/bullet.png);
-    background-repeat: no-repeat;
-    background-position: 0 6px;
-    padding-left: 10px;
-}
-
-#content ul.content-title li a {
+#content .content-title a {
     text-decoration: none;
     color: #e2804f;
 }
 
-#content ul.content-title li a:hover {
+#content .content-title a:hover {
     color: #3151A2;
 }
 
@@ -256,6 +250,30 @@
     font-size: 0.825em;
     margin: 0;
 }
+
+#content .authors .author-box p.entries-published {
+    margin: 0.3em 0 0;
+}
+
+#content .authors .author-box p.entries-published span {
+    font-weight: bold;
+}
+
+#content .authors .author-box h4 {
+    margin: 0.4em 0 0;
+}
+
+#content .authors .author-box ul {
+    list-style: square;
+    margin: 0;
+    padding: 0;
+}
+
+#content .authors .author-box ul li {
+    margin: 0 0 0 25px;
+}
+
+#content .authors .author-box ul li a {}
 
 #content .entry-widgets {
     background-color: #FAFAFA;
@@ -305,8 +323,6 @@
 }
 
 #content #comments h3,
-#content #pingbacks h3,
-#content #trackbacks h3,
 #content #new-comment h3 {
     border-bottom: 2px solid #2f2f2f;
     color: #2f2f2f;
@@ -388,4 +404,51 @@
 
 #content #comments .comment .comment-info p:last-child {
     margin: 0;
+}
+
+#content #pingbacks,
+#content #trackbacks {
+    float: left;
+    width: 40%;
+    background-color: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+#content #trackbacks {
+    float: right;
+}
+
+#content #pingbacks h3,
+#content #trackbacks h3 {
+    margin: 0 0 0.2em;
+}
+
+#content #pingbacks p,
+#content #trackbacks p {
+    margin: 0 0 0.2em;
+}
+
+#content #pingbacks p:last-child,
+#content #trackbacks p:last-child {
+    margin: 0;
+}
+
+#content #pingbacks .pingback,
+#content #trackbacks .trackback {
+    margin: 0 0 0.3em;
+}
+
+#content #pingbacks .pingback header,
+#content #trackbacks .trackback header {
+    margin: 0 0 0.3em;
+}
+
+#content #pingbacks .pingback a,
+#content #trackbacks .trackback a {
+    font-weight: bold;
+    color: #3151a2;
+    text-decoration: none;
 }

@@ -28,6 +28,7 @@ from gironimo.blog.templatetags.blog_tags import blog_statistics
 from gironimo.blog.templatetags.blog_tags import get_draft_entries
 from gironimo.blog.templatetags.blog_tags import get_recent_entries
 from gironimo.blog.templatetags.blog_tags import get_random_entries
+from gironimo.blog.templatetags.blog_tags import get_random_author_entries
 from gironimo.blog.templatetags.blog_tags import blog_breadcrumbs
 from gironimo.blog.templatetags.blog_tags import get_popular_entries
 from gironimo.blog.templatetags.blog_tags import get_similar_entries
@@ -130,6 +131,22 @@ class TemplateTagsTestCase(TestCase):
         self.assertEquals(context['template'], 'custom_template.html')
         context = get_random_entries(0)
         self.assertEquals(len(context['entries']), 0)
+    
+    def test_get_random_author_entries(self):
+        user = User.objects.create_user(username='webmaster',
+                                        email='webmaster@example.com')
+        self.entry.authors.add(user)
+        self.publish_entry()
+        author = Author.published.all()[0]
+        context = get_random_author_entries(author)
+        self.assertEquals(context['template'],
+                          'blog/tags/random_author_entries.html')
+        self.assertEquals(len(context['entries']), 1)
+        context = get_random_author_entries(author, 0)
+        self.assertEquals(len(context['entries']), 0)
+        context = get_random_author_entries(author, 1, 'custom_template.html')
+        self.assertEquals(len(context['entries']), 1)
+        self.assertEquals(context['template'], 'custom_template.html')
     
     def test_get_popular_entries(self):
         context = get_popular_entries()

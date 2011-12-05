@@ -74,14 +74,14 @@
     {% endwith %}
 {% endblock %}
 
+{% block body-class %}{{ block.super }} entry-detail{% endblock %}
+
 {% block breadcrumbs %}
     {{ block.super }}
     {% for category in object.categories.all %}
-        <li>
-            <a href="{{ category.get_absolute_url }}" title="{% trans 'View all entries in' %} {{ category }}">{{ category }}</a>
-        </li>
+        <a href="{{ category.get_absolute_url }}" title="{% trans 'View all entries in' %} {{ category }}">&raquo; {{ category }}</a>
     {% endfor %}
-    <li><a href="{{ object.get_absolute_url }}" title="{% trans 'View' %} {{ object.title }}">{{ object.title }}</a></li>
+    <a href="{{ object.get_absolute_url }}" title="{% trans 'View' %} {{ object.title }}">&raquo;{{ object.title }}</a>
 {% endblock %}
 
 {% block content %}
@@ -171,7 +171,7 @@
                         {% for comment in comment_list %}
                             <article id="comment_{{ comment.pk }}" class="comment">
                                 <header>
-                                    <img src="{% get_gravatar comment.email 68 'G' %}" class="gravatar photo" alt="{{ comment.user_name }}" />
+                                    <img src="{% get_gravatar comment.email 68 'G' %}" alt="{{ comment.user_name }}" />
                                     <span class="author">
                                         {% if comment.url %}
                                             <a href="{{ comment.url }}" rel="external nofollow">{{ comment.user_name }}</a>
@@ -213,7 +213,7 @@
                         {% for pingback in pingback_list %}
                             <article id="pingback_{{ pingback.pk }}" class="pingback">
                                 <header>
-                                    <a href="{{ pingback.url }}" rel="external nofollow" class="fn url org">
+                                    <a href="{{ pingback.url }}" rel="external nofollow">
                                         {{ pingback.user_name }}
                                     </a>
                                     {% trans "on" %}
@@ -243,7 +243,7 @@
                             {% for trackback in trackback_list %}
                                 <article id="trackback_{{ trackback.pk }}" class="trackback">
                                     <header>
-                                        <a href="{{ trackback.url }}" rel="external nofollow" class="fn url org">
+                                        <a href="{{ trackback.url }}" rel="external nofollow">
                                             {{ trackback.user_name }}
                                         </a>
                                         {% trans "on" %}
@@ -266,6 +266,7 @@
                 {% endif %}
             {% endwith %}
         {% endblock %}
+        <div class="clear"></div>
         
         {% block entry-comments-form %}
             {% if object.comments_are_open %}

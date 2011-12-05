@@ -10,6 +10,7 @@ from django.template import Library
 from django.template import TemplateSyntaxError
 from django.contrib.comments.models import CommentFlag
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User
 from django.utils.encoding import smart_unicode
 from django.contrib.comments import get_model as get_comment_model
 
@@ -77,6 +78,18 @@ def get_draft_entries(number=5,
 def get_random_entries(number=5, template='blog/tags/random_entries.html'):
     """ Return random entries """
     entries = Entry.published.all()
+    if number > len(entries):
+        number = len(entries)
+    return {'template': template,
+            'entries': sample(entries, number)}
+
+
+@register.inclusion_tag('blog/tags/dummy.html')
+def get_random_author_entries(author, number=5,
+                              template='blog/tags/random_author_entries.html'):
+    """ Return random entries by one author """
+    author = Author.objects.get(username__exact=author)
+    entries = author.entries_published()
     if number > len(entries):
         number = len(entries)
     return {'template': template,
