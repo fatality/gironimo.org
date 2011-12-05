@@ -1,5 +1,5 @@
 {% load i18n mptt_tags %}
-<ul class="category-root">
+<ul>
     {% recursetree categories %}
     <li>
         <a href="{{ node.get_absolute_url }}" title="{{ node }}">
@@ -9,7 +9,7 @@
             ({{ entry_count }})
         {% endwith %}
         {% if not node.is_leaf_node %}
-            <ul class="category-children category-{{ node.slug }}">
+            <ul>
                 {{ children }}
             </ul>
         {% endif %}

@@ -7,6 +7,7 @@ js = Bundle(
     'lib/js/jquery.ui.js',
     'lib/js/gironimo.js',
     'lib/js/gironimo.utils.js',
+    'lib/js/gironimo.search.js',
     'lib/js/superfish.js',
     output='lib/js/_packed.js',
 )
