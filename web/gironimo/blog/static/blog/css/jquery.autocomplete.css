@@ -1,7 +1,7 @@
 .ac_results {
 	padding: 0px;
-	border: 1px solid #cccccc;
-	background-color: white;
+	border: 1px solid #ccc;
+	background-color: #fff;
 	overflow: hidden;
 	z-index: 99999;
 }
@@ -35,7 +35,10 @@
 }
 
 .ac_loading {
-	background: white url('indicator.gif') right center no-repeat;
+	background-image: url('indicator.gif');
+	background-position: right center;
+	background-repeat: no-repeat;
+	background-color: #fff;
 }
 
 .ac_odd {
@@ -43,6 +46,6 @@
 }
 
 .ac_over {
-	background-color: #7CA0C7;
-	color: white;
+	background-color: #7ca0c7;
+	color: #fff;
 }

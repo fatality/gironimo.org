@@ -269,6 +269,14 @@
     color: #cc0000;
 }
 
+#calendar .widget-content table td.prev {
+    text-align: left;
+}
+
+#calendar .widget-content table td.next {
+    text-align: right;
+}
+
 /* Tags Widget */
 #tags .widget-content a.tag-1 {
     font-size: 1em;

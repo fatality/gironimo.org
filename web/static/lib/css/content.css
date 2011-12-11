@@ -26,6 +26,14 @@
     border-bottom: none;
 }
 
+#content .post .post {
+    border-bottom: 1px solid #a8a7a7;
+}
+
+#content .post .post.last {
+    border-bottom: none;
+}
+
 #content .post .entry-header {
     margin-bottom: 12px;
 }
@@ -137,6 +145,10 @@
 
 #content .post .entry-content {
     line-height: 1.6;
+}
+
+#content .post .listing {
+    margin-bottom: 40px;
 }
 
 #content .post .entry-content p,
