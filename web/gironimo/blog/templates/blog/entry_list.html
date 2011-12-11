@@ -1,15 +1,33 @@
 {% extends "blog/base.html" %}
 {% load i18n blog_tags %}
 
-{% block description %}
-    {% trans "Latest entries for" %} 
-    {% if category %}{% trans "the category" %} {{ category }}
-        {% if category.description %}: {{ category.description|striptags|safe }}{% endif %}
+{% block title %}
+    {% if category %}
+        {% trans "Latest entries in category" %} {{ category }} - {{ block.super }}
     {% endif %}
-    {% if tag %}{% trans "the tag" %} {{ tag }}{% endif %}
-    {% if author %}{% trans "the author" %} {{ author }}{% endif %}
+    {% if tag %}
+        {% trans "Latest entries by tag" %} {{ tag }} - {{ block.super }}
+    {% endif %}
+    {% if author %}
+        {% trans "Latest entries by author" %} {% if author.get_full_name %}{{ author.get_full_name }}{% else %}{{ author.username }}{% endif %} - {{ block.super }}
+    {% endif %}
     {% if page_obj %}
-        {% ifnotequal page_obj.number 1 %} {% trans "page" %} {{ page_obj.number }}{% endifnotequal %}
+        {% trans "Latest entries" %}{% ifnotequal page_obj.number 1 %} {% trans "page" %} {{ page }}{% endifnotequal %} - {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if category %}
+        {% trans "Latest entries in category" %} {{ category }}{% if category.description %} - {{ category.description|striptags|safe }}{% endif %}
+    {% endif %}
+    {% if tag %}
+        {% trans "Latest entries by tag" %} {{ tag }}
+    {% endif %}
+    {% if author %}
+        {% trans "Latest entries by author" %} {% if author.get_full_name %}{{ author.get_full_name }}{% else %}{{ author}}{% endif %}
+    {% endif %}
+    {% if page_obj %}
+        {% trans "Latest entries on" %} {{ site_name }}{% ifnotequal page_obj.number 1 %} {% trans "page" %} {{ page_obj.number }}{% endifnotequal %}
     {% endif %}
 {% endblock %}
 
@@ -33,20 +51,25 @@
         <link
             rel="alternate"
             type="application/rss+xml"
-            title="{% trans 'RSS Feed' %} {{ author.username }}"
+            title="{% trans 'RSS Feed' %} {% if author.get_full_name %}{{ author.get_full_name }}{% else %}{{ author.username }}{% endif %}"
             href="{% url blog_author_feed author.username %}" />
     {% endif %}
 {% endblock %}
 
-{% block title %}
-    {% trans "Latest entries" %}
-    {% if category %}| {% trans "Category" %} {{ category }}{% endif %}
-    {% if tag %}| {% trans "Tag" %} {{ tag }}{% endif %}
-    {% if author %}| {% trans "Author" %} {{ author }}{% endif %}
-    {% if page_obj %}
-        {% ifnotequal page_obj.number 1 %}| {% trans "Page" %}{% endifnotequal %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% if category %}
+        <a href="{% url blog_category_list %}" rel="tag category" title="{% trans 'List all categories' %}">&raquo; {% trans "Categories" %}</a>
+        <a href="{% url blog_category_detail category.tree_path %}" rel="tag category" title="{% trans 'View all entries in' %} {{ category }}">&raquo; {{ category.title }}</a>
     {% endif %}
-    - {{ block.super }}
+    {% if tag %}
+        <a href="{% url blog_tag_list %}" rel="tag category" title="{% trans 'List all tags' %}">&raquo; {% trans "Tags" %}</a>
+        <a href="{% url blog_tag_detail tag.name %}" rel="tag category" title="{% trans 'View all entries by' %} {{ tag.name }}">&raquo; {{ tag.name }}</a>
+    {% endif %}
+    {% if author %}
+        <a href="{% url blog_author_list %}" rel="author" title="{% trans 'List all authors' %}">&raquo; {% trans "Authors" %}</a>
+        <a href="{% url blog_author_detail author.username %}" rel="author" title="{% trans 'View all entries by' %} {% if author.get_full_name %}{{ author.get_full_name }}{% else %}{{ author.username }}{% endif %}">&raquo; {% if author.get_full_name %}{{ author.get_full_name }}{% else %}{{ author.username }}{% endif %}</a>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -54,25 +77,26 @@
         <header class="entry-header">
             <h2>
                 {% if category %}
-                    <a href="{{ category.get_absolute_url }}" title="{% trans 'View all entries in' %} {{ category.title }}" rel="bookmark">
+                    <a href="{{ category.get_absolute_url }}" title="{% trans 'View all entries in' %} {{ category.title }}" rel="tag category">
                         {{ category.title }}
                     </a>
                 {% endif %}
                 {% if tag %}
-                    <a href="{% url blog_tag_detail tag.name %}" title="{% trans 'View all entries in' %} {{ tag.name }}" rel="bookmark">
+                    <a href="{% url blog_tag_detail tag.name %}" title="{% trans 'View all entries in' %} {{ tag.name }}" rel="tag category">
                         {% trans "Tag" %}: {{ tag }}
                     </a>
                 {% endif %}
                 {% if author %}
-                    {% with author=author.username %}
-                        <a href="{% url blog_author_detail author %}" title="{% trans 'View all entries by' %} {{ author }}" rel="bookmark">
-                            {% trans "Entries by" %} {{ author }}
-                        </a>
-                    {% endwith %}
+                    <a href="{% url blog_author_detail author.username %}" rel="author" title="{% trans 'View all entries by' %} {% if author.get_full_name %}{{ author.get_full_name }}{% else %}{{ author.username }}{% endif %}">
+                        {% trans "Entries by" %} {% if author.get_full_name %}{{ author.get_full_name }}{% else %}{{ author.username }}{% endif %}
+                    </a>
+                {% endif %}
+                {% if not category and not tag and not author %}
+                    {% trans "All entries" %}
                 {% endif %}
             </h2>
         </header>
-        <div class="entry-content">
+        <div class="entry-content listing">
             {% if category %}
                 {% if category.image %}
                     <p class="entry-image">
@@ -85,16 +109,48 @@
                     <p>{{ category.description|striptags|safe }}</p>
                 {% endif %}
             {% endif %}
-            <section>
-                {% for object in object_list %}
-                    {% with object_content=object.html_content|truncatewords_html:100|safe continue_reading=1 %}
-                        {% include "blog/_entry_detail.html" %}
-                    {% endwith %}
-                {% empty %}
-                    <p>{% trans "No entries yet." %}</p>
-                {% endfor %}
-            </section>
+            {% if author %}
+                <div class="authors">
+                    <div class="author-box">
+                        <img src="{% get_gravatar author.email 78 'G' %}" class="gravatar photo" alt="{{ author.user_name }}" width="78" height="78" />
+                        {% with author_description=author.get_profile.about %}
+                            {% if author_description %}
+                                <p>{{ author_description }}</p>
+                            {% else %}
+                                <p>{% trans "No author description yet." %}</p>
+                            {% endif %}
+                            {% with entry_count=author.entries_published.count %}
+                                <p class="entries-published">{% trans "Currently published entries:" %} <span>{{ entry_count }}</span></p>
+                            {% endwith %}
+                        {% endwith %}
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
+        {% for object in object_list %}
+            <aside>
+                <article id="post-{{ object.pk }}" class="post{% if forloop.last %} last{% endif %}">
+                    {% if object.excerpt %}
+                        {% with object_content=object.excerpt continue_reading=1 %}
+                            {% include "blog/_entry_detail.html" %}
+                        {% endwith %}
+                    {% else %}
+                        {% with object_content=object.html_content|truncatewords_html:100|safe continue_reading=0 %}
+                            {% include "blog/_entry_detail.html" %}
+                        {% endwith %}
+                    {% endif %}
+                </article>
+            </aside>
+        {% empty %}
+            <aside>
+                <article class="post">
+                    <div class="entry-content">
+                        <p>{% trans "No entries yet." %}</p>
+                    </div>
+                </article>
+            </aside>
+        {% endfor %}
     </article>
     {% if is_paginated %}
         {% blog_pagination page_obj %}

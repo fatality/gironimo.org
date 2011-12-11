@@ -41,9 +41,9 @@
                                 <p class="entries-published">{% trans "Currently published entries:" %} <span>{{ entry_count }}</span></p>
                             {% endwith %}
                         {% endwith %}
+                        <div class="clear"></div>
                         <h4>{% trans "Random entries" %}</h4>
                         {% get_random_author_entries object.username '3' %}
-                        <div class="clear"></div>
                     </div>
                 {% endfor %}
             </div>

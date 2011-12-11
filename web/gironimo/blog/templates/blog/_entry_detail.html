@@ -56,13 +56,15 @@
             </a>
         </p>
     {% endif %}
-    {{ object.content|safe }}
     {% if continue_reading %}
+        <p>{{ object_content|safe }}</p>
         <p class="continue-reading">
             <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
                 {% trans "Continue reading" %}
             </a>
         </p>
+    {% else %}
+        {{ object_content|safe }}
     {% endif %}
 </div>
 <footer class="entry-footer">
