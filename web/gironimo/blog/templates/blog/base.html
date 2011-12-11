@@ -1,12 +1,8 @@
 {% extends "base.html" %}
 {% load i18n blog_tags %}
 
-{% block title %}
-    {% trans "Blog" %} | {{ block.super }}
-{% endblock %}
-
 {% block breadcrumbs %}
-    <a href="{% url index %}" title="{% trans 'Go to Homepage' %}">&raquo; Blog</a>
+    <a href="{% url blog_entry_archive_index %}" title="{% trans 'Go to Homepage' %}">&raquo; Blog</a>
 {% endblock %}
 
 {% block sidebar %}

@@ -22,6 +22,7 @@ css = Bundle(
     'lib/css/paginator.css',
     'lib/css/content.css',
     'lib/css/forms.css',
+    'lib/css/slider.css',
     output='lib/css/_packed.css',
 )
 register('css_base', css)

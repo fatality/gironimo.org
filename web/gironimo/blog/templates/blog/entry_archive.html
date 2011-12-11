@@ -2,11 +2,7 @@
 {% load i18n blog_tags %}
 
 {% block description %}
-    {% trans "Latest entries" %}
-{% endblock %}
-
-{% block title %}
-    {% trans "Latest entries" %} - {{ block.super }}
+    {% trans "Latest entries on" %} {{ site_name }}
 {% endblock %}
 
 {% block extrahead %}
@@ -28,6 +24,20 @@
 {% endblock %}
 
 {% block content %}
-    {% get_featured_entries 5 "blog/tags/slider_entries.html" %}
-    {{ block.super }}
+    {% get_featured_entries 3 "blog/tags/slider_entries.html" %}
+    {% for object in object_list %}
+        <article id="post-{{ object.pk }}" class="post{% if forloop.last %} last{% endif %}">
+            {% if object.excerpt %}
+                {% with object_content=object.excerpt continue_reading=1 %}
+                    {% include "blog/_entry_detail.html" %}
+                {% endwith %}
+            {% else %}
+                {% with object_content=object.html_content|truncatewords_html:100|safe continue_reading=0 %}
+                    {% include "blog/_entry_detail.html" %}
+                {% endwith %}
+            {% endif %}
+        </article>
+    {% empty %}
+        <p>{% trans "No entries yet." %}
+    {% endfor %}
 {% endblock %}
