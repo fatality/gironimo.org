@@ -55,20 +55,20 @@ class GironimoCalendar(HTMLCalendar):
                  '<td colspan="3" class="next">%s</td>' \
                  '</tr></tfoot>'
         if previous_month:
-            previous_content = '<a href="%s" class="previous-month">%s</a>' % (
+            previous_content = '<a href="%s" class="previous-month">&laquo; %s</a>' % (
                 reverse('blog_entry_archive_month', args=[
                     previous_month.strftime('%Y'),
                     previous_month.strftime('%m')]),
-                date_format(previous_month, 'YEAR_MONTH_FORMAT'))
+                date_format(previous_month, 'SHORT_YEAR_MONTH_FORMAT'))
         else:
             previous_content = '&nbsp;'
         
         if next_month:
-            next_content = '<a href="%s" class="next-month">%s</a>' % (
+            next_content = '<a href="%s" class="next-month">%s &raquo;</a>' % (
                 reverse('blog_entry_archive_month', args=[
                     next_month.strftime('%Y'),
                     next_month.strftime('%m')]),
-                date_format(next_month, 'YEAR_MONTH_FORMAT'))
+                date_format(next_month, 'SHORT_YEAR_MONTH_FORMAT'))
         else:
             next_content = '&nbsp;'
         

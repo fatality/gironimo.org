@@ -157,6 +157,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_resizing': True
 }
 
+SHORT_YEAR_MONTH_FORMAT = 'M Y'
+
 try:
     from local_settings import *
 except ImportError:
