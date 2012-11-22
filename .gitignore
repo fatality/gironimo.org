@@ -13,3 +13,7 @@ demo.db*
 sqlite.db
 local_settings.py
 htdocs/
+wp-config.php
+wp-config-sample.php
+wp-content/media/*
+wp-content/plugins/*
