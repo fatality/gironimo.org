@@ -17,3 +17,5 @@ wp-config.php
 wp-config-sample.php
 wp-content/media/*
 wp-content/plugins/*
+.htaccess
+.directory
