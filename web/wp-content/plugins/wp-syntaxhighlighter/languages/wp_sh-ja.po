@@ -1,0 +1,757 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP SyntaxHighlighter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-14 11:25+0900\n"
+"PO-Revision-Date: 2012-02-08 06:34+0900\n"
+"Last-Translator: redcocker <masa153@gmail.com>\n"
+"Language-Team: redcocker\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+# description
+msgid "This plugin is code syntax highlighter based on <a href=\"http://alexgorbatchev.com/SyntaxHighlighter/\">SyntaxHighlighter</a> ver. 3.0.83 and ver. 2.1.382. Supported languages: Bash, C++, CSS, Delphi, Java, JavaScript, Perl, PHP, Python, Ruby, SQL, VB, XML, XHTML and HTML etc."
+msgstr "「WP SyntaxHighlighter」は、ソースコードをハイライト表示させるためのプラグインです。Bash、C++、CSS、Delphi、Java、JavaScript、Perl、PHP、Python、Ruby、SQL、VB、XML、XHTML、HTMLを始めとする多数の開発言語、スクリプト、マークアップ言語をサポートしています。このプラグインは、Javaスクリプトライブラリの<a href=\"http://alexgorbatchev.com/SyntaxHighlighter/\">SyntaxHighlighter</a> バージョン3.0.83　および バージョン2.1.382を使用しています。"
+
+#: ../sh-pre-quicktag.php:93
+msgid "SH pre button"
+msgstr "SH pre ボタン"
+
+#: ../sh-pre-quicktag.php:98
+msgid "OK"
+msgstr "実行"
+
+#: ../sh-pre-quicktag.php:117
+msgid "CANCEL"
+msgstr "キャンセル"
+
+#: ../sh-pre-quicktag.php:128
+#: ../sh-pre-quicktag.php:140
+msgid "SH pre"
+msgstr "SH pre"
+
+#: ../sh-pre-quicktag.php:131
+msgid "For WP SyntaxHighlighter"
+msgstr "WP SyntaxHighlighter用"
+
+#: ../sh-pre-quicktag.php:145
+msgid "Language"
+msgstr "言語"
+
+#: ../sh-pre-quicktag.php:161
+msgid "Show Line Number"
+msgstr "行番号を表示"
+
+#: ../wp-syntaxhighlighter-admin.php:50
+msgid "WP SyntaxHighlighter has successfully created new DB table.<br />If you upgraded to this version, some new setting options may be added.<br />Go to the <a href=\"options-general.php?page=wp-syntaxhighlighter-options\">setting panel</a> and configure WP SyntaxHighlighter now. Once you save your settings, this message will be cleared."
+msgstr "WP SyntaxHighlighterは、新しいデータベーステーブルの作成に成功しました。<br />以前のバージョンからアップデートした場合は、新しい設定オプションが追加されているかもしれません、<br /><a href=\"options-general.php?page=wp-syntaxhighlighter-options\">設定画面</a>で、WP SyntaxHighlighterの設定を行って下さい。一度、設定を保存すれば、このメッセージは消えます。"
+
+#: ../wp-syntaxhighlighter-admin.php:55
+msgid "All setting data has migrated successfully.<br />If you upgraded from ver. 1.3 or older to this version, a part of setting parameters may be reset to the default values.<br />Go to the <a href=\"options-general.php?page=wp-syntaxhighlighter-options\">setting panel</a> and check your setting parameters. Once you save your settings, this message will be cleared."
+msgstr "設定データの移行に成功しました。<br />1.3以前バージョンからアップデートした場合は、設定の一部がリセットされているかもしれません、<br /><a href=\"options-general.php?page=wp-syntaxhighlighter-options\">設定画面</a>で、設定を確認して下さい。一度、設定を保存すれば、このメッセージは消えます。"
+
+#: ../wp-syntaxhighlighter-admin.php:84
+msgid "Invalid value. Settings could not be saved.<br />Your \"Line number(Gutter)\" must be entered in numbers."
+msgstr "不正な値です。設定を保存できませんでした。<br />「行の開始番号」の設定値は、半角数字のみで入力して下さい。"
+
+#: ../wp-syntaxhighlighter-admin.php:87
+msgid "Invalid value. Settings could not be saved.<br />Your \"Tab size\" must be entered in numbers."
+msgstr "不正な値です。設定を保存できませんでした。<br />「タブのサイズ」の設定値は、半角数字のみで入力して下さい。"
+
+#: ../wp-syntaxhighlighter-admin.php:90
+msgid "Invalid value. Settings could not be saved.<br />Your \"Class attribute\" contains \" or ' that are not allowed to use."
+msgstr "不正な値です。設定を保存できませんでした。<br />「コードブロックのClass属性値」の設定値に、使用が許可されていない「\"」または「'」が含まれています。"
+
+#: ../wp-syntaxhighlighter-admin.php:93
+msgid "Invalid value. Settings could not be saved.<br />Your \"Stylesheet\" contains some character strings that are not allowed to use."
+msgstr "不正な値です。設定を保存できませんでした。<br />「スタイルシート」の設定値に、使用が許可されていない文字列が含まれています。"
+
+#: ../wp-syntaxhighlighter-admin.php:98
+msgid "Invalid value. Settings could not be saved.<br />Your \"Description\" for \"Comment Highlighter Button\" contains some character strings that are not allowed to use."
+msgstr "不正な値です。設定を保存できませんでした。<br />「Comment Highlighter ボタンの設定」の「説明文」の設定値に、使用が許可されていない文字列が含まれています。"
+
+#: ../wp-syntaxhighlighter-admin.php:103
+msgid "Invalid value. Settings could not be saved.<br />Your \"Stylesheet\" for \"Comment Highlighter Button\" contains some character strings that are not allowed to use."
+msgstr "不正な値です。設定を保存できませんでした。<br />「Comment Highlighter ボタンの設定」の「スタイルシート」の設定値に、使用が許可されていない文字列が含まれています。"
+
+#: ../wp-syntaxhighlighter-admin.php:108
+msgid "Invalid value. Settings could not be saved.<br />Your \"Description\" for \"bbpress Highlighter Button\" contains some character strings that are not allowed to use."
+msgstr "不正な値です。設定を保存できませんでした。<br />「bbpress Highlighter ボタンの設定」の「説明文」の設定値に、使用が許可されていない文字列が含まれています。"
+
+#: ../wp-syntaxhighlighter-admin.php:113
+msgid "Invalid value. Settings could not be saved.<br />Your \"Stylesheet\" for \"bbPress Highlighter Button\" contains some character strings that are not allowed to use."
+msgstr "不正な値です。設定を保存できませんでした。<br />「bbPress Highlighter ボタンの設定」の「スタイルシート」の設定値に、使用が許可されていない文字列が含まれています。"
+
+#: ../wp-syntaxhighlighter-admin.php:150
+msgid "Settings saved."
+msgstr "設定を保存しました。"
+
+#: ../wp-syntaxhighlighter-admin.php:208
+msgid "All settings were reset. Please <a href=\"options-general.php?page=wp-syntaxhighlighter-options\">reload the page</a>."
+msgstr "設定はリセットされました。 <a href=\"options-general.php?page=wp-syntaxhighlighter-options\">ページの再読込み</a>を実行して下さい。"
+
+#: ../wp-syntaxhighlighter-admin.php:215
+msgid "Cheatin&#8217; uh?"
+msgstr "間違えましたか？"
+
+#: ../wp-syntaxhighlighter-admin.php:237
+msgid "1. Basic Settings"
+msgstr "１．基本設定"
+
+#: ../wp-syntaxhighlighter-admin.php:243
+msgid "Higlight your code in"
+msgstr "ハイライト表示するページ"
+
+#: ../wp-syntaxhighlighter-admin.php:245
+msgid "Home"
+msgstr "ホーム"
+
+#: ../wp-syntaxhighlighter-admin.php:245
+msgid "Posts & Pages"
+msgstr "投稿と固定ページ"
+
+#: ../wp-syntaxhighlighter-admin.php:245
+msgid "Categories"
+msgstr "カテゴリー"
+
+#: ../wp-syntaxhighlighter-admin.php:245
+msgid "Archives"
+msgstr "アーカイブ"
+
+#: ../wp-syntaxhighlighter-admin.php:245
+msgid "Search result"
+msgstr "検索結果"
+
+#: ../wp-syntaxhighlighter-admin.php:245
+msgid "Comments"
+msgstr "コメント"
+
+#: ../wp-syntaxhighlighter-admin.php:245
+msgid "Others"
+msgstr "その他のページ"
+
+#: ../wp-syntaxhighlighter-admin.php:246
+msgid "Highlighting your code in the 'Categories', 'Archives' or 'Search result' depends on your using theme.<br />Sometimes you may only have to enable 'Home' and 'Posts & Pages'.<br />Note: To enable 'Comments' means you allow visitors to post their source code as comments."
+msgstr "カテゴリー、アーカイブ、検索結果上のコードがハイライト表示出来るかは、使っているテーマの種類によって決まります。<br />場合によっては、「ホーム」と「投稿と固定ページ」だけを有効化するだけで良いかもしれません。<br />注意: 「コメント」を有効にすると、ブログの訪問者もコメントとしてソースコードの投稿が可能になります。"
+
+#: ../wp-syntaxhighlighter-admin.php:250
+msgid "Widget"
+msgstr "ウィジェット"
+
+#: ../wp-syntaxhighlighter-admin.php:252
+msgid "Use WP SyntaxHighlighter Widget"
+msgstr "WP SyntaxHighlighter Widgetを使う"
+
+#: ../wp-syntaxhighlighter-admin.php:253
+msgid "'WP SyntaxHighlighter Widget' is the widget to show highlighted code.<br />Go to 'Widgets' section under 'Appearance' menu to add the 'WP SyntaxHighlighter Widget' in your sidebar."
+msgstr "「WP SyntaxHighlighter Widget」は、強調表示されたコードを表示するためのウィジェットです。<br />ダッシュボードの「外観」→「ウィジェット」で「WP SyntaxHighlighter Widget」をサイドバーに登録して下さい。"
+
+#: ../wp-syntaxhighlighter-admin.php:257
+msgid "bbPress"
+msgstr "bbPress"
+
+#: ../wp-syntaxhighlighter-admin.php:259
+msgid "Highlight codes in bbPress"
+msgstr "bbPress上のコードを強調表示する"
+
+#: ../wp-syntaxhighlighter-admin.php:260
+msgid "This plugin can highlight topics/replies with codes in bbPress.<br />Remenber to configure '<a href=\"#bbpress_highlight\">5. bbPress Highlighter Button Settings</a>'.<br />Before this option is enabled, you must install and activate '<a href=\"http://wordpress.org/extend/plugins/bbpress/\">bbPress</a>' plugin."
+msgstr "このプラグインは、bbPressのトピック/リプライ内のコードを強調表示できます。<br />「<a href=\"#bbpress_highlight\">５．bbPress Highlighter ボタンの設定</a>」の設定を忘れずに！<br />このオプションを有効化する前に、プラグイン「<a href=\"http://wordpress.org/extend/plugins/bbpress/\">bbPress</a>」をインストールし、有効化して下さい。"
+
+#: ../wp-syntaxhighlighter-admin.php:264
+msgid "Library version"
+msgstr "使用するライブラリ"
+
+#: ../wp-syntaxhighlighter-admin.php:270
+msgid "Choose 'Syntax Highlighter' JavaScript library version.<br />In ver. 2.1, 'autoloader' will be disabled and <a href=\"#loaded_languages\">pre-selected language definition files</a> will be loaded at once."
+msgstr "「Syntax Highlighter」ライブラリのバージョンを選択します。<br />バージョン 2.1では、言語定義ファイルの動的な読み込みは行われず、「<a href=\"#loaded_languages\">選択された言語定義ファイル</a>」を一度に読み込みます。"
+
+#: ../wp-syntaxhighlighter-admin.php:274
+msgid "Theme"
+msgstr "テーマ"
+
+#: ../wp-syntaxhighlighter-admin.php:285
+#: ../wp-syntaxhighlighter-admin.php:359
+msgid "None"
+msgstr "なし"
+
+#: ../wp-syntaxhighlighter-admin.php:286
+msgid "Random"
+msgstr "ランダム"
+
+#: ../wp-syntaxhighlighter-admin.php:288
+msgid "Themes for the highlighted elements. 'MDUltra' is not available for ver. 2.1.<br />If you choose 'MDUltra' in ver. 2.1, Theme will be replaced with 'Defaut' theme.<br />When 'Random' is selected, this plugin will apply different theme on each page."
+msgstr "ハイライトされたコードのためのテーマ。バージョン2.1を選択している場合、「MDUltra」は使用できません。<br />バージョン2,1で「MDUltra」を選択した場合は、デフォルトのテーマに自動的に切り替わります。<br />「ランダム」を選択すると、ページ毎に異なるテーマが適用されます。"
+
+#: ../wp-syntaxhighlighter-admin.php:292
+msgid "Auto links"
+msgstr "オート リンク"
+
+#: ../wp-syntaxhighlighter-admin.php:295
+msgid "URL in the highlighted element will be linked by default."
+msgstr "ハイライト表示されたコード内にURLがあれば、URLを自動的にリンクにします。"
+
+#: ../wp-syntaxhighlighter-admin.php:299
+msgid "Quick code copy"
+msgstr "クイックコピー"
+
+#: ../wp-syntaxhighlighter-admin.php:302
+msgid "Only for ver. 3.0. 'Quick code copy' makes easy to copy the code on the codeblock to clipboard.<br />If visitors double click anywhere on the codeblock, the entire code view will be replaced with a pre-selected view."
+msgstr "バージョン3.0選択時に有効なオプション。ソースコードのクリップボードへのコピーを簡単にします。<br />コードブロックをダブルクリックすると、コードが選択された状態の「クイックコピーモード」に切り替わります。"
+
+#: ../wp-syntaxhighlighter-admin.php:306
+msgid "Title"
+msgstr "タイトル"
+
+#: ../wp-syntaxhighlighter-admin.php:309
+msgid "Only for ver. 3.0. This option will allow you to place Title above each code blocks or in each collapsed code blocks."
+msgstr "バージョン3.0選択時に有効なオプション。コードブロックにタイトルを追加します。"
+
+#: ../wp-syntaxhighlighter-admin.php:313
+msgid "Class attribute"
+msgstr "コードブロックのClass属性値"
+
+#: ../wp-syntaxhighlighter-admin.php:316
+msgid "Enter space-separated class attribute values for code block. You can use them with addtional stylesheet.<br />TIP: To enter \"notranslate\" will stop translating your code with \"Google Translate\"."
+msgstr "コードブロックに適応するClass属性値をスペース区切りで入力します。属性値は、追加のスタイルシートで利用出来ます。<br />「notranslate」と入力する事で、コードブロックを「Google翻訳」の翻訳対象から除外できます。"
+
+#: ../wp-syntaxhighlighter-admin.php:320
+#: ../wp-syntaxhighlighter-admin.php:526
+#: ../wp-syntaxhighlighter-admin.php:614
+msgid "Stylesheet"
+msgstr "スタイルシート"
+
+#: ../wp-syntaxhighlighter-admin.php:322
+#: ../wp-syntaxhighlighter-admin.php:528
+#: ../wp-syntaxhighlighter-admin.php:616
+msgid "Use additional CSS"
+msgstr "CSSを追加する"
+
+#: ../wp-syntaxhighlighter-admin.php:324
+msgid "Define additional CSS for code block. The defined CSS will be inserted into <code>&lt;head&gt;</code> section.<br />You can also use the class attribute defined by 'Class attribute' option."
+msgstr "コードブロックのレイアウトのためのCSSを設定します。設定したCSSは、<code>&lt;head&gt;</code>部分に追加されます。<br />「コードブロックのClass属性値」で定義したclass属性値を使用する事も出来ます。"
+
+#: ../wp-syntaxhighlighter-admin.php:328
+msgid "Collapse"
+msgstr "折り畳み"
+
+#: ../wp-syntaxhighlighter-admin.php:331
+msgid "The code box will be collapsed by default. If you want to use this option, 'Toolbar' option must be enabled.<br />After this option is enabled, 'Toolbar' option will be enabled automatically."
+msgstr "コードを折り畳んで表示します。クリックすると展開されます。このオプションを有効にする場合は、必ず「ツールバー」も有効にして下さい。<br />このオプションを有効にすると自動的に「ツールバー」も有効になります。"
+
+#: ../wp-syntaxhighlighter-admin.php:335
+msgid "Label for collapsed code block"
+msgstr "折り畳み時のラベル"
+
+#: ../wp-syntaxhighlighter-admin.php:338
+msgid "Enter text label for collapsed code block. If you use this option in ver. 3.0, 'Title' must be empty."
+msgstr "折り畳まれたコードブロックに表示するテキストを入力します。バージョン3.0選択時には、「タイトル」を空にして下さい。"
+
+#: ../wp-syntaxhighlighter-admin.php:342
+msgid "Line number(Gutter)"
+msgstr "行番号"
+
+#: ../wp-syntaxhighlighter-admin.php:345
+msgid "Line number(Gutter) will be shown by default."
+msgstr "行番号を表示します。"
+
+#: ../wp-syntaxhighlighter-admin.php:349
+msgid "Starting line number"
+msgstr "行の開始番号"
+
+#: ../wp-syntaxhighlighter-admin.php:352
+msgid "Enter starting line number for the line numbering(Gutter)."
+msgstr "行番号の開始番号を半角数字で入力します。"
+
+#: ../wp-syntaxhighlighter-admin.php:356
+msgid "Line Number Padding"
+msgstr "行番号の先頭に0を追加"
+
+#: ../wp-syntaxhighlighter-admin.php:360
+msgid "Auto"
+msgstr "自動"
+
+#: ../wp-syntaxhighlighter-admin.php:367
+msgid "This option will allow you to pad line numbers with leading zeros."
+msgstr "行番号の先頭に0を追加します。"
+
+#: ../wp-syntaxhighlighter-admin.php:371
+msgid "Smart tabs"
+msgstr "スマートタブ"
+
+#: ../wp-syntaxhighlighter-admin.php:374
+msgid "Indent by 'tab' will be optimized by default."
+msgstr "タブによるインデントを最適化します。"
+
+#: ../wp-syntaxhighlighter-admin.php:378
+msgid "Tab size"
+msgstr "タブのサイズ"
+
+#: ../wp-syntaxhighlighter-admin.php:381
+msgid "Tab size for 'Smart tabs' feature."
+msgstr "スマートタブ機能のためのインデント幅を半角数字で入力します。"
+
+#: ../wp-syntaxhighlighter-admin.php:385
+msgid "Toolbar"
+msgstr "ツールバー"
+
+#: ../wp-syntaxhighlighter-admin.php:388
+msgid "Toolbar will be shown by default."
+msgstr "ツールバーを表示します。"
+
+#: ../wp-syntaxhighlighter-admin.php:392
+msgid "Wrap lines"
+msgstr "改行する"
+
+#: ../wp-syntaxhighlighter-admin.php:395
+msgid "Only for ver. 2.1. Long lines will be wrapped automatically by default."
+msgstr "バージョン2.1選択時に有効なオプション。長い行を自動的に改行します。"
+
+#: ../wp-syntaxhighlighter-admin.php:399
+msgid "Legacy mode"
+msgstr "Ver.1.5との互換性"
+
+#: ../wp-syntaxhighlighter-admin.php:402
+msgid "Support <a href=\"http://code.google.com/p/syntaxhighlighter/wiki/Usage\">old style <code>&lt;pre&gt;</code> tag</a> in SyntaxHighlighter ver. 1.5(Not mean WP SyntaxHighlighter ver. 1.5).<br />After this option is enabled, <a href=\"#loaded_languages\">pre-selected brush files</a> will be loaded at once."
+msgstr "SyntaxHighlighterバージョン1.5（ WP SyntaxHighlighterではありません。）で使われていた<a href=\"http://code.google.com/p/syntaxhighlighter/wiki/Usage\">古い書式のタグ</a>をサポートします。<br />このモードでは、「<a href=\"#loaded_languages\">選択された言語定義ファイル</a>」を一度に読み込みます。"
+
+#: ../wp-syntaxhighlighter-admin.php:406
+msgid "CSS for <code>&lt;pre&gt;</code> tag"
+msgstr "<code>&lt;pre&gt;</code>タグのためのCSS"
+
+#: ../wp-syntaxhighlighter-admin.php:409
+msgid "If it is some time before your code highlighted, Unbeautiful code block will appear for a while.<br />This CSS will define its visual layout. Your code block may look some more good."
+msgstr "ハイライト表示されるまでにタイムラグあるなら、レイアウトされていないコードが暫く表示されたままになります。<br />このCSSは、ハイライト表示前のコードのレイアウトを整えますので、少しは、見栄えが良くなるかもしれません。"
+
+#: ../wp-syntaxhighlighter-admin.php:413
+msgid "2. Visual Editor Settings"
+msgstr "２．ビジュアルエディターの設定"
+
+#: ../wp-syntaxhighlighter-admin.php:417
+msgid "Add TinyMCE Button"
+msgstr "TinyMCE ボタンを追加"
+
+#: ../wp-syntaxhighlighter-admin.php:420
+msgid "Enable/Disable TinyMCE Buttons. They can help you to type <code>&lt;pre&gt;</code> tag in 'Visual Editor'.<br />'Select &amp; Insert' will help you to wrap your code on the post or page in <code>&lt;pre&gt;</code> tag or to update values of previously-markuped code.<br />'CodeBox' will allow you to paste your code into the post or page and wrap in <code>&lt;pre&gt;</code> tag automatically, keeping indent by tabs.<br/ >In 'Visual Editor', 'Select &amp; Insert' will appear as 'pre' icon and 'CodeBox' will appear as 'CODE' icon."
+msgstr "有効化するとビジュアルエディター上に「<code>&lt;pre&gt;</code>」タグの入力するためのボタンが追加されます。<br />「Select &amp; Insert」ボタンを使えば、記事上に記述されたソースコードを「<code>&lt;pre&gt;</code>」タグでマークアップ出来ます。<br />また、マークアップ済みのソースコードの言語やオプションを変更することも可能です。<br />インデントを維持したまま、記事にソースコードをペーストしたい場合は、「CodeBox」ボタンが最適です。「<code>&lt;pre&gt;</code>」タグも自動的に挿入されます。<br />ビジュアルエディターでは、「Select &amp; Insert」ボタンは、「pre」アイコン、「CodeBox」ボタンは、「CODE」アイコンとして表示されます。"
+
+#: ../wp-syntaxhighlighter-admin.php:424
+msgid "Window size"
+msgstr "ウィンドウサイズ"
+
+#: ../wp-syntaxhighlighter-admin.php:431
+msgid "Choose size of pop-up window at the click of buttons."
+msgstr "ボタンをクリックした時に表示されるポップアップウィンドウのサイズを選択します。"
+
+#: ../wp-syntaxhighlighter-admin.php:435
+msgid "Place the buttons in"
+msgstr "ボタンをツールバーの"
+
+#: ../wp-syntaxhighlighter-admin.php:438
+msgid "1st row"
+msgstr "1行目"
+
+#: ../wp-syntaxhighlighter-admin.php:439
+msgid "2nd row"
+msgstr "2行目"
+
+#: ../wp-syntaxhighlighter-admin.php:440
+msgid "3rd row"
+msgstr "3行目"
+
+#: ../wp-syntaxhighlighter-admin.php:441
+msgid "4th row"
+msgstr "4行目"
+
+#: ../wp-syntaxhighlighter-admin.php:442
+msgid "of TinyMCE toolbar."
+msgstr "に表示。"
+
+#: ../wp-syntaxhighlighter-admin.php:443
+msgid "Choose TinyMCE toolbar row which buttons will be placed in."
+msgstr "ボタンをTinyMCEのツールバーの何行目に表示するか選択します。"
+
+#: ../wp-syntaxhighlighter-admin.php:448
+msgid "3. HTML Editor Settings"
+msgstr "３．HTMLエディターの設定"
+
+#: ../wp-syntaxhighlighter-admin.php:452
+#: ../wp-syntaxhighlighter-admin.php:540
+msgid "Add Quicktag Button"
+msgstr "Quicktagボタンを追加"
+
+#: ../wp-syntaxhighlighter-admin.php:455
+msgid "Enable/Disable Quicktag, 'SH pre' button. It can help you to type <code>&lt;pre&gt;</code> tag in 'HTML Editor'.<br />'SH pre' button makes easy to escape your code to HTML entities and wrap it in <code>&lt;pre&gt;</code> tag."
+msgstr "有効化するとHTMLエディター上に「<code>&lt;pre&gt;</code>」タグの入力するための「SH pre」ボタンが追加されます。<br />「SH pre」ボタンを使えば、簡単にソースコードをエスケープし、「<code>&lt;pre&gt;</code>」タグでマークアップ出来ます。"
+
+#: ../wp-syntaxhighlighter-admin.php:459
+#: ../wp-syntaxhighlighter-admin.php:547
+msgid "Load jQuery and jQuery UI"
+msgstr "jQueryとjQuery UIを読み込む"
+
+#: ../wp-syntaxhighlighter-admin.php:462
+msgid "When 'SH pre' or other buttons on the editor don't pop up a dialog box, try to enable/disable this option.<br />If you use WordPress 3.0.6 or older, you should enable this option usually.<br />After this option is enabled, jQuery and jQuery UI will be loaded on the editor."
+msgstr "「SH pre」ボタン、または、エディター上のその他のボタンがポップアップしない時は、このオプションを試して下さい。<br />WordPress 3.0.6以前のバージョンを使用している場合は、通常、このオプションを有効にします。<br />有効にすると、エディター上で jQueryとjQuery UIが読み込まれます。"
+
+#: ../wp-syntaxhighlighter-admin.php:466
+#: ../wp-syntaxhighlighter-admin.php:506
+#: ../wp-syntaxhighlighter-admin.php:566
+#: ../wp-syntaxhighlighter-admin.php:592
+msgid "Support shortcode"
+msgstr "ショートコードをサポート"
+
+#: ../wp-syntaxhighlighter-admin.php:469
+msgid "This plugin will allow to use <a href=\"http://en.support.wordpress.com/code/posting-source-code/\">shortcode</a> in HTML editor for highlighting codes.<br />If 'Support shortcode' in '7. bbPress Settings' is enabled, this option will also be enabled automatically."
+msgstr "コードの強調表示のために<a href=\"http://en.support.wordpress.com/code/posting-source-code/\">ショートコード</a>の使用が許されます。<br />「７．bbPressの設定」の「ショートコードをサポート」を有効化した場合は、このオプションも自動的に有効化されます。"
+
+#: ../wp-syntaxhighlighter-admin.php:474
+msgid "4. Common Settings for Editor"
+msgstr "４．エディターの共通設定"
+
+#: ../wp-syntaxhighlighter-admin.php:478
+msgid "Allow users to post codes"
+msgstr "ソースコードの投稿許可"
+
+#: ../wp-syntaxhighlighter-admin.php:480
+msgid "Allow users without unfiltered_htm capability to post a post with codes"
+msgstr "「unfiltered_htm」権限を持たないユーザーによるソースコード付きの投稿を許可する"
+
+#: ../wp-syntaxhighlighter-admin.php:481
+msgid "After you enable this option, users without <a href=\"http://codex.wordpress.org/Roles_and_Capabilities\">unfiltered_html</a> capability can edit a post with codes in the editor.<br />Not all users can edit a post with codes, Allowed users are limited to users that can edit a post originally. e.g. Author and Contributor.<br />If you enable 'Highlight codes in bbPress' option, this option will be ignored and enabled virtually.<br />This plugin will also allow users that can edit a topic/reply in the editor to edit a topic/reply with codes automatically.<br />So, 'Forum Moderator' and 'Forum Participant' also can edit a topic/reply with codes in the editor within their capabilities."
+msgstr "このオプションを有効化すると、「<a href=\"http://codex.wordpress.org/Roles_and_Capabilities\">unfiltered_html</a>」権限を持たないユーザーも、エディターからソースコード付きの投稿が出来るようになります。<br />すべてのユーザーが出来るわけではありません。元々、投稿の編集が許されているユーザー限られます。例：投稿者、寄稿者。<br />ただし、「bbPress上のコードを強調表示する 」が有効になっている場合は、このオプションは無視され、実質的に有効な状態になります。<br />トピックやリプライを編集する権限を持つユーザーも、自動的に、エディターからソースコード付きのトピックやリプライの投稿が出来るようになります。<br />つまり、「Forum Moderator」や「Forum Participant」も、権限の範囲でエディターからソースコード付きのトピックやリプライを投稿することが出来ます。"
+
+#: ../wp-syntaxhighlighter-admin.php:486
+msgid "5. Comment Form Settings"
+msgstr "５．コメント欄の設定"
+
+#: ../wp-syntaxhighlighter-admin.php:491
+msgid "Add Comment HL Button"
+msgstr "Comment HL ボタンの追加"
+
+#: ../wp-syntaxhighlighter-admin.php:494
+msgid "'Comment Highlighter buttons' helps visitors to post a comment with their sourcecodes and highlight them.<br />Visitors can wrap their sourcecode in <code>&lt;pre&gt;</code> tag or shortcode easily.<br />Before you use 'Comment Highlighter buttons', you must enable 'comments' in 'Higlight your code in' option.<br />After this option is enabled, 'comments' will be enabled automatically."
+msgstr "「Comment Highlightボタン」は、サイトの訪問者がソースコードをコメントとして投稿し、強調表示する手助けになります。<br />訪問者は、簡単にソースコードを<code>&lt;pre&gt;</code>タグまたはショートコードでマークアップ出来ます。<br />「Comment Highlight ボタン」を使う前に、「ハイライト表示するページ」で「コメント」を有効にして下さい。<br />このオプションを有効にすると、自動的に「コメント」も有効になります。"
+
+#: ../wp-syntaxhighlighter-admin.php:498
+#: ../wp-syntaxhighlighter-admin.php:559
+#: ../wp-syntaxhighlighter-admin.php:585
+msgid "Tag inserted by buttons"
+msgstr "ボタンが挿入するタグ"
+
+#: ../wp-syntaxhighlighter-admin.php:500
+#: ../wp-syntaxhighlighter-admin.php:561
+#: ../wp-syntaxhighlighter-admin.php:587
+msgid "&lt;pre&gt; tag"
+msgstr "&lt;pre&gt;タグ"
+
+#: ../wp-syntaxhighlighter-admin.php:500
+#: ../wp-syntaxhighlighter-admin.php:561
+#: ../wp-syntaxhighlighter-admin.php:587
+msgid "Shortcode"
+msgstr "ショートコード"
+
+#: ../wp-syntaxhighlighter-admin.php:501
+#: ../wp-syntaxhighlighter-admin.php:588
+msgid "If <code>&lt;pre&gt;</code> tag is chosen, visitors can wrap their sourcecode in <code>&lt;pre&gt;</code> tag easily using buttons.<br />This plugin also allows to use <a href=\"http://en.support.wordpress.com/code/posting-source-code/\">shortcode</a> instead of <code>&lt;pre&gt;</code> tag."
+msgstr "<code>&lt;pre&gt;</code>タグを選択した場合、訪問者は、ボタンを使ってソースコードを簡単に<code>&lt;pre&gt;</code>タグでマークアップできます。<br />また、<code>&lt;pre&gt;</code>タグの代わりに<a href=\"http://en.support.wordpress.com/code/posting-source-code/\">ショートコード</a>を使うことも出来ます。"
+
+#: ../wp-syntaxhighlighter-admin.php:510
+#: ../wp-syntaxhighlighter-admin.php:595
+msgid "This plugin will allow to use <a href=\"http://en.support.wordpress.com/code/posting-source-code/\">shortcode</a> for highlighting codes.<br />After 'Shortcode' is chosen in 'Tag inserted by buttons' option, this option will be enabled automatically."
+msgstr "コードの強調表示のために<a href=\"http://en.support.wordpress.com/code/posting-source-code/\">ショートコード</a>の使用が許されます。<br />「ボタンが挿入するタグ」で「ショートコード」を選択した場合は、自動的に有効化されます。"
+
+#: ../wp-syntaxhighlighter-admin.php:512
+msgid "This plugin will allow to use <a href=\"http://en.support.wordpress.com/code/posting-source-code/\">shortcode</a> for highlighting codes.<br />Before you enable this option, you must enable 'comments' in 'Higlight your code in' option."
+msgstr "コードの強調表示のために<a href=\"http://en.support.wordpress.com/code/posting-source-code/\">ショートコード</a>の使用が許されます。<br />このオプションを有効にする前に、「ハイライト表示するページ」で「コメント」を有効にして下さい。"
+
+#: ../wp-syntaxhighlighter-admin.php:518
+#: ../wp-syntaxhighlighter-admin.php:606
+msgid "Description"
+msgstr "説明文"
+
+#: ../wp-syntaxhighlighter-admin.php:520
+#: ../wp-syntaxhighlighter-admin.php:608
+msgid "Add description"
+msgstr "説明文を追加"
+
+#: ../wp-syntaxhighlighter-admin.php:522
+msgid "Enter description that is shown before the comment form."
+msgstr "説明文を入力します。追加した説明文はコメント欄の前に表示されます。"
+
+#: ../wp-syntaxhighlighter-admin.php:530
+msgid "If it is needed, define additional stylesheet for the comment form."
+msgstr "もし必要ならば、コメント欄のためのスタイルシートを定義して下さい。"
+
+#: ../wp-syntaxhighlighter-admin.php:536
+msgid "6. Comment Editor Settings"
+msgstr "６．コメントエディターの設定"
+
+#: ../wp-syntaxhighlighter-admin.php:543
+msgid "Enable/Disable Quicktag, 'SH pre' button. It can help you to type <code>&lt;pre&gt;</code> tag in 'Comment Editor'.<br />'SH pre' button makes easy to escape your code to HTML entities and wrap it in <code>&lt;pre&gt;</code> tag.<br />Note: Only when 'comments' in 'Higlight your code in' option is enabled, It will be shown on 'Comment Editor' in the admin panel."
+msgstr "有効化すると管理画面のコメントエディター上に「<code>&lt;pre&gt;</code>」タグの入力するための「SH pre」ボタンが追加されます。<br />「SH pre」ボタンを使えば、簡単にソースコードをエスケープし、「<code>&lt;pre&gt;</code>」タグでマークアップ出来ます。<br />注意：「ハイライト表示するページ」で「コメント」が有効化されている場合にのみ、ボタンが表示されます。"
+
+#: ../wp-syntaxhighlighter-admin.php:550
+msgid "When 'SH pre' or other buttons on 'Comment Editor' don't pop up a dialog box, try to enable/disable this option.<br />If you use WordPress 3.2.1 or older, you should enable this option usually.<br />After this option is enabled, jQuery and jQuery UI will be loaded on 'Comment Editor'.<br />Note: Only when 'comments' in 'Higlight your code in' option is enabled, jQuery and jQuery UI will be loaded."
+msgstr "「SH pre」ボタン、または、エディター上のその他のボタンがポップアップしない時は、このオプションを試して下さい。<br />WordPress 3.2.1以前のバージョンを使用している場合は、通常、このオプションを有効にします。<br />有効にすると、エディター上で jQueryとjQuery UIが読み込まれます。<br />注意：「ハイライト表示するページ」で「コメント」が有効化されている場合にのみ、 jQueryとjQuery UIが読み込まれます。"
+
+#: ../wp-syntaxhighlighter-admin.php:555
+msgid "7. WP SyntaxHighlighter Widget Settings"
+msgstr "７．WP SyntaxHighlighter Widgetの設定"
+
+#: ../wp-syntaxhighlighter-admin.php:562
+msgid "If <code>&lt;pre&gt;</code> tag is chosen, By clicking buttons on the widget form, your sourcecode is wrapped in <code>&lt;pre&gt;</code> tag.<br />This plugin also allows to use <a href=\"http://en.support.wordpress.com/code/posting-source-code/\">shortcode</a> instead of <code>&lt;pre&gt;</code> tag."
+msgstr "<code>&lt;pre&gt;</code>タグを選択した場合、ウィジェットフォーム上のボタンをクリックすると、ソースコードは<code>&lt;pre&gt;</code>タグでマークアップされます。<br />また、<code>&lt;pre&gt;</code>タグの代わりに<a href=\"http://en.support.wordpress.com/code/posting-source-code/\">ショートコード</a>を使うことも出来ます。"
+
+#: ../wp-syntaxhighlighter-admin.php:569
+msgid "This plugin will allow to use <a href=\"http://en.support.wordpress.com/code/posting-source-code/\">shortcode</a> in WP SyntaxHighlighter Widget for highlighting codes.<br />After 'Shortcode' is chosen in 'Tag inserted by buttons' option, this option will be enabled automatically."
+msgstr "コードの強調表示のために<a href=\"http://en.support.wordpress.com/code/posting-source-code/\">ショートコード</a>の使用が許されます。<br />「ボタンが挿入するタグ」で「ショートコード」を選択した場合は、自動的に有効化されます。"
+
+#: ../wp-syntaxhighlighter-admin.php:574
+msgid "8. bbPress Settings"
+msgstr "８．bbPressの設定"
+
+#: ../wp-syntaxhighlighter-admin.php:578
+msgid "Add bbPress HL Button"
+msgstr "bbPress HL ボタンの追加"
+
+#: ../wp-syntaxhighlighter-admin.php:581
+msgid "'bbPress Highlighter buttons' helps visitors to post a topic or reply with their sourcecodes and highlight them in bbPress.<br />Visitors can wrap their sourcecode in <code>&lt;pre&gt;</code> tag or shortcode easily.<br />After this option is enabled, 'Highlight codes in bbPress' will be enabled automatically."
+msgstr "「bbPress Highlightボタン」は、サイトの訪問者がソースコードをトピックとして投稿し、強調表示する手助けになります。<br />訪問者は、簡単にソースコードを<code>&lt;pre&gt;</code>タグまたはショートコードでマークアップ出来ます。<br />このオプションを有効化すると、自動的に「bbPress上のコードを強調表示する」も有効になります。"
+
+#: ../wp-syntaxhighlighter-admin.php:599
+msgid "Anonymous users"
+msgstr "匿名のユーザー"
+
+#: ../wp-syntaxhighlighter-admin.php:601
+msgid "Allow guest users to post a topic/reply with codes"
+msgstr "ゲストユーザーによるソースコードの付きのトピック／リプライの投稿を許可する"
+
+#: ../wp-syntaxhighlighter-admin.php:602
+msgid "Allow guest users without accounts to post a topic/reply with codes.<br />Before you enable this option, you must enable 'Allow Anonymous Posting' in the bbPress setting panel."
+msgstr "ログインしていないゲストユーザーによるソースコード付きのトピックやリプライの投稿が許可されます。<br />このオプションを有効にする前に、bbPressの設定画面で「Allow Anonymous Posting」を有効にする必要があります。"
+
+#: ../wp-syntaxhighlighter-admin.php:610
+msgid "Enter description that is shown before the post form."
+msgstr "説明文を入力します。追加した説明文は投稿フォームの前に表示されます。"
+
+#: ../wp-syntaxhighlighter-admin.php:618
+msgid "If it is needed, define additional stylesheet for bbPress."
+msgstr "もし必要ならば、bbPressのためのスタイルシートを定義して下さい。"
+
+#: ../wp-syntaxhighlighter-admin.php:624
+msgid "9. Default Languages Settings"
+msgstr "９．デフォルトの言語"
+
+#: ../wp-syntaxhighlighter-admin.php:635
+msgid "Define pre-loaded or dynamic-autoloaded languages by default.<br />You should disable unused languages to prevent inserting unnecessary elements into your posts or pages."
+msgstr "デフォルトで読み込まれる言語定義ファイルの設定。<br />使わない言語を無効化することで、ソースに挿入される無駄なタグなどの記述も減ります。"
+
+#: ../wp-syntaxhighlighter-admin.php:657
+#: ../wp-syntaxhighlighter-admin.php:665
+msgid "Yes"
+msgstr "有効"
+
+#: ../wp-syntaxhighlighter-admin.php:658
+#: ../wp-syntaxhighlighter-admin.php:666
+msgid "No"
+msgstr "無効"
+
+#: ../wp-syntaxhighlighter-admin.php:675
+msgid "Save Changes"
+msgstr "設定を保存"
+
+#: ../wp-syntaxhighlighter-admin.php:678
+msgid "10. Restore all settings to default"
+msgstr "１０．設定のリセット"
+
+#: ../wp-syntaxhighlighter-admin.php:683
+msgid "Reset All Settings"
+msgstr "設定をリセット"
+
+#: ../wp-syntaxhighlighter-admin.php:686
+msgid "11. Your Current Theme"
+msgstr "１１．現在のテーマ"
+
+#: ../wp-syntaxhighlighter-admin.php:710
+msgid "12. Your System Info"
+msgstr "１２．システム情報"
+
+#: ../wp-syntaxhighlighter-admin.php:713
+msgid "Server OS:"
+msgstr "サーバーOS:"
+
+#: ../wp-syntaxhighlighter-admin.php:714
+msgid "PHP version:"
+msgstr "PHPのバージョン:"
+
+#: ../wp-syntaxhighlighter-admin.php:715
+msgid "MySQL version:"
+msgstr "MySQLのバージョン:"
+
+#: ../wp-syntaxhighlighter-admin.php:716
+msgid "WordPress version:"
+msgstr "WordPessのバージョン:"
+
+#: ../wp-syntaxhighlighter-admin.php:717
+msgid "Site URL:"
+msgstr "サイトのURL:"
+
+#: ../wp-syntaxhighlighter-admin.php:718
+msgid "WordPress URL:"
+msgstr "WordPressのURL:"
+
+#: ../wp-syntaxhighlighter-admin.php:719
+msgid "WordPress language:"
+msgstr "WordPressのロケール:"
+
+#: ../wp-syntaxhighlighter-admin.php:720
+msgid "WordPress character set:"
+msgstr "WordPressの文字コード:"
+
+#: ../wp-syntaxhighlighter-admin.php:721
+msgid "WordPress theme:"
+msgstr "WordPressのテーマ:"
+
+#: ../wp-syntaxhighlighter-admin.php:722
+msgid "WP SyntaxHighlighter version:"
+msgstr "WP SyntaxHighlighterのバージョン:"
+
+#: ../wp-syntaxhighlighter-admin.php:723
+msgid "WP SyntaxHighlighter DB version:"
+msgstr "WP SyntaxHighlighterのDBバージョン:"
+
+#: ../wp-syntaxhighlighter-admin.php:724
+msgid "WP SyntaxHighlighter URL:"
+msgstr "WP SyntaxHighlighterのURL:"
+
+#: ../wp-syntaxhighlighter-admin.php:725
+msgid "Your browser:"
+msgstr "ブラウザ:"
+
+#: ../wp-syntaxhighlighter-admin.php:729
+msgid "To report a bug ,submit requests and feedback, "
+msgstr "バグの報告、ご要望、ご感想は、"
+
+#: ../wp-syntaxhighlighter-admin.php:729
+msgid "Use <a href=\"http://wordpress.org/tags/wp-syntaxhighlighter?forum_id=10\">Forum</a> or <a href=\"http://www.near-mint.com/blog/contact\">Mail From</a>"
+msgstr "<a href=\"http://wordpress.org/tags/wp-syntaxhighlighter?forum_id=10\">フォーラム</a>　または、<a href=\"http://www.near-mint.com/blog/contact\">メールフォーム</a>まで"
+
+#: ../wp-syntaxhighlighter-bootstrap.php:30
+msgid "Could not find wp-load.php"
+msgstr "wp-load.phpが見つかりません。"
+
+#: ../wp-syntaxhighlighter-widget.php:15
+msgid "WP SyntaxHighlighter Widget shows highlighted code."
+msgstr "「WP SyntaxHighlighter Widget」は、強調表示されたコードを表示します。"
+
+#: ../wp-syntaxhighlighter-widget.php:16
+msgid "WP SyntaxHighlighter Widget"
+msgstr "WP SyntaxHighlighter Widget"
+
+#: ../wp-syntaxhighlighter-widget.php:62
+msgid "Title:"
+msgstr "タイトル:"
+
+#: ../wp-syntaxhighlighter.php:101
+msgid "This site supports <a href=\"http://alexgorbatchev.com/SyntaxHighlighter/\">SyntaxHighlighter</a> via <a href=\"http://www.near-mint.com/blog/software/wp-syntaxhighlighter\">WP SyntaxHighlighter</a>. It can highlight your code. <br /><strong>How to highlight your code:</strong> Paste your code in the comment form, select it and then click the language link button below. This will wrap your code in a <pre> tag(or shortcode) and format it when submitted."
+msgstr "このサイトは、<a href=\"http://www.near-mint.com/blog/software/wp-syntaxhighlighter\">WP SyntaxHighlighter</a>を利用しています。<a href=\"http://alexgorbatchev.com/SyntaxHighlighter/\">SyntaxHighlighter</a>をサポートし、コメント中のソースコードを強調表示できます。<br /><strong>強調表示の仕方:</strong> まず、ソースコードをコメント欄にペーストします。ペーストしたソースコード全体を選択し、下のテキストリンクボタンをクリックすると、ソースコードが<pre>タグ（または、ショートコード）でマークアップされ、コメントの送信後に強調表示に変わります。"
+
+#: ../wp-syntaxhighlighter.php:116
+msgid "This site supports <a href=\"http://alexgorbatchev.com/SyntaxHighlighter/\">SyntaxHighlighter</a> via <a href=\"http://www.near-mint.com/blog/software/wp-syntaxhighlighter\">WP SyntaxHighlighter</a>. It can highlight your code. <br /><strong>How to highlight your code:</strong> Paste your code in the topic or reply form, select it and then click the language link button below. This will wrap your code in a <pre> tag(or shortcode) and format it when submitted."
+msgstr "このサイトは、<a href=\"http://www.near-mint.com/blog/software/wp-syntaxhighlighter\">WP SyntaxHighlighter</a>を利用しています。<a href=\"http://alexgorbatchev.com/SyntaxHighlighter/\">SyntaxHighlighter</a>をサポートし、トピックやリプライの中のソースコードを強調表示できます。<br /><strong>強調表示の仕方:</strong> まず、ソースコードを投稿欄にペーストします。ペーストしたソースコード全体を選択し、下のテキストリンクボタンをクリックすると、ソースコードが<pre>タグ（または、ショートコード）でマークアップされ、送信後に強調表示に変わります。"
+
+#: ../wp-syntaxhighlighter.php:471
+msgid "Settings"
+msgstr "設定"
+
+#: ../wp-syntaxhighlighter.php:1021
+msgid "+ expand source"
+msgstr "ソースを展開"
+
+#: ../wp-syntaxhighlighter.php:1027
+msgid "show source"
+msgstr "ソースを展開"
+
+#: ../wp-syntaxhighlighter.php:1120
+#: ../wp-syntaxhighlighter.php:1149
+msgid "?"
+msgstr "?"
+
+#: ../wp-syntaxhighlighter.php:1121
+#: ../wp-syntaxhighlighter.php:1150
+msgid ""
+"SyntaxHighlighter\\n"
+"\\n"
+msgstr ""
+"SyntaxHighlighter\\n"
+"\\n"
+
+#: ../wp-syntaxhighlighter.php:1122
+#: ../wp-syntaxhighlighter.php:1151
+msgid "Can't find brush for: "
+msgstr "指定の言語に対応するブラシ（言語定義ファイル）が読み込まれていません。: "
+
+#: ../wp-syntaxhighlighter.php:1123
+#: ../wp-syntaxhighlighter.php:1152
+msgid "Brush wasn't configured for html-script option: "
+msgstr "指定の言語は、html-scriptオプションに対応していません。: "
+
+#: ../wp-syntaxhighlighter.php:1145
+msgid "view source"
+msgstr "ソースを表示"
+
+#: ../wp-syntaxhighlighter.php:1146
+msgid "copy to clipboard"
+msgstr "クリップボードにコピー"
+
+#: ../wp-syntaxhighlighter.php:1147
+msgid "The code is in your clipboard now"
+msgstr "コードをクリップボードにコピーしました"
+
+#: ../wp-syntaxhighlighter.php:1148
+msgid "print"
+msgstr "印刷"
+
+#: ../sample/lang-pack-for-wp-syntaxhighlighter/lang-pack-for-wp-syntaxhighlighter.php:174
+msgid "Lang Pack for WP SyntaxHighlighter requires WP SyntaxHighlighter ver. 1.4.3 or higher"
+msgstr "Lang Pack for WP SyntaxHighlighterの動作には、WP SyntaxHighlighter バージョン1.4.3以上が必要です。"
+
+#: ../sh-tinymce-button-box/sh-tinymce-button-box.php:57
+msgid "WP SyntaxHighlighter SHTB CodeBox"
+msgstr "WP SyntaxHighlighter SHTB CodeBox"
+
+#: ../sh-tinymce-button-box/window.php:16
+#: ../sh-tinymce-button-ins/window.php:16
+msgid "You are not allowed to access this file."
+msgstr "このファイルへのアクセスは許可されていません。"
+
+#: ../sh-tinymce-button-box/window.php:36
+#: ../sh-tinymce-button-ins/window.php:36
+msgid "Select Language"
+msgstr "言語を選択"
+
+#: ../sh-tinymce-button-box/window.php:70
+msgid "Your Code:"
+msgstr "ソースコード："
+
+#: ../sh-tinymce-button-box/window.php:77
+#: ../sh-tinymce-button-ins/window.php:71
+msgid "Insert"
+msgstr "挿入"
+
+#: ../sh-tinymce-button-box/window.php:80
+#: ../sh-tinymce-button-ins/window.php:74
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: ../sh-tinymce-button-ins/sh-tinymce-button-ins.php:58
+msgid "WP SyntaxHighlighter SHTB Select & Insert"
+msgstr "WP SyntaxHighlighter SHTB Select & Insert"
+

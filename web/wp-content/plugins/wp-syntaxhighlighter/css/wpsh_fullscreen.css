@@ -1,0 +1,9 @@
+.wp_themeSkin span.mce_shtb_ins {
+	background: url("../sh-tinymce-button-ins/shtb_img.png") no-repeat 20px 20px;
+background-position:0 0
+}
+
+.wp_themeSkin span.mce_shtb_box {
+	background: url("../sh-tinymce-button-box/shtb_img.png") no-repeat 20px 20px;
+background-position:0 0
+}

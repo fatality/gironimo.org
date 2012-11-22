@@ -1,0 +1,113 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700);
+
+html .mceContentBody {
+    width: 1024px;
+    margin: 1em auto;
+}
+
+body {
+    color: #323232;
+    font-family: 'PT Sans Caption', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+blockquote,
+pre {
+    outline: 1px dotted #888;
+    padding: 1em;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0 0 0.67em;
+}
+
+h2 {
+    font-size: 2em;
+    margin: 0 0 0.83em;
+}
+
+h3 {
+    font-size: 1.67em;
+    margin: 0 0 1em;
+}
+
+h4 {
+    font-size: 1.5em;
+    margin: 0 0 1.33em;
+}
+
+h5 {
+    font-size: 1.33em;
+    margin: 0 0 1.67em;
+}
+
+h6 {
+    font-size: 1.25em;
+    margin: 0 0 2.33em;
+}
+
+p { margin: 0 0 2em; }
+
+b,
+strong { font-weight: bold; }
+
+blockquote { margin: 0 2em 2em; }
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+ul,
+ol {
+    margin: 0 0 2em;
+    padding: 0 0 0 2em;
+}
+
+ul ul,
+ol ol { margin: 0; }
+
+dl { margin: 0 0 2em; }
+
+dd { margin: 0 0 0 2em; }
+
+a,
+a:visited {
+    color: #0052a3;
+    text-decoration: none;
+}
+
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 1.625em;
+}
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 1.625em;
+}
+.aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

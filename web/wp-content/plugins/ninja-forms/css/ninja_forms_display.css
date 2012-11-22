@@ -1,0 +1,316 @@
+.field-group {clear:right;float:none;margin-bottom: 10px;overflow:hidden;}
+.required-item {color:red; font-size:20px; margin:0 5px}
+#ninja_form .ninja_error {border: 1px solid red;}
+.ninja-controls {padding-top:20px;}
+
+.span-divider-label- {
+	clear: both;
+	display:block;
+	float: none;
+}
+
+#ninja_form #progressbar {
+	margin-bottom: 20px;
+}
+
+.ninja-success {
+	background: #FFC;
+	border: 1px solid #FF3;
+	color: #333;
+	margin: 10px 0;
+	padding: 10px;
+}
+
+.jquerybubblepopup table, .jquerybubblepopup table tr, .jquerybubblepopup td, .jquerybubblepopup th {
+	border: 0;
+}
+.ui-widget-header {
+border: 0;
+background: #fff;
+color: #222;
+font-size: 16px;
+font-weight: bold;
+margin: 0;
+}
+.ui-dialog .ui-dialog-content {
+border: 0;
+padding: .5em 1em;
+background: none;
+font-size: 14px;
+overflow: auto;
+zoom: 1;
+}
+.ui-progressbar-value {
+border: 0;
+background: #ccc;
+color: #222;
+font-size: 16px;
+font-weight: bold;
+margin: 0;
+}
+/* =textbox
+-------------------------------------------------------------- */
+
+.span-textbox-label-above {}
+	.span-textbox-label-above input {padding: 2px 5px; width: 97%;}
+	.span-textbox-label-above label {}
+
+.span-textbox-label-right {}
+	.span-textbox-label-right input {padding: 2px 5px;}
+	.span-textbox-label-right label {margin-left: 10px;}
+
+.span-textbox-label-left {}
+	.span-textbox-label-left input {padding: 2px 5px;}
+	.span-textbox-label-left label {margin-right: 10px}
+
+.span-textbox-label-inside {}
+	.span-textbox-label-inside input {margin-right: 10px; padding: 2px 5px; width: 92%;}
+	.span-textbox-label-inside label {}
+	
+/* =file
+-------------------------------------------------------------- */
+
+.span-file-label-above {}
+	.span-file-label-above input {padding: 2px 5px; width: 97%;}
+	.span-file-label-above label {}
+
+.span-file-label-right {}
+	.span-file-label-right input {padding: 2px 5px;}
+	.span-file-label-right label {margin-left: 10px;}
+
+.span-file-label-left {}
+	.span-file-label-left input {padding: 2px 5px;}
+	.span-file-label-left label {margin-right: 10px}
+
+.span-file-label-inside {}
+	.span-file-label-inside input {margin-right: 10px; padding: 2px 5px; width: 92%;}
+	.span-file-label-inside label {}
+	
+
+/* =checkbox
+-------------------------------------------------------------- */
+
+.span-checkbox-label-above {}
+	.span-checkbox-label-above input {padding: 2px 5px;clear:left; display:block; float:none;}
+	.span-checkbox-label-above label {}
+
+.span-checkbox-label-right {}
+	.span-checkbox-label-right input {padding: 2px 5px;}
+	.span-checkbox-label-right label {margin-left: 10px;}
+
+.span-checkbox-label-left {}
+	.span-checkbox-label-left input {padding: 2px 5px;}
+	.span-checkbox-label-left label {margin-right: 10px}
+	
+	
+/* =textarea
+-------------------------------------------------------------- */
+
+.span-textarea-label-above {}
+	.span-textarea-label-above textarea {padding: 2px 5px; width: 97%;}
+	.span-textarea-label-above label {}
+
+.span-textarea-label-right {}
+	.span-textarea-label-right textarea {padding: 2px 5px;}
+	.span-textarea-label-right label {margin-left: 10px; vertical-align:top;}
+	.span-textarea-label-right .required-item {vertical-align:top;}
+	.span-textarea-label-right img {vertical-align:top;}
+
+.span-textarea-label-left {}
+	.span-textarea-label-left textarea {padding: 2px 5px;}
+	.span-textarea-label-left label {margin-right: 10px; vertical-align:top;}
+	.span-textarea-label-left .required-item {vertical-align:top;}
+	.span-textarea-label-left img {vertical-align:top;}
+	
+.span-textarea-label-inside {}
+	.span-textarea-label-inside textarea {margin-right: 10px; padding: 2px 5px; width: 92%;}
+	.span-textarea-label-inside label {}
+	.span-textarea-label-inside .required-item {vertical-align:top;}
+	.span-textarea-label-inside img {vertical-align:top;}
+
+
+/* =select
+-------------------------------------------------------------- */
+	
+.span-select-label-above {}
+	.span-select-label-above select {clear:left; display:block; float:none;}
+	.span-select-label-above label {}
+
+.span-select-label-right {}
+	.span-select-label-right select {}
+	.span-select-label-right label {margin-left: 10px;}
+
+.span-select-label-left {}
+	.span-select-label-left select {}
+	.span-select-label-left label {margin-right: 10px}
+
+.span-select-label-inside {}
+	.span-select-label-inside select {margin-right: 10px;}
+	.span-select-label-inside label {}
+	
+	
+/* =multi-select
+-------------------------------------------------------------- */
+
+.span-multi-label-above {}
+	.span-multi-label-above select {clear:left; display:block; float:none;}
+	.span-multi-label-above label {}
+
+.span-multi-label-right {}
+	.span-multi-label-right select {}
+	.span-multi-label-right label {margin-left: 10px; vertical-align:top;}
+	.span-multi-label-right .required-item {vertical-align:top;}
+	.span-multi-label-right img {vertical-align:top;}
+
+.span-multi-label-left {}
+	.span-multi-label-left select {}
+	.span-multi-label-left label {margin-right: 10px; vertical-align:top;}
+	.span-multi-label-left .required-item {vertical-align:top;}
+	.span-multi-label-left img {vertical-align:top;}
+	
+.span-multi-label-inside {}
+	.span-multi-label-inside select {margin-right: 10px;}
+	.span-multi-label-inside label {vertical-align:top;}
+	.span-multi-label-inside .required-item {vertical-align:top;}
+	.span-multi-label-inside img {vertical-align:top;}
+	
+	
+/* =radio
+-------------------------------------------------------------- */
+
+.span-radio-label-above {}
+	.span-radio-label-above input {clear:left; float:left; display:block; margin-bottom:5px; width: 20px;}
+	.span-radio-label-above label {float:left; clear:right; display:block;}
+	
+	
+/* =custom: spam
+-------------------------------------------------------------- */
+
+.span-spam-label-above {}
+	.span-spam-label-above input {padding: 2px 5px;clear:left; display:block; float:none;}
+	.span-spam-label-above label {}
+
+.span-spam-label-right {}
+	.span-spam-label-right input {padding: 2px 5px;}
+	.span-spam-label-right label {margin-left: 10px;}
+
+.span-spam-label-left {}
+	.span-spam-label-left input {padding: 2px 5px;}
+	.span-spam-label-left label {margin-right: 10px}
+
+.span-spam-label-inside {}
+	.span-spam-label-inside input {margin-right: 10px; padding: 2px 5px;}
+	.span-spam-label-inside label {}
+	
+/* =posttitle
+-------------------------------------------------------------- */
+
+.span-posttitle-label-above {}
+	.span-posttitle-label-above input {padding: 2px 5px; width: 97%;}
+	.span-posttitle-label-above label {}
+
+.span-posttitle-label-right {}
+	.span-posttitle-label-right input {padding: 2px 5px;}
+	.span-posttitle-label-right label {margin-left: 10px;}
+
+.span-posttitle-label-left {}
+	.span-posttitle-label-left input {padding: 2px 5px;}
+	.span-posttitle-label-left label {margin-right: 10px}
+
+.span-posttitle-label-inside {}
+	.span-posttitle-label-inside input {margin-right: 10px; padding: 2px 5px; width: 92%;}
+	.span-posttitle-label-inside label {}
+	
+/* =postcontent
+-------------------------------------------------------------- */
+
+.span-postcontent-label-above {}
+	.span-postcontent-label-above textarea {padding: 2px 5px; width: 97%;}
+	.span-postcontent-label-above label {}
+
+.span-postcontent-label-right {}
+	.span-postcontent-label-right textarea {padding: 2px 5px;}
+	.span-postcontent-label-right label {margin-left: 10px; vertical-align:top;}
+	.span-postcontent-label-right .required-item {vertical-align:top;}
+	.span-postcontent-label-right img {vertical-align:top;}
+
+.span-postcontent-label-left {}
+	.span-postcontent-label-left textarea {padding: 2px 5px;}
+	.span-postcontent-label-left label {margin-right: 10px; vertical-align:top;}
+	.span-postcontent-label-left .required-item {vertical-align:top;}
+	.span-postcontent-label-left img {vertical-align:top;}
+	
+.span-postcontent-label-inside {}
+	.span-postcontent-label-inside textarea {margin-right: 10px; padding: 2px 5px; width: 92%;}
+	.span-postcontent-label-inside label {}
+	.span-postcontent-label-inside .required-item {vertical-align:top;}
+	.span-postcontent-label-inside img {vertical-align:top;}
+	
+/* =postexcerpt
+-------------------------------------------------------------- */
+
+.span-postexcerpt-label-above {}
+	.span-postexcerpt-label-above textarea {padding: 2px 5px; width: 97%;}
+	.span-postexcerpt-label-above label {}
+
+.span-postexcerpt-label-right {}
+	.span-postexcerpt-label-right textarea {padding: 2px 5px;}
+	.span-postexcerpt-label-right label {margin-left: 10px; vertical-align:top;}
+	.span-postexcerpt-label-right .required-item {vertical-align:top;}
+	.span-postexcerpt-label-right img {vertical-align:top;}
+
+.span-postexcerpt-label-left {}
+	.span-postexcerpt-label-left textarea {padding: 2px 5px;}
+	.span-postexcerpt-label-left label {margin-right: 10px; vertical-align:top;}
+	.span-postexcerpt-label-left .required-item {vertical-align:top;}
+	.span-postexcerpt-label-left img {vertical-align:top;}
+	
+.span-postexcerpt-label-inside {}
+	.span-postexcerpt-label-inside textarea {margin-right: 10px; padding: 2px 5px; width: 92%;}
+	.span-postexcerpt-label-inside label {}
+	.span-postexcerpt-label-inside .required-item {vertical-align:top;}
+	.span-postexcerpt-label-inside img {vertical-align:top;}
+	
+/* =postcat
+-------------------------------------------------------------- */
+
+.span-postcat-label-above {}
+	.span-postcat-label-above select {clear:left; display:block; float:none;}
+	.span-postcat-label-above label {}
+
+.span-postcat-label-right {}
+	.span-postcat-label-right select {}
+	.span-postcat-label-right label {margin-left: 10px; vertical-align:top;}
+	.span-postcat-label-right .required-item {vertical-align:top;}
+	.span-postcat-label-right img {vertical-align:top;}
+
+.span-postcat-label-left {}
+	.span-postcat-label-left select {}
+	.span-postcat-label-left label {margin-right: 10px; vertical-align:top;}
+	.span-postcat-label-left .required-item {vertical-align:top;}
+	.span-postcat-label-left img {vertical-align:top;}
+	
+.span-postcat-label-inside {}
+	.span-postcat-label-inside select {margin-right: 10px;}
+	.span-postcat-label-inside label {vertical-align:top;}
+	.span-postcat-label-inside .required-item {vertical-align:top;}
+	.span-postcat-label-inside img {vertical-align:top;}
+	
+/* =posttags
+-------------------------------------------------------------- */
+
+.span-posttags-label-above {}
+	.span-posttags-label-above input {padding: 2px 5px; width: 97%;}
+	.span-posttags-label-above label {}
+
+.span-posttags-label-right {}
+	.span-posttags-label-right input {padding: 2px 5px;}
+	.span-posttags-label-right label {margin-left: 10px;}
+
+.span-posttags-label-left {}
+	.span-posttags-label-left input {padding: 2px 5px;}
+	.span-posttags-label-left label {margin-right: 10px}
+
+.span-posttags-label-inside {}
+	.span-posttags-label-inside input {margin-right: 10px; padding: 2px 5px; width: 92%;}
+	.span-posttags-label-inside label {}
